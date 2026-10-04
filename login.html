@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Student Login - Surya Coaching Centre</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f7fb;
+}
+
+.header{
+  background:#1565c0;
+  color:white;
+  text-align:center;
+  padding:25px 10px;
+}
+
+.box{
+  background:white;
+  max-width:400px;
+  margin:40px auto;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 3px 12px #ccc;
+}
+
+h2{
+  text-align:center;
+  color:#1565c0;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  background:#1565c0;
+  color:white;
+  border:0;
+  border-radius:8px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.home{
+  display:block;
+  text-align:center;
+  margin-top:18px;
+  color:#1565c0;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>☀️ Surya Coaching Centre</h1>
+  <p>Student Login</p>
+</div>
+
+<div class="box">
+
+  <h2>👨‍🎓 Student Login</h2>
+
+  <input type="text" id="mobile"
+         placeholder="Mobile Number">
+
+  <input type="password" id="password"
+         placeholder="Password">
+
+  <button onclick="login()">
+    Login
+  </button>
+
+  <a href="index.html" class="home">
+    ← Home Page
+  </a>
+
+</div>
+
+<script>
+
+function login(){
+
+  let mobile =
+    document.getElementById("mobile").value;
+
+  let password =
+    document.getElementById("password").value;
+
+  if(mobile=="" || password==""){
+    alert("Mobile Number और Password भरें");
+    return;
+  }
+
+  alert("Demo Login सफल हुआ");
+
+  window.location.href="student.html";
+}
+
+</script>
+
+</body>
+</html>
