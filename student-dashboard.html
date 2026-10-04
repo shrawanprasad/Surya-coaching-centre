@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard - Surya Coaching Centre</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f7fb;
+}
+
+header{
+  background:#1565c0;
+  color:white;
+  padding:22px 15px;
+  text-align:center;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.welcome{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 3px 10px #ddd;
+  margin-bottom:20px;
+}
+
+.welcome h2{
+  color:#1565c0;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.btn{
+  display:block;
+  text-decoration:none;
+  color:white;
+  padding:20px 10px;
+  border-radius:12px;
+  text-align:center;
+  font-size:17px;
+  font-weight:bold;
+  background:#1976d2;
+}
+
+.notes{background:#00838f}
+.live{background:#c62828}
+.test{background:#455a64}
+.home{background:#6a1b9a}
+.logout{background:#ef6c00}
+
+@media(max-width:500px){
+  .buttons{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>☀️ Surya Coaching Centre</h1>
+  <p>Student Dashboard</p>
+</header>
+
+<div class="container">
+
+  <div class="welcome">
+    <h2>नमस्ते, <span id="studentName">Student</span> 👋</h2>
+    <p>आपकी कक्षा: <strong id="studentClass"></strong></p>
+  </div>
+
+  <div class="buttons">
+
+    <a href="notes.html" class="btn notes">
+      📝 Notes
+    </a>
+
+    <a href="live.html" class="btn live">
+      🎥 Live Classes
+    </a>
+
+    <a href="test.html" class="btn test">
+      🧪 Mock Tests
+    </a>
+
+    <a href="index.html" class="btn home">
+      🏠 Home
+    </a>
+
+    <a href="#" onclick="logout()" class="btn logout">
+      🚪 Logout
+    </a>
+
+  </div>
+
+</div>
+
+<script>
+
+let loggedIn = localStorage.getItem("studentLoggedIn");
+
+if(loggedIn !== "true"){
+  window.location.href="login.html";
+}
+
+document.getElementById("studentName").innerText =
+localStorage.getItem("studentName") || "Student";
+
+document.getElementById("studentClass").innerText =
+localStorage.getItem("studentClass") || "";
+
+function logout(){
+
+localStorage.removeItem("studentName");
+localStorage.removeItem("studentMobile");
+localStorage.removeItem("studentClass");
+localStorage.removeItem("studentLoggedIn");
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+</body>
+</html>
