@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Live Class - Surya Coaching Centre</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#0d47a1,#1976d2);
+  color:white;
+  padding:18px 16px 25px;
+  border-radius:0 0 25px 25px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.18);
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.header h1{
+  font-size:21px;
+}
+
+.header p{
+  margin-top:13px;
+  font-size:13px;
+  opacity:.9;
+}
+
+/* CONTENT */
+.container{
+  padding:20px 15px 95px;
+}
+
+.title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.subtitle{
+  color:#777;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+/* LIVE CARD */
+.live-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  margin-bottom:18px;
+}
+
+.live-banner{
+  height:150px;
+  background:linear-gradient(135deg,#0d47a1,#42a5f5);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:white;
+}
+
+.camera{
+  font-size:45px;
+  margin-bottom:8px;
+}
+
+.live-now{
+  background:#e53935;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.live-content{
+  padding:18px;
+}
+
+.class-name{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.teacher{
+  margin-top:8px;
+  color:#666;
+  font-size:13px;
+}
+
+.details{
+  margin-top:15px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.detail{
+  background:#f5f8fc;
+  padding:12px;
+  border-radius:11px;
+  font-size:12px;
+}
+
+.join-btn{
+  width:100%;
+  margin-top:16px;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:#1565c0;
+  color:white;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.join-btn:active{
+  transform:scale(.98);
+}
+
+/* SCHEDULE */
+.section-title{
+  font-size:19px;
+  font-weight:bold;
+  margin:22px 0 13px;
+}
+
+.schedule{
+  background:white;
+  padding:16px;
+  border-radius:18px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+  margin-bottom:12px;
+}
+
+.schedule-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.subject{
+  font-weight:bold;
+  font-size:14px;
+}
+
+.time{
+  color:#1565c0;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.day{
+  margin-top:7px;
+  color:#777;
+  font-size:12px;
+}
+
+/* NOTICE */
+.notice{
+  background:#fff8e1;
+  border-left:5px solid #ffb300;
+  padding:15px;
+  border-radius:12px;
+  font-size:13px;
+  line-height:1.6;
+  margin-top:18px;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
+  box-shadow:0 -3px 15px rgba(0,0,0,.1);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:100;
+}
+
+.nav-item{
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  cursor:pointer;
+}
+
+.nav-item span{
+  display:block;
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.active{
+  color:#1565c0;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="top">
+
+    <button class="back"
+      onclick="location.href='student-dashboard.html'">
+      ‹
+    </button>
+
+    <h1>🎥 Live Class</h1>
+
+  </div>
+
+  <p>
+    Surya Coaching Centre की online live classes
+  </p>
+
+</header>
+
+
+<main class="container">
+
+  <div class="title">
+    🔴 Live Class
+  </div>
+
+  <div class="subtitle">
+    अपनी online class में सीधे join करें।
+  </div>
+
+
+  <!-- LIVE CLASS -->
+  <div class="live-card">
+
+    <div class="live-banner">
+
+      <div class="camera">
+        🎥
+      </div>
+
+      <div class="live-now">
+        ● LIVE CLASS
+      </div>
+
+    </div>
+
+    <div class="live-content">
+
+      <div class="class-name">
+        Surya Coaching Centre
+      </div>
+
+      <div class="teacher">
+        👨‍🏫 Online Live Class
+      </div>
+
+      <div class="details">
+
+        <div class="detail">
+          📚 Subject<br>
+          <b>Class Subject</b>
+        </div>
+
+        <div class="detail">
+          🕐 Time<br>
+          <b>As Scheduled</b>
+        </div>
+
+      </div>
+
+      <button class="join-btn"
+        onclick="joinLiveClass()">
+        🎥 Join Live Class
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- SCHEDULE -->
+  <div class="section-title">
+    📅 Class Schedule
+  </div>
+
+
+  <div class="schedule">
+
+    <div class="schedule-row">
+
+      <div class="subject">
+        🧪 Chemistry
+      </div>
+
+      <div class="time">
+        Online
+      </div>
+
+    </div>
+
+    <div class="day">
+      📅 Schedule will be updated by Admin
+    </div>
+
+  </div>
+
+
+  <div class="schedule">
+
+    <div class="schedule-row">
+
+      <div class="subject">
+        ⚛️ Physics
+      </div>
+
+      <div class="time">
+        Online
+      </div>
+
+    </div>
+
+    <div class="day">
+      📅 Schedule will be updated by Admin
+    </div>
+
+  </div>
+
+
+  <div class="schedule">
+
+    <div class="schedule-row">
+
+      <div class="subject">
+        📘 Mathematics
+      </div>
+
+      <div class="time">
+        Online
+      </div>
+
+    </div>
+
+    <div class="day">
+      📅 Schedule will be updated by Admin
+    </div>
+
+  </div>
+
+
+  <!-- NOTICE -->
+  <div class="notice">
+
+    <b>ℹ️ Important:</b><br>
+
+    Live class का actual link अभी demo के रूप में दिया गया है।
+    बाद में Admin Panel से class link और schedule manage किया जाएगा।
+
+  </div>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+  <div class="nav-item"
+    onclick="location.href='student-dashboard.html'">
+
+    <span>🏠</span>
+    Home
+
+  </div>
+
+  <div class="nav-item"
+    onclick="location.href='courses.html'">
+
+    <span>📚</span>
+    Courses
+
+  </div>
+
+  <div class="nav-item"
+    onclick="location.href='notes.html'">
+
+    <span>📖</span>
+    Notes
+
+  </div>
+
+  <div class="nav-item active">
+
+    <span>🎥</span>
+    Live
+
+  </div>
+
+</nav>
+
+
+<script>
+
+function joinLiveClass(){
+
+  const liveLink =
+    "https://meet.google.com/dfi-nfks-fkb";
+
+  window.open(liveLink,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
