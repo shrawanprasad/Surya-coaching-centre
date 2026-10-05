@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notes - Surya Coaching Centre</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+.header{
+  background:linear-gradient(135deg,#0d47a1,#1976d2);
+  color:white;
+  padding:18px 16px 25px;
+  border-radius:0 0 25px 25px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.18);
+  color:white;
+  font-size:25px;
+}
+
+.header h1{
+  font-size:21px;
+}
+
+.header p{
+  margin-top:13px;
+  font-size:13px;
+  opacity:.9;
+}
+
+.container{
+  padding:20px 15px 90px;
+}
+
+.title{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.subtitle{
+  color:#777;
+  font-size:13px;
+  margin:6px 0 18px;
+}
+
+/* CLASS CARD */
+
+.class-card{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+
+.class-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.class-name{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.badge{
+  background:#e3f2fd;
+  color:#1565c0;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.subject-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:16px;
+}
+
+.subject{
+  background:#f5f8fc;
+  border-radius:12px;
+  padding:13px 8px;
+  text-align:center;
+  font-size:13px;
+}
+
+.subject button{
+  margin-top:8px;
+  border:0;
+  background:#1565c0;
+  color:white;
+  padding:7px 12px;
+  border-radius:8px;
+  font-size:11px;
+}
+
+.info{
+  background:#fff8e1;
+  border-left:5px solid #ffb300;
+  border-radius:12px;
+  padding:15px;
+  font-size:13px;
+  line-height:1.6;
+  margin-top:20px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
+  box-shadow:0 -3px 15px rgba(0,0,0,.1);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.nav-item{
+  text-align:center;
+  color:#777;
+  font-size:11px;
+}
+
+.nav-item span{
+  display:block;
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.active{
+  color:#1565c0;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="top">
+
+    <button class="back"
+      onclick="location.href='student-dashboard.html'">
+      ‹
+    </button>
+
+    <h1>📖 Notes</h1>
+
+  </div>
+
+  <p>
+    Surya Coaching Centre के Class Notes
+  </p>
+
+</header>
+
+
+<main class="container">
+
+  <div class="title">
+    📚 Class-wise Notes
+  </div>
+
+  <div class="subtitle">
+    अपनी कक्षा और subject के notes चुनें।
+  </div>
+
+
+  <!-- CLASS 9 -->
+
+  <div class="class-card">
+
+    <div class="class-top">
+
+      <div class="class-name">
+        Class 9
+      </div>
+
+      <div class="badge">
+        NOTES
+      </div>
+
+    </div>
+
+    <div class="subject-grid">
+
+      <div class="subject">
+        📘 Mathematics
+        <br>
+        <button onclick="openNotes('9','Mathematics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        ⚛️ Physics
+        <br>
+        <button onclick="openNotes('9','Physics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧪 Chemistry
+        <br>
+        <button onclick="openNotes('9','Chemistry')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧬 Biology
+        <br>
+        <button onclick="openNotes('9','Biology')">
+          Open
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CLASS 10 -->
+
+  <div class="class-card">
+
+    <div class="class-top">
+
+      <div class="class-name">
+        Class 10
+      </div>
+
+      <div class="badge">
+        NOTES
+      </div>
+
+    </div>
+
+    <div class="subject-grid">
+
+      <div class="subject">
+        📘 Mathematics
+        <br>
+        <button onclick="openNotes('10','Mathematics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        ⚛️ Physics
+        <br>
+        <button onclick="openNotes('10','Physics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧪 Chemistry
+        <br>
+        <button onclick="openNotes('10','Chemistry')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧬 Biology
+        <br>
+        <button onclick="openNotes('10','Biology')">
+          Open
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CLASS 11 -->
+
+  <div class="class-card">
+
+    <div class="class-top">
+
+      <div class="class-name">
+        Class 11
+      </div>
+
+      <div class="badge">
+        NOTES
+      </div>
+
+    </div>
+
+    <div class="subject-grid">
+
+      <div class="subject">
+        📘 Mathematics
+        <br>
+        <button onclick="openNotes('11','Mathematics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        ⚛️ Physics
+        <br>
+        <button onclick="openNotes('11','Physics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧪 Chemistry
+        <br>
+        <button onclick="openNotes('11','Chemistry')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧬 Biology
+        <br>
+        <button onclick="openNotes('11','Biology')">
+          Open
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CLASS 12 -->
+
+  <div class="class-card">
+
+    <div class="class-top">
+
+      <div class="class-name">
+        Class 12
+      </div>
+
+      <div class="badge">
+        NOTES
+      </div>
+
+    </div>
+
+    <div class="subject-grid">
+
+      <div class="subject">
+        📘 Mathematics
+        <br>
+        <button onclick="openNotes('12','Mathematics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        ⚛️ Physics
+        <br>
+        <button onclick="openNotes('12','Physics')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧪 Chemistry
+        <br>
+        <button onclick="openNotes('12','Chemistry')">
+          Open
+        </button>
+      </div>
+
+      <div class="subject">
+        🧬 Biology
+        <br>
+        <button onclick="openNotes('12','Biology')">
+          Open
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info">
+    <b>ℹ️ Important:</b><br>
+    अभी Notes का structure तैयार किया गया है।
+    Chapter-wise notes और PDF बाद के step में जोड़े जाएँगे।
+  </div>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+  <div class="nav-item"
+    onclick="location.href='student-dashboard.html'">
+    <span>🏠</span>
+    Home
+  </div>
+
+  <div class="nav-item"
+    onclick="location.href='courses.html'">
+    <span>📚</span>
+    Courses
+  </div>
+
+  <div class="nav-item active">
+    <span>📖</span>
+    Notes
+  </div>
+
+  <div class="nav-item"
+    onclick="location.href='profile.html'">
+    <span>👤</span>
+    Profile
+  </div>
+
+</nav>
+
+
+<script>
+
+function openNotes(classNumber,subject){
+
+  alert(
+    "Class " + classNumber +
+    " - " + subject +
+    " के chapter-wise notes अगले step में जोड़े जाएँगे।"
+  );
+
+}
+
+</script>
+
+</body>
+</html>
