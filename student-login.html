@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login - Surya Coaching Centre</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#0d47a1,#42a5f5);
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.box{
+width:90%;
+max-width:380px;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.2);
+text-align:center;
+}
+
+h2{
+color:#0d47a1;
+}
+
+input{
+width:100%;
+padding:13px;
+margin:8px 0;
+border:1px solid #ddd;
+border-radius:8px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:13px;
+margin-top:12px;
+border:0;
+border-radius:8px;
+background:#0d47a1;
+color:white;
+font-size:16px;
+}
+
+.back{
+background:#777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>👨‍🎓 Student Login</h2>
+
+<p>Surya Coaching Centre</p>
+
+<input type="text" placeholder="Mobile Number">
+
+<input type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<button class="back" onclick="goHome()">← Home पर जाएँ</button>
+
+</div>
+
+<script>
+function login(){
+alert("Student Login system अगले चरण में जोड़ा जाएगा।");
+}
+
+function goHome(){
+window.location.href="index.html";
+}
+</script>
+
+</body>
+  </html>
