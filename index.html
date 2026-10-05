@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* Header */
+header{
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    color:white;
+    padding:18px 15px;
+    text-align:center;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+}
+
+.tagline{
+    margin-top:6px;
+    font-size:14px;
+}
+
+/* Welcome */
+.welcome{
+    padding:25px 18px;
+    text-align:center;
+}
+
+.welcome h1{
+    color:#0d47a1;
+    font-size:25px;
+}
+
+.welcome p{
+    margin-top:8px;
+    color:#666;
+}
+
+/* Buttons */
+.container{
+    padding:10px 15px 30px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:20px 10px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,0.10);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.card:active{
+    transform:scale(0.97);
+}
+
+.icon{
+    font-size:32px;
+    margin-bottom:9px;
+}
+
+.card h3{
+    font-size:16px;
+    color:#0d47a1;
+}
+
+.card p{
+    font-size:12px;
+    color:#777;
+    margin-top:5px;
+}
+
+/* Notice */
+.notice{
+    margin:10px 15px 25px;
+    background:#e3f2fd;
+    border-left:5px solid #1976d2;
+    padding:15px;
+    border-radius:8px;
+}
+
+.notice h3{
+    color:#0d47a1;
+    margin-bottom:5px;
+}
+
+.notice p{
+    font-size:13px;
+}
+
+/* Footer */
+footer{
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:18px 10px;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">☀️ Surya Coaching Centre</div>
+    <div class="tagline">आपकी सफलता, हमारा लक्ष्य</div>
+</header>
+
+<section class="welcome">
+    <h1>Welcome to Surya Coaching Centre</h1>
+    <p>Online Classes • Notes • Tests • Courses</p>
+</section>
+
+<div class="container">
+
+    <div class="grid">
+
+        <div class="card" onclick="openPage('student-login.html')">
+            <div class="icon">👨‍🎓</div>
+            <h3>Student Login</h3>
+            <p>अपने अकाउंट में प्रवेश करें</p>
+        </div>
+
+        <div class="card" onclick="openPage('admin-login.html')">
+            <div class="icon">🔐</div>
+            <h3>Admin Login</h3>
+            <p>Admin Panel खोलें</p>
+        </div>
+
+        <div class="card" onclick="openPage('courses.html')">
+            <div class="icon">📚</div>
+            <h3>Courses</h3>
+            <p>Class 9 से 12 तक</p>
+        </div>
+
+        <div class="card" onclick="openPage('notes.html')">
+            <div class="icon">📖</div>
+            <h3>Notes</h3>
+            <p>Chapter-wise Notes</p>
+        </div>
+
+        <div class="card" onclick="openPage('live.html')">
+            <div class="icon">🎥</div>
+            <h3>Live Class</h3>
+            <p>Online Live Classes</p>
+        </div>
+
+        <div class="card" onclick="openPage('quiz.html')">
+            <div class="icon">📝</div>
+            <h3>Test / Quiz</h3>
+            <p>अपनी तैयारी जांचें</p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="notice">
+    <h3>📢 महत्वपूर्ण सूचना</h3>
+    <p>
+        Surya Coaching Centre में Class 9, 10, 11 और 12
+        के लिए Online Courses और Study Material उपलब्ध होगा।
+    </p>
+</div>
+
+<footer>
+    © 2026 Surya Coaching Centre<br>
+    आपकी सफलता, हमारा लक्ष्य
+</footer>
+
+<script>
+function openPage(page){
+    window.location.href = page;
+}
+</script>
+
+</body>
+      </html>
