@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Video Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#1f2937;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:18px 16px;
+    border-radius:0 0 24px 24px;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:12px;
+    background:rgba(255,255,255,.18);
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.header h1{
+    margin:0;
+    font-size:21px;
+}
+
+.header p{
+    margin:6px 0 0 54px;
+    font-size:13px;
+    opacity:.9;
+}
+
+
+/* MAIN */
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:18px 14px 100px;
+}
+
+
+/* TOP */
+.top-action{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:16px;
+}
+
+.page-title{
+    font-size:19px;
+    font-weight:bold;
+}
+
+.add-btn{
+    border:0;
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:11px 14px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+
+/* FILTER */
+.filter-box{
+    background:white;
+    padding:14px;
+    border-radius:17px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    margin-bottom:18px;
+}
+
+.filter-title{
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+select,
+.search{
+    width:100%;
+    padding:12px;
+    border:1px solid #dbe3ec;
+    border-radius:10px;
+    outline:none;
+    background:white;
+    font-size:13px;
+}
+
+select:focus,
+.search:focus{
+    border-color:#1565c0;
+}
+
+.search{
+    margin-top:9px;
+}
+
+
+/* VIDEO CARD */
+.video-card{
+    background:white;
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:14px;
+    box-shadow:0 3px 13px rgba(0,0,0,.07);
+}
+
+.video-top{
+    display:flex;
+    gap:12px;
+}
+
+.video-icon{
+    min-width:55px;
+    height:55px;
+    border-radius:15px;
+    background:#e3f2fd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.video-title{
+    font-size:16px;
+    font-weight:bold;
+    line-height:1.4;
+}
+
+.video-meta{
+    margin-top:5px;
+    color:#6b7280;
+    font-size:12px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:12px;
+}
+
+.tag{
+    padding:6px 9px;
+    background:#f0f7ff;
+    color:#1565c0;
+    border-radius:15px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+
+/* STATUS */
+.status{
+    margin-top:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.active{
+    color:#16803c;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    display:inline-block;
+    background:#16a34a;
+    border-radius:50%;
+    margin-right:4px;
+}
+
+
+/* BUTTONS */
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-top:14px;
+}
+
+.btn{
+    border:0;
+    padding:10px 6px;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.watch{
+    background:#e3f2fd;
+    color:#1565c0;
+}
+
+.edit{
+    background:#fff3cd;
+    color:#856404;
+}
+
+.delete{
+    background:#ffe8e8;
+    color:#c62828;
+}
+
+
+/* ADD VIDEO PANEL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:20;
+    padding:20px 14px;
+    overflow:auto;
+}
+
+.modal-box{
+    max-width:520px;
+    margin:30px auto;
+    background:white;
+    border-radius:20px;
+    padding:20px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.modal-header h2{
+    margin:0;
+    font-size:20px;
+}
+
+.close{
+    border:0;
+    background:#f1f3f5;
+    width:35px;
+    height:35px;
+    border-radius:10px;
+    font-size:20px;
+}
+
+.form-group{
+    margin-bottom:13px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.form-control{
+    width:100%;
+    padding:12px;
+    border:1px solid #dbe3ec;
+    border-radius:10px;
+    outline:none;
+    font-size:13px;
+}
+
+.save-btn{
+    width:100%;
+    border:0;
+    padding:13px;
+    border-radius:11px;
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    font-weight:bold;
+    font-size:14px;
+    margin-top:5px;
+}
+
+
+/* EMPTY */
+.empty{
+    display:none;
+    text-align:center;
+    padding:35px 15px;
+    background:white;
+    border-radius:17px;
+    color:#6b7280;
+}
+
+.empty-icon{
+    font-size:42px;
+}
+
+
+/* NOTICE */
+.notice{
+    margin-top:18px;
+    padding:15px;
+    background:#fff8e1;
+    color:#795548;
+    border-radius:15px;
+    font-size:13px;
+    line-height:1.6;
+}
+
+
+@media(max-width:430px){
+
+    .top-action{
+        align-items:flex-start;
+    }
+
+    .page-title{
+        font-size:17px;
+    }
+
+    .add-btn{
+        font-size:12px;
+        padding:10px;
+    }
+
+    .actions{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="header-top">
+
+        <button class="back-btn" onclick="goBack()">‹</button>
+
+        <div>
+            <h1>Video Management</h1>
+        </div>
+
+    </div>
+
+    <p>Surya Coaching Centre • Admin Panel</p>
+
+</div>
+
+
+<div class="container">
+
+
+    <!-- TITLE -->
+
+    <div class="top-action">
+
+        <div class="page-title">
+            🎥 Manage Videos
+        </div>
+
+        <button class="add-btn" onclick="openModal()">
+            ＋ Add Video
+        </button>
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="filter-box">
+
+        <div class="filter-title">
+            🔎 Search & Filter
+        </div>
+
+        <div class="filters">
+
+            <select id="classFilter" onchange="filterVideos()">
+
+                <option value="">All Classes</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+
+            </select>
+
+
+            <select id="subjectFilter" onchange="filterVideos()">
+
+                <option value="">All Subjects</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="biology">Biology</option>
+
+            </select>
+
+        </div>
+
+
+        <input
+            class="search"
+            id="searchInput"
+            type="text"
+            placeholder="Video या Chapter खोजें..."
+            onkeyup="filterVideos()"
+        >
+
+    </div>
+
+
+    <!-- VIDEO 1 -->
+
+    <div class="video-card"
+         data-class="11"
+         data-subject="chemistry"
+         data-search="chemical bonding chemistry chapter 4">
+
+        <div class="video-top">
+
+            <div class="video-icon">
+                ▶️
+            </div>
+
+            <div>
+
+                <div class="video-title">
+                    Chemical Bonding — Introduction
+                </div>
+
+                <div class="video-meta">
+                    Class 11 • Chemistry • Chapter 4
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="tags">
+
+            <span class="tag">Class 11</span>
+            <span class="tag">Chemistry</span>
+            <span class="tag">Chapter 4</span>
+            <span class="tag">Video</span>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="active">
+                <span class="dot"></span>
+                Active
+            </span>
+
+            <span style="font-size:12px;color:#6b7280;">
+                25 मिनट
+            </span>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button class="btn watch"
+                onclick="watchVideo('Chemical Bonding — Introduction')">
+                ▶ Watch
+            </button>
+
+            <button class="btn edit"
+                onclick="editVideo('Chemical Bonding — Introduction')">
+                ✏️ Edit
+            </button>
+
+            <button class="btn delete"
+                onclick="deleteVideo('Chemical Bonding — Introduction')">
+                🗑 Delete
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- VIDEO 2 -->
+
+    <div class="video-card"
+         data-class="11"
+         data-subject="physics"
+         data-search="motion in straight line physics chapter 2">
+
+        <div class="video-top">
+
+            <div class="video-icon">
+                ▶️
+            </div>
+
+            <div>
+
+                <div class="video-title">
+                    Motion in a Straight Line
+                </div>
+
+                <div class="video-meta">
+                    Class 11 • Physics • Chapter 2
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="tags">
+
+            <span class="tag">Class 11</span>
+            <span class="tag">Physics</span>
+            <span class="tag">Chapter 2</span>
+            <span class="tag">Video</span>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="active">
+                <span class="dot"></span>
+                Active
+            </span>
+
+            <span style="font-size:12px;color:#6b7280;">
+                32 मिनट
+            </span>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button class="btn watch"
+                onclick="watchVideo('Motion in a Straight Line')">
+                ▶ Watch
+            </button>
+
+            <button class="btn edit"
+                onclick="editVideo('Motion in a Straight Line')">
+                ✏️ Edit
+            </button>
+
+            <button class="btn delete"
+                onclick="deleteVideo('Motion in a Straight Line')">
+                🗑 Delete
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- VIDEO 3 -->
+
+    <div class="video-card"
+         data-class="12"
+         data-subject="mathematics"
+         data-search="relations functions mathematics chapter 1">
+
+        <div class="video-top">
+
+            <div class="video-icon">
+                ▶️
+            </div>
+
+            <div>
+
+                <div class="video-title">
+                    Relations and Functions
+                </div>
+
+                <div class="video-meta">
+                    Class 12 • Mathematics • Chapter 1
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="tags">
+
+            <span class="tag">Class 12</span>
+            <span class="tag">Mathematics</span>
+            <span class="tag">Chapter 1</span>
+            <span class="tag">Video</span>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="active">
+                <span class="dot"></span>
+                Active
+            </span>
+
+            <span style="font-size:12px;color:#6b7280;">
+                40 मिनट
+            </span>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button class="btn watch"
+                onclick="watchVideo('Relations and Functions')">
+                ▶ Watch
+            </button>
+
+            <button class="btn edit"
+                onclick="editVideo('Relations and Functions')">
+                ✏️ Edit
+            </button>
+
+            <button class="btn delete"
+                onclick="deleteVideo('Relations and Functions')">
+                🗑 Delete
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- VIDEO 4 -->
+
+    <div class="video-card"
+         data-class="10"
+         data-subject="biology"
+         data-search="life processes biology chapter 6">
+
+        <div class="video-top">
+
+            <div class="video-icon">
+                ▶️
+            </div>
+
+            <div>
+
+                <div class="video-title">
+                    Life Processes
+                </div>
+
+                <div class="video-meta">
+                    Class 10 • Biology • Chapter 6
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="tags">
+
+            <span class="tag">Class 10</span>
+            <span class="tag">Biology</span>
+            <span class="tag">Chapter 6</span>
+            <span class="tag">Video</span>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="active">
+                <span class="dot"></span>
+                Active
+            </span>
+
+            <span style="font-size:12px;color:#6b7280;">
+                28 मिनट
+            </span>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button class="btn watch"
+                onclick="watchVideo('Life Processes')">
+                ▶ Watch
+            </button>
+
+            <button class="btn edit"
+                onclick="editVideo('Life Processes')">
+                ✏️ Edit
+            </button>
+
+            <button class="btn delete"
+                onclick="deleteVideo('Life Processes')">
+                🗑 Delete
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- EMPTY -->
+
+    <div class="empty" id="empty">
+
+        <div class="empty-icon">🔎</div>
+
+        <strong>कोई Video नहीं मिला</strong>
+
+        <p>Search या Filter बदलकर फिर कोशिश करें।</p>
+
+    </div>
+
+
+    <!-- NOTICE -->
+
+    <div class="notice">
+
+        <strong>⚠️ अभी Demo Mode:</strong><br>
+
+        यह Video Management अभी front-end demo है।
+        Firebase/database जोड़ने के बाद Admin अपने
+        वास्तविक teaching videos, chapters और video links
+        manage कर सकेगा।
+
+    </div>
+
+</div>
+
+
+
+<!-- ADD VIDEO MODAL -->
+
+<div class="modal" id="videoModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>➕ Add New Video</h2>
+
+            <button class="close" onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Video Title</label>
+
+            <input
+                class="form-control"
+                id="videoTitle"
+                placeholder="जैसे: Chemical Bonding Part 1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Class</label>
+
+            <select class="form-control">
+
+                <option>Class 9</option>
+                <option>Class 10</option>
+                <option>Class 11</option>
+                <option>Class 12</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Subject</label>
+
+            <select class="form-control">
+
+                <option>Mathematics</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>Biology</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Chapter</label>
+
+            <input
+                class="form-control"
+                placeholder="Chapter का नाम"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Video Link</label>
+
+            <input
+                class="form-control"
+                type="url"
+                placeholder="https://..."
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Duration</label>
+
+            <input
+                class="form-control"
+                placeholder="जैसे: 35 मिनट"
+            >
+
+        </div>
+
+
+        <button class="save-btn" onclick="saveVideo()">
+            💾 Save Video
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* BACK */
+
+function goBack(){
+
+    if(document.referrer){
+
+        history.back();
+
+    }else{
+
+        window.location.href="admin-login.html";
+
+    }
+
+}
+
+
+/* OPEN MODAL */
+
+function openModal(){
+
+    document.getElementById("videoModal").style.display="block";
+
+}
+
+
+/* CLOSE MODAL */
+
+function closeModal(){
+
+    document.getElementById("videoModal").style.display="none";
+
+}
+
+
+/* SAVE VIDEO */
+
+function saveVideo(){
+
+    let title =
+        document.getElementById("videoTitle").value.trim();
+
+    if(title===""){
+
+        alert("कृपया Video Title लिखें।");
+        return;
+
+    }
+
+    alert(
+        "Video तैयार है!\n\n" +
+        title +
+        "\n\nFirebase जोड़ने के बाद यह Video database में save होगा।"
+    );
+
+    closeModal();
+
+}
+
+
+/* FILTER */
+
+function filterVideos(){
+
+    let classValue =
+        document.getElementById("classFilter").value;
+
+    let subjectValue =
+        document.getElementById("subjectFilter").value;
+
+    let searchValue =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let cards =
+        document.querySelectorAll(".video-card");
+
+    let found=0;
+
+    cards.forEach(function(card){
+
+        let cardClass =
+            card.getAttribute("data-class");
+
+        let cardSubject =
+            card.getAttribute("data-subject");
+
+        let cardSearch =
+            card.getAttribute("data-search")
+            .toLowerCase();
+
+        let classMatch =
+            classValue==="" ||
+            cardClass===classValue;
+
+        let subjectMatch =
+            subjectValue==="" ||
+            cardSubject===subjectValue;
+
+        let searchMatch =
+            searchValue==="" ||
+            cardSearch.includes(searchValue);
+
+        if(classMatch && subjectMatch && searchMatch){
+
+            card.style.display="block";
+            found++;
+
+        }else{
+
+            card.style.display="none";
+
+        }
+
+    });
+
+
+    document.getElementById("empty").style.display =
+        found===0 ? "block" : "none";
+
+}
+
+
+/* WATCH */
+
+function watchVideo(title){
+
+    alert(
+        "▶ " + title +
+        "\n\nVideo player यहाँ बाद में खुलेगा।"
+    );
+
+}
+
+
+/* EDIT */
+
+function editVideo(title){
+
+    alert(
+        "✏️ Edit Video\n\n" +
+        title +
+        "\n\nFirebase जोड़ने के बाद Admin Video की जानकारी edit कर सकेगा।"
+    );
+
+}
+
+
+/* DELETE */
+
+function deleteVideo(title){
+
+    let result =
+        confirm(
+            "क्या आप यह Video delete करना चाहते हैं?\n\n" +
+            title
+        );
+
+    if(result){
+
+        alert(
+            "Delete सुविधा Firebase जोड़ने के बाद वास्तविक रूप से काम करेगी।"
+        );
+
+    }
+
+}
+
+
+/* CLOSE MODAL WHEN OUTSIDE CLICK */
+
+window.onclick=function(event){
+
+    let modal =
+        document.getElementById("videoModal");
+
+    if(event.target===modal){
+
+        closeModal();
+
+    }
+
+};
+
+</script>
+
+
+</body>
+</html>
