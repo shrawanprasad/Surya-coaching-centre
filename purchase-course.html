@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Purchase Course - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:22px 16px;
+    border-radius:0 0 28px 28px;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back-btn{
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    font-size:22px;
+}
+
+.header h1{
+    margin:0;
+    font-size:23px;
+}
+
+.header p{
+    margin:8px 0 0 52px;
+    font-size:14px;
+}
+
+/* MAIN */
+.container{
+    padding:20px 15px 95px;
+}
+
+.section-title{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.info-box{
+    background:white;
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.07);
+}
+
+.info-box h3{
+    margin:0 0 7px;
+    color:#1565c0;
+}
+
+.info-box p{
+    margin:0;
+    color:#666;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* COURSE CARD */
+.course-card{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:17px;
+    box-shadow:0 5px 18px rgba(0,0,0,0.08);
+}
+
+.course-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.class-name{
+    font-size:20px;
+    font-weight:bold;
+    color:#1565c0;
+}
+
+.badge{
+    background:#e3f2fd;
+    color:#1565c0;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.subjects{
+    margin:15px 0;
+}
+
+.subject{
+    display:inline-block;
+    background:#f1f5f9;
+    padding:8px 10px;
+    border-radius:10px;
+    margin:4px 3px 4px 0;
+    font-size:13px;
+}
+
+.price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+}
+
+.price{
+    font-size:23px;
+    font-weight:bold;
+    color:#1565c0;
+}
+
+.buy-btn{
+    border:0;
+    background:#1565c0;
+    color:white;
+    padding:12px 20px;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.buy-btn:active{
+    transform:scale(0.97);
+}
+
+/* NOTE */
+.note{
+    background:#fff8e1;
+    border-left:5px solid #ffb300;
+    padding:13px;
+    border-radius:12px;
+    margin-top:20px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -3px 15px rgba(0,0,0,0.12);
+    z-index:100;
+}
+
+.nav-item{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#1565c0;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="header-top">
+
+        <button class="back-btn"
+        onclick="goBack()">‹</button>
+
+        <h1>Purchase Course</h1>
+
+    </div>
+
+    <p>Surya Coaching Centre</p>
+
+</div>
+
+
+<!-- MAIN -->
+<div class="container">
+
+    <div class="section-title">
+        अपना Course चुनें
+    </div>
+
+
+    <div class="info-box">
+
+        <h3>🎓 Complete Class Package</h3>
+
+        <p>
+            एक ही package में आपकी कक्षा के
+            सभी मुख्य subjects उपलब्ध होंगे।
+        </p>
+
+    </div>
+
+
+    <!-- CLASS 9 -->
+    <div class="course-card">
+
+        <div class="course-top">
+
+            <div class="class-name">
+                Class 9
+            </div>
+
+            <div class="badge">
+                Complete Package
+            </div>
+
+        </div>
+
+        <div class="subjects">
+
+            <span class="subject">📐 Mathematics</span>
+
+            <span class="subject">⚛️ Physics</span>
+
+            <span class="subject">🧪 Chemistry</span>
+
+            <span class="subject">🧬 Biology</span>
+
+        </div>
+
+        <div class="price-row">
+
+            <div class="price">
+                ₹499
+            </div>
+
+            <button class="buy-btn"
+            onclick="purchaseCourse('Class 9',499)">
+                Buy Now
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CLASS 10 -->
+    <div class="course-card">
+
+        <div class="course-top">
+
+            <div class="class-name">
+                Class 10
+            </div>
+
+            <div class="badge">
+                Complete Package
+            </div>
+
+        </div>
+
+        <div class="subjects">
+
+            <span class="subject">📐 Mathematics</span>
+
+            <span class="subject">⚛️ Physics</span>
+
+            <span class="subject">🧪 Chemistry</span>
+
+            <span class="subject">🧬 Biology</span>
+
+        </div>
+
+        <div class="price-row">
+
+            <div class="price">
+                ₹499
+            </div>
+
+            <button class="buy-btn"
+            onclick="purchaseCourse('Class 10',499)">
+                Buy Now
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CLASS 11 -->
+    <div class="course-card">
+
+        <div class="course-top">
+
+            <div class="class-name">
+                Class 11
+            </div>
+
+            <div class="badge">
+                Complete Package
+            </div>
+
+        </div>
+
+        <div class="subjects">
+
+            <span class="subject">📐 Mathematics</span>
+
+            <span class="subject">⚛️ Physics</span>
+
+            <span class="subject">🧪 Chemistry</span>
+
+            <span class="subject">🧬 Biology</span>
+
+        </div>
+
+        <div class="price-row">
+
+            <div class="price">
+                ₹499
+            </div>
+
+            <button class="buy-btn"
+            onclick="purchaseCourse('Class 11',499)">
+                Buy Now
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CLASS 12 -->
+    <div class="course-card">
+
+        <div class="course-top">
+
+            <div class="class-name">
+                Class 12
+            </div>
+
+            <div class="badge">
+                Complete Package
+            </div>
+
+        </div>
+
+        <div class="subjects">
+
+            <span class="subject">📐 Mathematics</span>
+
+            <span class="subject">⚛️ Physics</span>
+
+            <span class="subject">🧪 Chemistry</span>
+
+            <span class="subject">🧬 Biology</span>
+
+        </div>
+
+        <div class="price-row">
+
+            <div class="price">
+                ₹499
+            </div>
+
+            <button class="buy-btn"
+            onclick="purchaseCourse('Class 12',499)">
+                Buy Now
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="note">
+
+        🔒 <b>Important:</b>
+        अभी यह Purchase Page demo mode में है।
+        वास्तविक payment और course access बाद में
+        सुरक्षित payment + database system से जोड़ा जाएगा।
+
+    </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-item"
+    onclick="openPage('student-dashboard.html')">
+
+        <span class="nav-icon">🏠</span>
+       
