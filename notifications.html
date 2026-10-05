@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:20px 16px 28px;
+    border-radius:0 0 28px 28px;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back-btn{
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.2);
+    color:white;
+    font-size:24px;
+}
+
+.header h1{
+    margin:0;
+    font-size:23px;
+}
+
+.header p{
+    margin:8px 0 0 52px;
+    font-size:14px;
+}
+
+/* MAIN */
+.container{
+    padding:18px 15px 95px;
+}
+
+.page-title{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+/* NOTIFICATION */
+.notification{
+    background:white;
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    display:flex;
+    gap:13px;
+}
+
+.icon{
+    min-width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#e3f2fd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
+
+.content{
+    flex:1;
+}
+
+.content h3{
+    margin:0 0 6px;
+    color:#1565c0;
+    font-size:16px;
+}
+
+.content p{
+    margin:0;
+    color:#666;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.time{
+    display:block;
+    margin-top:7px;
+    font-size:12px;
+    color:#999;
+}
+
+/* EMPTY */
+.empty{
+    display:none;
+    background:white;
+    padding:30px 15px;
+    text-align:center;
+    border-radius:18px;
+    color:#777;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -3px 15px rgba(0,0,0,.12);
+}
+
+.nav-item{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#1565c0;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="header-top">
+
+        <button class="back-btn"
+        onclick="goBack()">‹</button>
+
+        <h1>Notifications</h1>
+
+    </div>
+
+    <p>Surya Coaching Centre</p>
+
+</div>
+
+
+<!-- MAIN -->
+<div class="container">
+
+    <div class="page-title">
+        🔔 Latest Notifications
+    </div>
+
+
+    <!-- NOTIFICATION 1 -->
+    <div class="notification">
+
+        <div class="icon">
+            📢
+        </div>
+
+        <div class="content">
+
+            <h3>Welcome to Surya Coaching Centre</h3>
+
+            <p>
+                आपका स्वागत है। यहाँ आपको
+                Classes, Notes, Quiz और Live Class
+                की जानकारी मिलेगी।
+            </p>
+
+            <span class="time">
+                आज
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATION 2 -->
+    <div class="notification">
+
+        <div class="icon">
+            📚
+        </div>
+
+        <div class="content">
+
+            <h3>New Study Material</h3>
+
+            <p>
+                नए Notes और Study Material
+                जल्द ही उपलब्ध कराए जाएंगे।
+            </p>
+
+            <span class="time">
+                हाल ही में
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATION 3 -->
+    <div class="notification">
+
+        <div class="icon">
+            🎥
+        </div>
+
+        <div class="content">
+
+            <h3>Live Class Update</h3>
+
+            <p>
+                Live Class का Schedule और
+                Join Link समय पर उपलब्ध कराया जाएगा।
+            </p>
+
+            <span class="time">
+                सूचना
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATION 4 -->
+    <div class="notification">
+
+        <div class="icon">
+            📝
+        </div>
+
+        <div class="content">
+
+            <h3>Quiz Update</h3>
+
+            <p>
+                Class 9 से Class 12 तक के
+                Online Quiz जल्द उपलब्ध होंगे।
+            </p>
+
+            <span class="time">
+                सूचना
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="empty">
+        🔔 अभी कोई नई Notification नहीं है।
+    </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-item"
+    onclick="openPage('student-dashboard.html')">
+
+        <span class="nav-icon">🏠</span>
+        Home
+
+    </div>
+
+
+    <div class="nav-item"
+    onclick="openPage('courses.html')">
+
+        <span class="nav-icon">📚</span>
+        Courses
+
+    </div>
+
+
+    <div class="nav-item"
+    onclick="openPage('notes.html')">
+
+        <span class="nav-icon">📖</span>
+        Notes
+
+    </div>
+
+
+    <div class="nav-item active">
+
+        <span class="nav-icon">🔔</span>
+        Alerts
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openPage(page){
+
+    window.location.href = page;
+
+}
+
+function goBack(){
+
+    history.back();
+
+}
+
+</script>
+
+</body>
+</html>
