@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Course Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);
+    color:white;
+    padding:20px 16px 28px;
+    border-radius:0 0 28px 28px;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.2);
+    color:white;
+    font-size:25px;
+}
+
+.header h1{
+    margin:0;
+    font-size:22px;
+}
+
+.header p{
+    margin:8px 0 0 54px;
+    font-size:13px;
+    opacity:.95;
+}
+
+/* MAIN */
+.container{
+    padding:18px 15px 100px;
+}
+
+.page-title{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.subtitle{
+    color:#777;
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+/* ADMIN ACTIONS */
+.action-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.action-card{
+    background:white;
+    border-radius:17px;
+    padding:17px 12px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+}
+
+.action-icon{
+    font-size:30px;
+}
+
+.action-card h3{
+    margin:8px 0 5px;
+    font-size:15px;
+}
+
+.action-card p{
+    margin:0;
+    color:#777;
+    font-size:12px;
+}
+
+/* COURSE CARD */
+.course-card{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:16px;
+    box-shadow:0 5px 17px rgba(0,0,0,.08);
+}
+
+.course-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.course-name{
+    color:#1565c0;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.status{
+    background:#e8f5e9;
+    color:#2e7d32;
+    padding:6px 9px;
+    border-radius:15px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.course-info{
+    color:#666;
+    font-size:13px;
+    margin:10px 0;
+    line-height:1.5;
+}
+
+/* CHAPTER */
+.chapter{
+    background:#f7f9fc;
+    border-radius:13px;
+    padding:12px;
+    margin-top:10px;
+}
+
+.chapter-title{
+    font-weight:bold;
+    color:#333;
+    font-size:14px;
+}
+
+.content-row{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-top:9px;
+}
+
+.content-tag{
+    background:white;
+    border:1px solid #e1e7ef;
+    border-radius:8px;
+    padding:6px 8px;
+    font-size:11px;
+    color:#555;
+}
+
+.manage-btn{
+    width:100%;
+    margin-top:12px;
+    padding:11px;
+    border:0;
+    border-radius:11px;
+    background:#1565c0;
+    color:white;
+    font-weight:bold;
+}
+
+/* NOTICE */
+.notice{
+    background:#fff8e1;
+    border-left:5px solid #ffb300;
+    padding:13px;
+    border-radius:11px;
+    margin-top:20px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:68px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -3px 15px rgba(0,0,0,.12);
+    z-index:100;
+}
+
+.nav-item{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#1565c0;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="header-top">
+
+        <button class="back-btn"
+        onclick="goBack()">‹</button>
+
+        <h1>Course Management</h1>
+
+    </div>
+
+    <p>Surya Coaching Centre • Admin Panel</p>
+
+</div>
+
+
+<!-- MAIN -->
+<div class="container">
+
+    <div class="page-title">
+        🎓 Course Management
+    </div>
+
+    <div class="subtitle">
+        अपने Courses, Chapters और Study Content को व्यवस्थित करें।
+    </div>
+
+
+    <!-- ACTIONS -->
+    <div class="action-grid">
+
+        <div class="action-card"
+        onclick="addCourse()">
+
+            <div class="action-icon">
+                ➕
+            </div>
+
+            <h3>Add Course</h3>
+
+            <p>नया Course बनाएं</p>
+
+        </div>
+
+
+        <div class="action-card"
+        onclick="addChapter()">
+
+            <div class="action-icon">
+                📚
+            </div>
+
+            <h3>Add Chapter</h3>
+
+            <p>नया Chapter जोड़ें</p>
+
+        </div>
+
+
+        <div class="action-card"
+        onclick="addVideo()">
+
+            <div class="action-icon">
+                🎥
+            </div>
+
+            <h3>Add Video</h3>
+
+            <p>Lecture Video जोड़ें</p>
+
+        </div>
+
+
+        <div class="action-card"
+        onclick="addPdf()">
+
+            <div class="action-icon">
+                📄
+            </div>
+
+            <h3>Add PDF</h3>
+
+            <p>Notes PDF जोड़ें</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- COURSE 1 -->
+    <div class="course-card">
+
+        <div class="course-head">
+
+            <div class="course-name">
+                Class 11 Chemistry
+            </div>
+
+            <div class="status">
+                Active
+            </div>
+
+        </div>
+
+        <div class="course-info">
+            Complete Course • Video + PDF + Quiz
+        </div>
+
+
+        <div class="chapter">
+
+            <div class="chapter-title">
+                Chapter 1 — Some Basic Concepts
+            </div>
+
+            <div class="content-row">
+
+                <span class="content-tag">
+                    🎥 Video
+                </span>
+
+                <span class="content-tag">
+                    📄 PDF
+                </span>
+
+                <span class="content-tag">
+                    📝 Quiz
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <div class="chapter-title">
+                Chapter 2 — Structure of Atom
+            </div>
+
+            <div class="content-row">
+
+                <span class="content-tag">
+                    🎥 Video
+                </span>
+
+                <span class="content-tag">
+                    📄 PDF
+                </span>
+
+                <span class="content-tag">
+                    📝 Quiz
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button class="manage-btn"
+        onclick="manageCourse('Class 11 Chemistry')">
+
+            ⚙️ Manage Course
+
+        </button>
+
+    </div>
+
+
+    <!-- COURSE 2 -->
+    <div class="course-card">
+
+        <div class="course-head">
+
+            <div class="course-name">
+                Class 12 Physics
+            </div>
+
+            <div class="status">
+                Active
+            </div>
+
+        </div>
+
+        <div class="course-info">
+            Complete Course • Video + PDF + Quiz
+        </div>
+
+
+        <div class="chapter">
+
+            <div class="chapter-title">
+                Chapter 1 — Electric Charges
+            </div>
+
+            <div class="content-row">
+
+                <span class="content-tag">
+                    🎥 Video
+                </span>
+
+                <span class="content-tag">
+                    📄 PDF
+                </span>
+
+                <span class="content-tag">
+                    📝 Quiz
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button class="manage-btn"
+        onclick="manageCourse('Class 12 Physics')">
+
+            ⚙️ Manage Course
+
+        </button>
+
+    </div>
+
+
+    <!-- NOTICE -->
+    <div class="notice">
+
+        🔐 <b>ध्यान दें:</b>
+        अभी यह Admin Course Management का demo
+        front-end है। वास्तविक Video/PDF upload,
+        database और secure Admin access बाद में
+        Firebase के साथ जोड़ा जाएगा।
+
+    </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-item"
+    onclick="openPage('admin-login.html')">
+
+        <span class="nav-icon">🏠</span>
+        Admin Home
+
+    </div>
+
+
+    <div class="nav-item active">
+
+        <span class="nav-icon">🎓</span>
+        Courses
+
+    </div>
+
+
+    <div class="nav-item"
+    onclick="openPage('student-register.html')">
+
+        <span class="nav-icon">👨‍🎓</span>
+        Students
+
+    </div>
+
+
+    <div class="nav-item"
+    onclick="openPage('student-dashboard.html')">
+
+        <span class="nav-icon">👤</span>
+        Preview
