@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Courses - Surya Coaching Centre</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#0d47a1,#1976d2);
+  color:white;
+  padding:18px 16px 25px;
+  border-radius:0 0 25px 25px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.18);
+  color:white;
+  font-size:22px;
+}
+
+.header h1{
+  font-size:21px;
+}
+
+.header p{
+  margin-top:14px;
+  font-size:13px;
+  opacity:.9;
+}
+
+/* CONTENT */
+.container{
+  padding:18px 15px 90px;
+}
+
+.section-title{
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+/* COURSE CARD */
+.course-card{
+  background:white;
+  border-radius:20px;
+  margin-bottom:16px;
+  padding:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+
+.course-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.class-name{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.status{
+  background:#e8f5e9;
+  color:#2e7d32;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.subjects{
+  margin-top:13px;
+  color:#666;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.course-info{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+  font-size:12px;
+  color:#555;
+}
+
+.progress{
+  height:8px;
+  background:#e5e7eb;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:7px;
+}
+
+.progress-bar{
+  height:100%;
+  background:#1976d2;
+}
+
+.open-btn{
+  width:100%;
+  border:none;
+  background:#1565c0;
+  color:white;
+  padding:13px;
+  border-radius:12px;
+  margin-top:16px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.open-btn:active{
+  transform:scale(.98);
+}
+
+/* EMPTY MESSAGE */
+.empty{
+  display:none;
+  text-align:center;
+  background:white;
+  border-radius:18px;
+  padding:30px 20px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.empty-icon{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+.empty h3{
+  margin-bottom:8px;
+}
+
+.empty p{
+  color:#777;
+  font-size:13px;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
+  box-shadow:0 -3px 15px rgba(0,0,0,.1);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.nav-item{
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  cursor:pointer;
+}
+
+.nav-item span{
+  display:block;
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.active{
+  color:#1565c0;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="top">
+
+    <button class="back" onclick="goBack()">‹</button>
+
+    <h1>📚 My Courses</h1>
+
+  </div>
+
+  <p id="studentMessage">
+    आपके उपलब्ध courses यहाँ दिखाई देंगे।
+  </p>
+
+</header>
+
+
+<main class="container">
+
+  <div class="section-title">
+    🎓 My Enrolled Courses
+  </div>
+
+
+  <!-- CLASS 9 -->
+  <div class="course-card" id="class9">
+
+    <div class="course-header">
+
+      <div class="class-name">
+        Class 9
+      </div>
+
+      <div class="status">
+        AVAILABLE
+      </div>
+
+    </div>
+
+    <div class="subjects">
+      📘 Mathematics &nbsp; • &nbsp;
+      ⚛️ Physics &nbsp; • &nbsp;
+      🧪 Chemistry &nbsp; • &nbsp;
+      🧬 Biology
+    </div>
+
+    <div class="course-info">
+      <span>Course Progress</span>
+      <span>0%</span>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" style="width:0%"></div>
+    </div>
+
+    <button class="open-btn"
+      onclick="openCourse('9')">
+      Open Class 9
+    </button>
+
+  </div>
+
+
+  <!-- CLASS 10 -->
+  <div class="course-card" id="class10">
+
+    <div class="course-header">
+
+      <div class="class-name">
+        Class 10
+      </div>
+
+      <div class="status">
+        AVAILABLE
+      </div>
+
+    </div>
+
+    <div class="subjects">
+      📘 Mathematics &nbsp; • &nbsp;
+      ⚛️ Physics &nbsp; • &nbsp;
+      🧪 Chemistry &nbsp; • &nbsp;
+      🧬 Biology
+    </div>
+
+    <div class="course-info">
+      <span>Course Progress</span>
+      <span>0%</span>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" style="width:0%"></div>
+    </div>
+
+    <button class="open-btn"
+      onclick="openCourse('10')">
+      Open Class 10
+    </button>
+
+  </div>
+
+
+  <!-- CLASS 11 -->
+  <div class="course-card" id="class11">
+
+    <div class="course-header">
+
+      <div class="class-name">
+        Class 11
+      </div>
+
+      <div class="status">
+        AVAILABLE
+      </div>
+
+    </div>
+
+    <div class="subjects">
+      📘 Mathematics &nbsp; • &nbsp;
+      ⚛️ Physics &nbsp; • &nbsp;
+      🧪 Chemistry &nbsp; • &nbsp;
+      🧬 Biology
+    </div>
+
+    <div class="course-info">
+      <span>Course Progress</span>
+      <span>0%</span>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" style="width:0%"></div>
+    </div>
+
+    <button class="open-btn"
+      onclick="openCourse('11')">
+      Open Class 11
+    </button>
+
+  </div>
+
+
+  <!-- CLASS 12 -->
+  <div class="course-card" id="class12">
+
+    <div class="course-header">
+
+      <div class="class-name">
+        Class 12
+      </div>
+
+      <div class="status">
+        AVAILABLE
+      </div>
+
+    </div>
+
+    <div class="subjects">
+      📘 Mathematics &nbsp; • &nbsp;
+      ⚛️ Physics &nbsp; • &nbsp;
+      🧪 Chemistry &nbsp; • &nbsp;
+      🧬 Biology
+    </div>
+
+    <div class="course-info">
+      <span>Course Progress</span>
+      <span>0%</span>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" style="width:0%"></div>
+    </div>
+
+    <button class="open-btn"
+      onclick="openCourse('12')">
+      Open Class 12
+    </button>
+
+  </div>
+
+
+  <!-- EMPTY -->
+  <div class="empty" id="empty">
+
+    <div class="empty-icon">📚</div>
+
+    <h3>No Course Found</h3>
+
+    <p>
+      अभी आपके account में कोई course उपलब्ध नहीं है।
+    </p>
+
+  </div>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+  <div class="nav-item"
+       onclick="location.href='student-dashboard.html'">
+
+    <span>🏠</span>
+    Home
+
+  </div>
+
+  <div class="nav-item active">
+
+    <span>📚</span>
+    Courses
+
+  </div>
+
+  <div class="nav-item"
+       onclick="location.href='notes.html'">
+
+    <span>📖</span>
+    Notes
+
+  </div>
+
+  <div class="nav-item"
+       onclick="location.href='profile.html'">
+
+    <span>👤</span>
+    Profile
+
+  </div>
+
+</nav>
+
+
+<script>
+
+/* BACK */
+function goBack(){
+
+  window.location.href="student-dashboard.html";
+
+}
+
+
+/* OPEN COURSE */
+function openCourse(classNumber){
+
+  /*
+   अभी Firebase/payment नहीं जोड़ा गया है।
+   इसलिए फिलहाल Class page खोलने की जगह
+   message दिखाया जा रहा है।
+  */
+
+  alert(
+    "Class " + classNumber +
+    " का पूरा course section अगले step में तैयार किया जाएगा।"
+  );
+
+}
+
+
+/* STUDENT NAME */
+window.onload=function(){
+
+  const name =
+    localStorage.getItem("studentName");
+
+  if(name){
+
+    document.getElementById("studentMessage")
+      .innerText =
+      "Welcome " + name +
+      " — आपके courses यहाँ हैं।";
+
+  }
+
+};
+
+</script>
+
+</body>
+</html>
