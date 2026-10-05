@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+    color:#1f2937;
+}
+
+/* Header */
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:18px 16px;
+    border-radius:0 0 22px 22px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.12);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.18);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.header h1{
+    margin:0;
+    font-size:21px;
+}
+
+.header p{
+    margin:5px 0 0 54px;
+    font-size:13px;
+    opacity:.9;
+}
+
+/* Main */
+.container{
+    padding:18px 14px 90px;
+}
+
+/* Stats */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.stat-card{
+    background:white;
+    padding:16px;
+    border-radius:16px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.07);
+}
+
+.stat-icon{
+    font-size:25px;
+}
+
+.stat-number{
+    font-size:24px;
+    font-weight:bold;
+    margin-top:7px;
+    color:#1565c0;
+}
+
+.stat-title{
+    font-size:13px;
+    color:#6b7280;
+    margin-top:3px;
+}
+
+/* Search */
+.search-box{
+    background:white;
+    padding:14px;
+    border-radius:16px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.07);
+    margin-bottom:18px;
+}
+
+.search-box label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.search-input{
+    width:100%;
+    padding:13px;
+    border:1px solid #dbe3ec;
+    border-radius:11px;
+    outline:none;
+    font-size:14px;
+}
+
+.search-input:focus{
+    border-color:#1565c0;
+}
+
+/* Student Card */
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    margin:10px 0 12px;
+}
+
+.student-card{
+    background:white;
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.07);
+}
+
+.student-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.student-name{
+    font-size:17px;
+    font-weight:bold;
+}
+
+.student-mobile{
+    color:#6b7280;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
+
+.info{
+    background:#f6f9fc;
+    padding:10px;
+    border-radius:10px;
+}
+
+.info small{
+    display:block;
+    color:#6b7280;
+    font-size:11px;
+}
+
+.info strong{
+    display:block;
+    margin-top:4px;
+    font-size:13px;
+}
+
+.status{
+    color:#16803c;
+}
+
+/* Buttons */
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:15px;
+}
+
+.btn{
+    border:none;
+    padding:11px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.view-btn{
+    background:#e3f2fd;
+    color:#1565c0;
+}
+
+.edit-btn{
+    background:#fff3cd;
+    color:#856404;
+}
+
+.block-btn{
+    background:#ffe8e8;
+    color:#c62828;
+}
+
+.delete-btn{
+    background:#f3f4f6;
+    color:#374151;
+}
+
+/* Add Student */
+.add-btn{
+    position:fixed;
+    right:18px;
+    bottom:22px;
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    border:none;
+    padding:14px 19px;
+    border-radius:30px;
+    font-weight:bold;
+    box-shadow:0 5px 18px rgba(21,101,192,.35);
+    cursor:pointer;
+}
+
+/* Empty */
+.empty{
+    text-align:center;
+    padding:30px 15px;
+    color:#6b7280;
+    display:none;
+}
+
+.empty-icon{
+    font-size:40px;
+    margin-bottom:8px;
+}
+
+/* Responsive */
+@media(min-width:700px){
+    .container{
+        max-width:750px;
+        margin:auto;
+    }
+
+    .stats{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .actions{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+
+    <div class="header-top">
+
+        <button class="back-btn" onclick="goBack()">‹</button>
+
+        <div>
+            <h1>Student Management</h1>
+        </div>
+
+    </div>
+
+    <p>Surya Coaching Centre • Admin Panel</p>
+
+</div>
+
+
+<div class="container">
+
+    <!-- Statistics -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <div class="stat-icon">👨‍🎓</div>
+            <div class="stat-number" id="totalStudents">4</div>
+            <div class="stat-title">Total Students</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🟢</div>
+            <div class="stat-number" id="activeStudents">4</div>
+            <div class="stat-title">Active</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🏫</div>
+            <div class="stat-number">9-12</div>
+            <div class="stat-title">Classes</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-number">4</div>
+            <div class="stat-title">Courses</div>
+        </div>
+
+    </div>
+
+
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <label>🔍 Student Search</label>
+
+        <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="नाम या मोबाइल नंबर से खोजें..."
+            onkeyup="searchStudents()"
+        >
+
+    </div>
+
+
+    <div class="section-title">
+        👨‍🎓 Registered Students
+    </div>
+
+
+    <!-- Students -->
+
+    <div id="studentList">
+
+        <!-- Student 1 -->
+
+        <div class="student-card" data-search="rahul kumar 9876543210">
+
+            <div class="student-top">
+
+                <div class="avatar">R</div>
+
+                <div>
+                    <div class="student-name">Rahul Kumar</div>
+                    <div class="student-mobile">📱 9876543210</div>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info">
+                    <small>Class</small>
+                    <strong>Class 11</strong>
+                </div>
+
+                <div class="info">
+                    <small>Course</small>
+                    <strong>Class 11 Package</strong>
+                </div>
+
+                <div class="info">
+                    <small>Status</small>
+                    <strong class="status">● Active</strong>
+                </div>
+
+                <div class="info">
+                    <small>Registration</small>
+                    <strong>05 Oct 2026</strong>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button class="btn view-btn"
+                    onclick="viewStudent('Rahul Kumar')">
+                    👁 View
+                </button>
+
+                <button class="btn edit-btn"
+                    onclick="editStudent('Rahul Kumar')">
+                    ✏️ Edit
+                </button>
+
+                <button class="btn block-btn"
+                    onclick="blockStudent('Rahul Kumar')">
+                    🚫 Block
+                </button>
+
+                <button class="btn delete-btn"
+                    onclick="deleteStudent('Rahul Kumar')">
+                    🗑 Delete
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Student 2 -->
+
+        <div class="student-card" data-search="neha kumari 9876543211">
+
+            <div class="student-top">
+
+                <div class="avatar">N</div>
+
+                <div>
+                    <div class="student-name">Neha Kumari</div>
+                    <div class="student-mobile">📱 9876543211</div>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info">
+                    <small>Class</small>
+                    <strong>Class 12</strong>
+                </div>
+
+                <div class="info">
+                    <small>Course</small>
+                    <strong>Class 12 Package</strong>
+                </div>
+
+                <div class="info">
+                    <small>Status</small>
+                    <strong class="status">● Active</strong>
+                </div>
+
+                <div class="info">
+                    <small>Registration</small>
+                    <strong>05 Oct 2026</strong>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button class="btn view-btn"
+                    onclick="viewStudent('Neha Kumari')">
+                    👁 View
+                </button>
+
+                <button class="btn edit-btn"
+                    onclick="editStudent('Neha Kumari')">
+                    ✏️ Edit
+                </button>
+
+                <button class="btn block-btn"
+                    onclick="blockStudent('Neha Kumari')">
+                    🚫 Block
+                </button>
+
+                <button class="btn delete-btn"
+                    onclick="deleteStudent('Neha Kumari')">
+                    🗑 Delete
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Student 3 -->
+
+        <div class="student-card" data-search="amit kumar 9876543212">
+
+            <div class="student-top">
+
+                <div class="avatar">A</div>
+
+                <div>
+                    <div class="student-name">Amit Kumar</div>
+                    <div class="student-mobile">📱 9876543212</div>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info">
+                    <small>Class</small>
+                    <strong>Class 10</strong>
+                </div>
+
+                <div class="info">
+                    <small>Course</small>
+                    <strong>Class 10 Package</strong>
+                </div>
+
+                <div class="info">
+                    <small>Status</small>
+                    <strong class="status">● Active</strong>
+                </div>
+
+                <div class="info">
+                    <small>Registration</small>
+                    <strong>04 Oct 2026</strong>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button class="btn view-btn"
+                    onclick="viewStudent('Amit Kumar')">
+                    👁 View
+                </button>
+
+                <button class="btn edit-btn"
+                    onclick="editStudent('Amit Kumar')">
+                    ✏️ Edit
+                </button>
+
+                <button class="btn block-btn"
+                    onclick="blockStudent('Amit Kumar')">
+                    🚫 Block
+                </button>
+
+                <button class="btn delete-btn"
+                    onclick="deleteStudent('Amit Kumar')">
+                    🗑 Delete
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Student 4 -->
+
+        <div class="student-card" data-search="pooja kumari 9876543213">
+
+            <div class="student-top">
+
+                <div class="avatar">P</div>
+
+                <div>
+                    <div class="student-name">Pooja Kumari</div>
+                    <div class="student-mobile">📱 9876543213</div>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info">
+                    <small>Class</small>
+                    <strong>Class 9</strong>
+                </div>
+
+                <div class="info">
+                    <small>Course</small>
+                    <strong>Class 9 Package</strong>
+                </div>
+
+                <div class="info">
+                    <small>Status</small>
+                    <strong class="status">● Active</strong>
+                </div>
+
+                <div class="info">
+                    <small>Registration</small>
+                    <strong>04 Oct 2026</strong>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button class="btn view-btn"
+                    onclick="viewStudent('Pooja Kumari')">
+                    👁 View
+                </button>
+
+                <button class="btn edit-btn"
+                    onclick="editStudent('Pooja Kumari')">
+                    ✏️ Edit
+                </button>
+
+                <button class="btn block-btn"
+                    onclick="blockStudent('Pooja Kumari')">
+                    🚫 Block
+                </button>
+
+                <button class="btn delete-btn"
+                    onclick="deleteStudent('Pooja Kumari')">
+                    🗑 Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- No Result -->
+
+    <div class="empty" id="noResult">
+
+        <div class="empty-icon">🔎</div>
+
+        <strong>Student नहीं मिला</strong>
+
+        <p>नाम या मोबाइल नंबर दोबारा जाँच करें।</p>
+
+    </div>
+
+</div>
+
+
+<!-- Add Student -->
+
+<button class="add-btn" onclick="addStudent()">
+    ＋ Add Student
+</button>
+
+
+<script>
+
+/* Back Button */
+
+function goBack(){
+
+    if(document.referrer){
+
+        history.back();
+
+    }else{
+
+        window.location.href="admin-login.html";
+
+    }
+
+}
+
+
+/* Search Students */
+
+function searchStudents(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let students =
+        document.querySelectorAll(".student-card");
+
+    let found = 0;
+
+    students.forEach(function(student){
+
+        let text =
+            student.getAttribute("data-search")
+            .toLowerCase();
+
+        if(text.includes(input)){
+
+            student.style.display="block";
+            found++;
+
+        }else{
+
+            student.style.display="none";
+
+        }
+
+    });
+
+    document.getElementById("noResult").style.display =
+        found === 0 ? "block" : "none";
+
+}
+
+
+/* View Student */
+
+function viewStudent(name){
+
+    alert(
+        "Student Details\n\n" +
+        "Name: " + name +
+        "\n\nयहाँ बाद में पूरा Student Profile खुलेगा।"
+    );
+
+}
+
+
+/* Edit Student */
+
+function editStudent(name){
+
+    alert(
+        "Edit Student\n\n" +
+        name +
+        "\n\nFirebase जुड़ने के बाद Admin यहाँ Student की जानकारी बदल सकेगा।"
+    );
