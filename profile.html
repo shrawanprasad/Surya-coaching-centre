@@ -1,1 +1,406 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Student Profile - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:22px 16px 35px;
+    border-radius:0 0 30px 30px;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back-btn{
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.2);
+    color:white;
+    font-size:24px;
+}
+
+.header h1{
+    margin:0;
+    font-size:23px;
+}
+
+.header p{
+    margin:8px 0 0 52px;
+    font-size:14px;
+}
+
+/* PROFILE */
+.container{
+    padding:0 15px 100px;
+}
+
+.profile-card{
+    background:white;
+    margin-top:-18px;
+    border-radius:22px;
+    padding:22px 18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.10);
+    text-align:center;
+}
+
+.avatar{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    background:#e3f2fd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+}
+
+.profile-card h2{
+    margin:12px 0 5px;
+    color:#1565c0;
+}
+
+.profile-card p{
+    margin:5px;
+    color:#666;
+}
+
+/* DETAILS */
+.section{
+    background:white;
+    margin-top:16px;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+}
+
+.section-title{
+    font-size:18px;
+    font-weight:bold;
+    color:#1565c0;
+    margin-bottom:14px;
+}
+
+.detail{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px 0;
+    border-bottom:1px solid #eee;
+}
+
+.detail:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#777;
+}
+
+.value{
+    font-weight:bold;
+    text-align:right;
+}
+
+/* BUTTONS */
+.action-btn{
+    width:100%;
+    border:0;
+    padding:13px;
+    border-radius:12px;
+    margin-top:10px;
+    font-size:15px;
+    font-weight:bold;
+    background:#1565c0;
+    color:white;
+}
+
+.logout{
+    background:#e53935;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -3px 15px rgba(0,0,0,.12);
+    z-index:100;
+}
+
+.nav-item{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+}
+
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#1565c0;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="header-top">
+
+        <button class="back-btn"
+        onclick="goBack()">‹</button>
+
+        <h1>My Profile</h1>
+
+    </div>
+
+    <p>Surya Coaching Centre</p>
+
+</div>
+
+
+<div class="container">
+
+    <!-- PROFILE CARD -->
+    <div class="profile-card">
+
+        <div class="avatar">
+            👨‍🎓
+        </div>
+
+        <h2 id="studentName">
+            Student
+        </h2>
+
+        <p>
+            Surya Coaching Centre Student
+        </p>
+
+    </div>
+
+
+    <!-- PERSONAL DETAILS -->
+    <div class="section">
+
+        <div class="section-title">
+            👤 Student Details
+        </div>
+
+        <div class="detail">
+
+            <span class="label">
+                Name
+            </span>
+
+            <span class="value"
+            id="nameValue">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">
+                Mobile Number
+            </span>
+
+            <span class="value"
+            id="mobileValue">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <span class="label">
+                Class
+            </span>
+
+            <span class="value"
+            id="classValue">
+                -
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACCOUNT -->
+    <div class="section">
+
+        <div class="section-title">
+            ⚙️ Account
+        </div>
+
+        <button class="action-btn"
+        onclick="editProfile()">
+            ✏️ Edit Profile
+        </button>
+
+        <button class="action-btn logout"
+        onclick="logoutStudent()">
+            🚪 Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-item"
+    onclick="openPage('student-dashboard.html')">
+
+        <span class="nav-icon">🏠</span>
+        Home
+
+    </div>
+
+
+    <div class="nav-item"
+    onclick="openPage('courses.html')">
+
+        <span class="nav-icon">📚</span>
+        Courses
+
+    </div>
+
+
+    <div class="nav-item"
+    onclick="openPage('notes.html')">
+
+        <span class="nav-icon">📖</span>
+        Notes
+
+    </div>
+
+
+    <div class="nav-item active">
+
+        <span class="nav-icon">👤</span>
+        Profile
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* LOAD STUDENT DATA */
+
+let studentName =
+localStorage.getItem("studentName") || "Student";
+
+let studentMobile =
+localStorage.getItem("studentMobile") || "-";
+
+let studentClass =
+localStorage.getItem("studentClass") || "-";
+
+
+document.getElementById("studentName").innerText =
+studentName;
+
+document.getElementById("nameValue").innerText =
+studentName;
+
+document.getElementById("mobileValue").innerText =
+studentMobile;
+
+document.getElementById("classValue").innerText =
+studentClass;
+
+
+/* PAGE OPEN */
+
+function openPage(page){
+
+    window.location.href = page;
+
+}
+
+
+/* BACK */
+
+function goBack(){
+
+    history.back();
+
+}
+
+
+/* EDIT PROFILE */
+
+function editProfile(){
+
+    alert(
+        "Profile editing का सुरक्षित system बाद में जोड़ा जाएगा।"
+    );
+
+}
+
+
+/* LOGOUT */
+
+function logoutStudent(){
+
+    let confirmLogout =
+    confirm("क्या आप Logout करना चाहते हैं?");
+
+    if(confirmLogout){
+
+        window.location.href =
+        "student-login.html";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
