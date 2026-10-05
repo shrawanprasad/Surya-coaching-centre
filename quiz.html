@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:20px 16px;
+    border-radius:0 0 25px 25px;
+}
+
+.header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+/* MAIN */
+.container{
+    padding:18px 15px 90px;
+}
+
+.title{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+/* QUIZ CARDS */
+.quiz-card{
+    background:white;
+    padding:18px;
+    margin-bottom:15px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.quiz-card h3{
+    margin:0 0 8px;
+    color:#1565c0;
+}
+
+.quiz-card p{
+    margin:5px 0;
+    color:#666;
+    font-size:14px;
+}
+
+.start-btn{
+    width:100%;
+    border:none;
+    padding:13px;
+    margin-top:12px;
+    border-radius:12px;
+    background:#1565c0;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -3px 15px rgba(0,0,0,0.12);
+}
+
+.nav-item{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.nav-item .icon{
+    display:block;
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#1565c0;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>📝 Quiz</h1>
+    <p>Surya Coaching Centre</p>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+    <div class="title">अपनी कक्षा का Quiz चुनें</div>
+
+    <!-- CLASS 9 -->
+    <div class="quiz-card">
+        <h3>📘 Class 9 Quiz</h3>
+        <p>Physics • Mathematics • Chemistry • Biology</p>
+        <p>अभ्यास के लिए Online Quiz</p>
+
+        <button class="start-btn"
+        onclick="startQuiz('Class 9')">
+        Start Quiz
+        </button>
+    </div>
+
+    <!-- CLASS 10 -->
+    <div class="quiz-card">
+        <h3>📗 Class 10 Quiz</h3>
+        <p>Physics • Mathematics • Chemistry • Biology</p>
+        <p>अभ्यास के लिए Online Quiz</p>
+
+        <button class="start-btn"
+        onclick="startQuiz('Class 10')">
+        Start Quiz
+        </button>
+    </div>
+
+    <!-- CLASS 11 -->
+    <div class="quiz-card">
+        <h3>📙 Class 11 Quiz</h3>
+        <p>Physics • Mathematics • Chemistry • Biology</p>
+        <p>अभ्यास के लिए Online Quiz</p>
+
+        <button class="start-btn"
+        onclick="startQuiz('Class 11')">
+        Start Quiz
+        </button>
+    </div>
+
+    <!-- CLASS 12 -->
+    <div class="quiz-card">
+        <h3>📕 Class 12 Quiz</h3>
+        <p>Physics • Mathematics • Chemistry • Biology</p>
+        <p>अभ्यास के लिए Online Quiz</p>
+
+        <button class="start-btn"
+        onclick="startQuiz('Class 12')">
+        Start Quiz
+        </button>
+    </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-item" onclick="openPage('student-dashboard.html')">
+        <span class="icon">🏠</span>
+        Home
+    </div>
+
+    <div class="nav-item" onclick="openPage('courses.html')">
+        <span class="icon">📚</span>
+        Courses
+    </div>
+
+    <div class="nav-item" onclick="openPage('notes.html')">
+        <span class="icon">📖</span>
+        Notes
+    </div>
+
+    <div class="nav-item active">
+        <span class="icon">📝</span>
+        Quiz
+    </div>
+
+</div>
+
+<script>
+
+function openPage(page){
+    window.location.href = page;
+}
+
+function startQuiz(className){
+
+    alert(
+        className +
+        " का Quiz जल्द शुरू होगा।\n\n" +
+        "इसमें Chapter-wise Questions, Score और Result जोड़ा जाएगा।"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
