@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Surya Coaching Centre</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:linear-gradient(135deg,#0b3d91,#1976d2);
+    color:white;
+    padding:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:white;
+    color:#0b3d91;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.brand h1{
+    font-size:18px;
+}
+
+.brand small{
+    display:block;
+    opacity:.85;
+    margin-top:3px;
+}
+
+.logout-btn{
+    border:0;
+    background:#fff;
+    color:#d32f2f;
+    padding:9px 13px;
+    border-radius:9px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    max-width:1100px;
+    margin:auto;
+    padding:20px 15px 40px;
+}
+
+/* Welcome */
+
+.welcome{
+    background:linear-gradient(135deg,#ffffff,#eef5ff);
+    padding:22px;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    border:1px solid #e1e8f0;
+}
+
+.welcome h2{
+    color:#0b3d91;
+    font-size:24px;
+    margin-bottom:7px;
+}
+
+.welcome p{
+    color:#687386;
+    line-height:1.5;
+}
+
+/* ================= STATS ================= */
+
+.section-title{
+    margin:22px 0 13px;
+    color:#172033;
+    font-size:20px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.stat-card{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    border:1px solid #e5eaf1;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.stat-icon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.stat-card h3{
+    color:#687386;
+    font-size:14px;
+    font-weight:normal;
+}
+
+.stat-number{
+    font-size:27px;
+    font-weight:bold;
+    color:#0b3d91;
+    margin-top:5px;
+}
+
+/* ================= MANAGEMENT ================= */
+
+.management{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.menu-card{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:17px;
+    padding:20px 14px;
+    min-height:150px;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    transition:.2s;
+    text-align:left;
+}
+
+.menu-card:active{
+    transform:scale(.97);
+}
+
+.menu-icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:#eaf2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    margin-bottom:13px;
+}
+
+.menu-card h3{
+    color:#172033;
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.menu-card p{
+    color:#778196;
+    font-size:12px;
+    line-height:1.4;
+}
+
+/* ================= QUICK ACTION ================= */
+
+.quick{
+    background:#0b3d91;
+    color:white;
+    margin-top:20px;
+    padding:20px;
+    border-radius:18px;
+}
+
+.quick h2{
+    font-size:18px;
+    margin-bottom:14px;
+}
+
+.quick-buttons{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.quick button{
+    border:0;
+    background:white;
+    color:#0b3d91;
+    padding:12px 8px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    color:#7a8495;
+    font-size:12px;
+    padding:25px 10px;
+}
+
+/* ================= DESKTOP ================= */
+
+@media(min-width:700px){
+
+    .stats{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .management{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .quick-buttons{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .brand h1{
+        font-size:20px;
+    }
+}
+
+/* ================= SMALL PHONE ================= */
+
+@media(max-width:360px){
+
+    .brand h1{
+        font-size:15px;
+    }
+
+    .brand small{
+        font-size:10px;
+    }
+
+    .logout-btn{
+        padding:8px 9px;
+        font-size:12px;
+    }
+
+    .welcome h2{
+        font-size:20px;
+    }
+
+    .menu-card{
+        min-height:140px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="logo">
+            SC
+        </div>
+
+        <div>
+            <h1>Surya Coaching Centre</h1>
+            <small>Admin Panel</small>
+        </div>
+
+    </div>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- Welcome -->
+
+    <section class="welcome">
+
+        <h2>Welcome, Admin 👋</h2>
+
+        <p>
+            Surya Coaching Centre के सभी courses,
+            students, classes और learning content को
+            यहाँ से manage करें।
+        </p>
+
+    </section>
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <h2 class="section-title">
+        📊 Overview
+    </h2>
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">👨‍🎓</div>
+
+            <h3>Total Students</h3>
+
+            <div class="stat-number" id="studentCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">📚</div>
+
+            <h3>Total Courses</h3>
+
+            <div class="stat-number" id="courseCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">🏫</div>
+
+            <h3>Total Classes</h3>
+
+            <div class="stat-number">
+                4
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">🎥</div>
+
+            <h3>Total Videos</h3>
+
+            <div class="stat-number" id="videoCount">
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MANAGEMENT ================= -->
+
+    <h2 class="section-title">
+        ⚙️ Management
+    </h2>
+
+
+    <section class="management">
+
+
+        <!-- Students -->
+
+        <div class="menu-card"
+             onclick="openPage('admin-students.html')">
+
+            <div class="menu-icon">
+                👨‍🎓
+            </div>
+
+            <h3>Student Management</h3>
+
+            <p>
+                Students की registration,
+                details और access manage करें।
+            </p>
+
+        </div>
+
+
+        <!-- Classes -->
+
+        <div class="menu-card"
+             onclick="openPage('admin-class.html')">
+
+            <div class="menu-icon">
+                🏫
+            </div>
+
+            <h3>Class Management</h3>
+
+            <p>
+                Class 9, 10, 11 और 12
+                को manage करें।
+            </p>
+
+        </div>
+
+
+        <!-- Courses -->
+
+        <div class="menu-card"
+             onclick="openPage('admin-courses.html')">
+
+            <div class="menu-icon">
+                📚
+            </div>
+
+            <h3>Course Management</h3>
+
+            <p>
+                Courses और course price
+                manage करें।
+            </p>
+
+        </div>
+
+
+        <!-- Videos -->
+
+        <div class="menu-card"
+             onclick="openPage('admin-videos.html')">
+
+            <div class="menu-icon">
+                🎥
+            </div>
+
+            <h3>Video Management</h3>
+
+            <p>
+                Course videos और
+                learning content manage करें।
+            </p>
+
+        </div>
+
+
+        <!-- Notes -->
+
+        <div class="menu-card"
+             onclick="openPage('notes.html')">
+
+            <div class="menu-icon">
+                📖
+            </div>
+
+            <h3>Notes Management</h3>
+
+            <p>
+                Class और subject के
+                notes manage करें।
+            </p>
+
+        </div>
+
+
+        <!-- Live Class -->
+
+        <div class="menu-card"
+             onclick="openPage('live-class.html')">
+
+            <div class="menu-icon">
+                🔴
+            </div>
+
+            <h3>Live Class</h3>
+
+            <p>
+                Online live class
+                section खोलें।
+            </p>
+
+        </div>
+
+
+        <!-- Notifications -->
+
+        <div class="menu-card"
+             onclick="openPage('notifications.html')">
+
+            <div class="menu-icon">
+                🔔
+            </div>
+
+            <h3>Notifications</h3>
+
+            <p>
+                Students के लिए
+                notifications manage करें।
+            </p>
+
+        </div>
+
+
+        <!-- Quiz -->
+
+        <div class="menu-card"
+             onclick="openPage('quiz.html')">
+
+            <div class="menu-icon">
+                📝
+            </div>
+
+            <h3>Quiz Management</h3>
+
+            <p>
+                Quiz और questions
+                section खोलें।
+            </p>
+
+        </div>
+
+
+        <!-- Home -->
+
+        <div class="menu-card"
+             onclick="openPage('index.html')">
+
+            <div class="menu-icon">
+                🏠
+            </div>
+
+            <h3>Website Home</h3>
+
+            <p>
+                Main website का
+                Home Page खोलें।
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUICK ACTION ================= -->
+
+    <section class="quick">
+
+        <h2>⚡ Quick Actions</h2>
+
+        <div class="quick-buttons">
+
+            <button onclick="openPage('admin-students.html')">
+                + Student
+            </button>
+
+            <button onclick="openPage('admin-courses.html')">
+                + Course
+            </button>
+
+            <button onclick="openPage('admin-class.html')">
+                + Class
+            </button>
+
+            <button onclick="openPage('admin-videos.html')">
+                + Video
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    © 2026 Surya Coaching Centre
+    <br>
+    Admin Dashboard
+
+</footer>
+
+
+<script>
+
+/* ==========================================
+   ADMIN LOGIN CHECK
+========================================== */
+
+const adminLoggedIn =
+    localStorage.getItem("suryaAdminLogin");
+
+if(adminLoggedIn !== "true"){
+
+    window.location.href = "admin-login.html";
+
+}
+
+
+/* ==========================================
+   OPEN PAGE
+========================================== */
+
+function openPage(page){
+
+    window.location.href = page;
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+function logout(){
+
+    const confirmLogout =
+        confirm("क्या आप Admin Panel से Logout करना चाहते हैं?");
+
+    if(confirmLogout){
+
+        localStorage.removeItem("suryaAdminLogin");
+
+        window.location.href = "admin-login.html";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
