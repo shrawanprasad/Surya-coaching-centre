@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Live Class Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    text-align:center;
+    padding:22px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:18px;
+}
+
+.card{
+    background:white;
+    padding:18px;
+    margin-bottom:18px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin-top:0;
+    color:#1565c0;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    margin-top:6px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+button{
+    border:0;
+    border-radius:8px;
+    padding:12px 16px;
+    margin-top:15px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.save{
+    width:100%;
+    background:#1565c0;
+    color:white;
+}
+
+.clear{
+    width:100%;
+    background:#e0e0e0;
+}
+
+.live-card{
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:16px;
+    margin-top:12px;
+    background:#fff;
+}
+
+.live-card h3{
+    margin:0 0 10px;
+    color:#1565c0;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    background:#e3f2fd;
+    color:#1565c0;
+    font-size:12px;
+    font-weight:bold;
+    margin:3px;
+}
+
+.live-badge{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.upcoming-badge{
+    background:#fff3e0;
+    color:#ef6c00;
+}
+
+.past-badge{
+    background:#eeeeee;
+    color:#666;
+}
+
+.join{
+    display:inline-block;
+    text-decoration:none;
+    background:#2e7d32;
+    color:white;
+    padding:11px 15px;
+    border-radius:8px;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.edit{
+    background:#ff9800;
+    color:white;
+    margin-right:5px;
+}
+
+.delete{
+    background:#d32f2f;
+    color:white;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:20px;
+}
+
+.info{
+    background:#e3f2fd;
+    padding:12px;
+    border-radius:8px;
+    margin-top:12px;
+    font-size:14px;
+}
+
+.actions{
+    margin-top:5px;
+}
+
+@media(max-width:600px){
+    .header h1{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>☀️ Surya Coaching Centre</h1>
+    <p>Live Class Management</p>
+</div>
+
+<div class="container">
+
+<!-- ADD LIVE CLASS -->
+
+<div class="card">
+
+<h2>🎥 Add / Edit Live Class</h2>
+
+<label>Class</label>
+
+<select id="className">
+    <option value="">Select Class</option>
+    <option value="Class 9">Class 9</option>
+    <option value="Class 10">Class 10</option>
+    <option value="Class 11">Class 11</option>
+    <option value="Class 12">Class 12</option>
+    <option value="Competition">Competition</option>
+</select>
+
+
+<label>Subject</label>
+
+<select id="subject">
+    <option value="">Select Subject</option>
+    <option value="Physics">Physics</option>
+    <option value="Chemistry">Chemistry</option>
+    <option value="Mathematics">Mathematics</option>
+    <option value="Biology">Biology</option>
+    <option value="General">General</option>
+</select>
+
+
+<label>Live Class Name</label>
+
+<input
+    type="text"
+    id="classTitle"
+    placeholder="Example: Class 11 Physics Chapter 1">
+
+
+<label>Date</label>
+
+<input
+    type="date"
+    id="classDate">
+
+
+<label>Time</label>
+
+<input
+    type="time"
+    id="classTime">
+
+
+<label>Google Meet / Live Class Link</label>
+
+<input
+    type="url"
+    id="meetingLink"
+    placeholder="https://meet.google.com/...">
+
+
+<label>Teacher Name</label>
+
+<input
+    type="text"
+    id="teacher"
+    placeholder="Teacher का नाम">
+
+
+<label>Class Description</label>
+
+<textarea
+    id="description"
+    placeholder="Live class के बारे में जानकारी लिखें">
+</textarea>
+
+
+<div class="info">
+    💡 Google Meet link डालने के बाद Student Live Class में
+    Join कर सकेगा।
+</div>
+
+
+<button class="save" onclick="saveClass()">
+💾 Save Live Class
+</button>
+
+<button class="clear" onclick="clearForm()">
+↻ Clear
+</button>
+
+</div>
+
+
+<!-- LIVE CLASS LIST -->
+
+<div class="card">
+
+<h2>📚 Live Class List</h2>
+
+<div id="classList"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let liveClasses =
+JSON.parse(localStorage.getItem("suryaLiveClasses")) || [];
+
+let editIndex = -1;
+
+
+/* Save Live Class */
+
+function saveClass(){
+
+    const className =
+        document.getElementById("className").value;
+
+    const subject =
+        document.getElementById("subject").value;
+
+    const classTitle =
+        document.getElementById("classTitle").value.trim();
+
+    const classDate =
+        document.getElementById("classDate").value;
+
+    const classTime =
+        document.getElementById("classTime").value;
+
+    const meetingLink =
+        document.getElementById("meetingLink").value.trim();
+
+    const teacher =
+        document.getElementById("teacher").value.trim();
+
+    const description =
+        document.getElementById("description").value.trim();
+
+
+    if(className === ""){
+        alert("कृपया Class चुनें।");
+        return;
+    }
+
+    if(subject === ""){
+        alert("कृपया Subject चुनें।");
+        return;
+    }
+
+    if(classTitle === ""){
+        alert("कृपया Live Class Name डालें।");
+        return;
+    }
+
+    if(classDate === ""){
+        alert("कृपया Date चुनें।");
+        return;
+    }
+
+    if(classTime === ""){
+        alert("कृपया Time चुनें।");
+        return;
+    }
+
+    if(meetingLink === ""){
+        alert("कृपया Google Meet / Live Class Link डालें।");
+        return;
+    }
+
+
+    const liveClass = {
+
+        className:className,
+
+        subject:subject,
+
+        title:classTitle,
+
+        date:classDate,
+
+        time:classTime,
+
+        link:meetingLink,
+
+        teacher:teacher,
+
+        description:description
+
+    };
+
+
+    if(editIndex === -1){
+
+        liveClasses.push(liveClass);
+
+        alert("Live Class successfully added.");
+
+    }else{
+
+        liveClasses[editIndex] = liveClass;
+
+        editIndex = -1;
+
+        alert("Live Class successfully updated.");
+
+    }
+
+
+    localStorage.setItem(
+        "suryaLiveClasses",
+        JSON.stringify(liveClasses)
+    );
+
+
+    clearForm();
+
+    displayClasses();
+
+}
+
+
+/* Status */
+
+function getClassStatus(item){
+
+    const now = new Date();
+
+    const classDateTime =
+        new Date(item.date + "T" + item.time);
+
+
+    if(
+        now.getFullYear() === classDateTime.getFullYear() &&
+        now.getMonth() === classDateTime.getMonth() &&
+        now.getDate() === classDateTime.getDate() &&
+        Math.abs(now - classDateTime) <= 2 * 60 * 60 * 1000
+    ){
+        return "live";
+    }
+
+
+    if(now < classDateTime){
+
+        return "upcoming";
+
+    }
+
+
+    return "past";
+
+}
+
+
+/* Display */
+
+function displayClasses(){
+
+    const list =
+        document.getElementById("classList");
+
+    list.innerHTML = "";
+
+
+    if(liveClasses.length === 0){
+
+        list.innerHTML =
+        '<div class="empty">अभी कोई Live Class नहीं है।</div>';
+
+        return;
+
+    }
+
+
+    liveClasses.forEach((item,index)=>{
+
+        const status =
+            getClassStatus(item);
+
+
+        let statusText = "";
+
+        let statusClass = "";
+
+
+        if(status === "live"){
+
+            statusText = "🔴 LIVE NOW";
+
+            statusClass = "live-badge";
+
+        }
+
+        else if(status === "upcoming"){
+
+            statusText = "UPCOMING";
+
+            statusClass = "upcoming-badge";
+
+        }
+
+        else{
+
+            statusText = "COMPLETED";
+
+            statusClass = "past-badge";
+
+        }
+
+
+        list.innerHTML += `
+
+        <div class="live-card">
+
+            <h3>${item.title}</h3>
+
+            <span class="badge">
+            ${item.className}
+            </span>
+
+            <span class="badge">
+            ${item.subject}
+            </span>
+
+            <span class="badge ${statusClass}">
+            ${statusText}
+            </span>
+
+            <p>
+            📅 <b>Date:</b> ${item.date}
+            </p>
+
+            <p>
+            ⏰ <b>Time:</b> ${item.time}
+            </p>
+
+            ${
+                item.teacher
+                ?
+                `<p>👨‍🏫 <b>Teacher:</b> ${item.teacher}</p>`
+                :
+                ""
+            }
+
+            ${
+                item.description
+                ?
+                `<p>${item.description}</p>`
+                :
+                ""
+            }
+
+            <a
+                class="join"
+                href="${item.link}"
+                target="_blank"
+                rel="noopener">
+                🎥 Join Live Class
+            </a>
+
+            <div class="actions">
+
+                <button
+                    class="edit"
+                    onclick="editClass(${index})">
+                    ✏️ Edit
+                </button>
+
+                <button
+                    class="delete"
+                    onclick="deleteClass(${index})">
+                    🗑️ Delete
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* Edit */
+
+function editClass(index){
+
+    const item =
+        liveClasses[index];
+
+    editIndex = index;
+
+
+    document.getElementById("className").value =
+        item.className;
+
+    document.getElementById("subject").value =
+        item.subject;
+
+    document.getElementById("classTitle").value =
+        item.title;
+
+    document.getElementById("classDate").value =
+        item.date;
+
+    document.getElementById("classTime").value =
+        item.time;
+
+    document.getElementById("meetingLink").value =
+        item.link;
+
+    document.getElementById("teacher").value =
+        item.teacher;
+
+    document.getElementById("description").value =
+        item.description;
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* Delete */
+
+function deleteClass(index){
+
+    const ok =
+        confirm(
+        "क्या आप इस Live Class को Delete करना चाहते हैं?"
+        );
+
+
+    if(!ok){
+        return;
+    }
+
+
+    liveClasses.splice(index,1);
+
+
+    localStorage.setItem(
+        "suryaLiveClasses",
+        JSON.stringify(liveClasses)
+    );
+
+
+    displayClasses();
+
+}
+
+
+/* Clear */
+
+function clearForm(){
+
+    document.getElementById("className").value = "";
+
+    document.getElementById("subject").value = "";
+
+    document.getElementById("classTitle").value = "";
+
+    document.getElementById("classDate").value = "";
+
+    document.getElementById("classTime").value = "";
+
+    document.getElementById("meetingLink").value = "";
+
+    document.getElementById("teacher").value = "";
+
+    document.getElementById("description").value = "";
+
+    editIndex = -1;
+
+}
+
+
+/* Display on page load */
+
+displayClasses();
+
+</script>
+
+</body>
+</html>
