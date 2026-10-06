@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Courses - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    color:white;
+    padding:24px 15px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+    opacity:.92;
+}
+
+/* MAIN */
+.container{
+    max-width:1050px;
+    margin:auto;
+    padding:16px;
+}
+
+/* STUDENT INFO */
+.student-card{
+    background:white;
+    padding:18px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    margin-bottom:18px;
+}
+
+.student-card h2{
+    margin:0 0 8px;
+    color:#0d47a1;
+}
+
+.student-info{
+    color:#555;
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* COURSE GRID */
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+/* COURSE CARD */
+.course-card{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    border:1px solid #e4e9ef;
+    position:relative;
+}
+
+.course-card.locked{
+    opacity:.78;
+}
+
+.course-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.course-title{
+    font-size:20px;
+    font-weight:bold;
+    color:#0d47a1;
+}
+
+.status{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.active{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.lock{
+    background:#ffebee;
+    color:#c62828;
+}
+
+.course-description{
+    color:#666;
+    font-size:14px;
+    line-height:1.6;
+    margin:12px 0;
+}
+
+.subjects{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-bottom:12px;
+}
+
+.subject{
+    background:#e3f2fd;
+    color:#0d47a1;
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.validity{
+    background:#f7f9fc;
+    border-radius:10px;
+    padding:10px;
+    font-size:13px;
+    color:#555;
+    margin-top:10px;
+}
+
+/* BUTTONS */
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:14px;
+}
+
+.btn{
+    border:0;
+    border-radius:9px;
+    padding:11px 8px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.notes-btn{
+    background:#1976d2;
+    color:white;
+}
+
+.live-btn{
+    background:#2e7d32;
+    color:white;
+}
+
+.lock-btn{
+    background:#e0e0e0;
+    color:#666;
+    cursor:not-allowed;
+}
+
+/* EMPTY */
+.empty{
+    background:white;
+    border-radius:15px;
+    padding:35px 15px;
+    text-align:center;
+    color:#777;
+    grid-column:1/-1;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:25px 10px;
+    color:#777;
+    font-size:13px;
+}
+
+/* MOBILE */
+@media(max-width:650px){
+
+    .course-grid{
+        grid-template-columns:1fr;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+
+    .container{
+        padding:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <h1>🎓 Surya Coaching Centre</h1>
+
+    <p>
+        Student Course Access
+    </p>
+
+</div>
+
+
+<div class="container">
+
+    <!-- STUDENT INFORMATION -->
+    <div class="student-card">
+
+        <h2>
+            👨‍🎓 My Courses
+        </h2>
+
+        <div class="student-info">
+
+            अपने खरीदे हुए course को यहाँ से access करें।
+
+            <br>
+
+            📅 Course Validity:
+            <strong>12 Months</strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- COURSE LIST -->
+    <div
+        class="course-grid"
+        id="courseContainer">
+
+    </div>
+
+</div>
+
+
+<div class="footer">
+
+    © 2026 Surya Coaching Centre
+    <br>
+    Professional Student Portal
+
+</div>
+
+
+<script>
+
+/*
+====================================================
+STUDENT COURSE ACCESS MANAGEMENT
+Surya Coaching Centre
+====================================================
+
+अभी यह localStorage आधारित front-end version है।
+
+Firebase जोड़ने के बाद:
+- वास्तविक student account
+- payment verification
+- purchased course
+- 12 month validity
+- multi-device access
+- secure database
+
+जोड़ा जा सकेगा।
+====================================================
+*/
+
+
+/* COURSE DATA */
+
+const courses = [
+
+    {
+        id:"class9",
+
+        name:"Class 9",
+
+        description:
+        "Class 9 complete study package.",
+
+        subjects:[
+            "Physics",
+            "Chemistry",
+            "Mathematics",
+            "Biology"
+        ]
+    },
+
+    {
+        id:"class10",
+
+        name:"Class 10",
+
+        description:
+        "Class 10 complete study package.",
+
+        subjects:[
+            "Physics",
+            "Chemistry",
+            "Mathematics",
+            "Biology"
+        ]
+    },
+
+    {
+        id:"class11",
+
+        name:"Class 11",
+
+        description:
+        "Class 11 complete study package.",
+
+        subjects:[
+            "Physics",
+            "Chemistry",
+            "Mathematics",
+            "Biology"
+        ]
+    },
+
+    {
+        id:"class12",
+
+        name:"Class 12",
+
+        description:
+        "Class 12 complete study package.",
+
+        subjects:[
+            "Physics",
+            "Chemistry",
+            "Mathematics",
+            "Biology"
+        ]
+    }
+
+];
+
+
+/*
+----------------------------------------------------
+DEMO PURCHASED COURSE
+----------------------------------------------------
+
+अभी testing के लिए Class 9 को purchased रखा गया है।
+
+बाद में Firebase/Payment system से
+यह automatically आएगा।
+*/
+
+const purchasedClass =
+    localStorage.getItem("studentPurchasedClass")
+    || "Class 9";
+
+
+/*
+----------------------------------------------------
+COURSE VALIDITY
+----------------------------------------------------
+*/
+
+const validityMonths = 12;
+
+
+/*
+----------------------------------------------------
+DISPLAY COURSES
+----------------------------------------------------
+*/
+
+function displayCourses(){
+
+    const container =
+        document.getElementById(
+            "courseContainer"
+        );
+
+
+    container.innerHTML =
+        courses.map(course => {
+
+            const isPurchased =
+                course.name === purchasedClass;
+
+
+            return `
+
+                <div class="
+                    course-card
+                    ${isPurchased ? "" : "locked"}
+                ">
+
+
+                    <div class="course-header">
+
+                        <div class="course-title">
+
+                            🎓
+                            ${escapeHTML(course.name)}
+
+                        </div>
+
+
+                        <div class="
+                            status
+                            ${isPurchased
+                                ? "active"
+                                : "lock"}
+                        ">
+
+                            ${
+                                isPurchased
+                                ? "✓ Active"
+                                : "🔒 Locked"
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="course-description">
+
+                        ${escapeHTML(
+                            course.description
+                        )}
+
+                    </div>
+
+
+                    <div class="subjects">
+
+                        ${
+                            course.subjects.map(
+                                subject => `
+
+                                    <span
+                                        class="subject">
+
+                                        ${escapeHTML(
+                                            subject
+                                        )}
+
+                                    </span>
+
+                                `
+                            ).join("")
+                        }
+
+                    </div>
+
+
+                    <div class="validity">
+
+                        ${
+                            isPurchased
+                            ? "📅 Validity: "
+                              + validityMonths
+                              + " Months"
+                            : "🔒 Course खरीदने के बाद access मिलेगा"
+                        }
+
+                    </div>
+
+
+                    ${
+                        isPurchased
+
+                        ?
+
+                        `
+
+                        <div class="actions">
+
+                            <button
+                                class="btn notes-btn"
+                                onclick="
+                                    openNotes(
+                                        '${course.name}'
+                                    )
+                                ">
+
+                                📚 My Notes
+
+                            </button>
+
+
+                            <button
+                                class="btn live-btn"
+                                onclick="
+                                    openLiveClass(
+                                        '${course.name}'
+                                    )
+                                ">
+
+                                🎥 Live Class
+
+                            </button>
+
+                        </div>
+
+                        `
+
+                        :
+
+                        `
+
+                        <div class="actions">
+
+                            <button
+                                class="
+                                    btn
+                                    lock-btn
+                                "
+                                disabled>
+
+                                🔒 Locked
+
+                            </button>
+
+
+                            <button
+                                class="
+                                    btn
+                                    lock-btn
+                                "
+                                disabled>
+
+                                🔒 Purchase Required
+
+                            </button>
+
+                        </div>
+
+                        `
+
+                    }
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/*
+----------------------------------------------------
+OPEN NOTES
+----------------------------------------------------
+*/
+
+function openNotes(className){
+
+    localStorage.setItem(
+        "studentSelectedClass",
+        className
+    );
+
+
+    window.location.href =
+        "student-notes.html";
+
+}
+
+
+/*
+----------------------------------------------------
+OPEN LIVE CLASS
+----------------------------------------------------
+*/
+
+function openLiveClass(className){
+
+    localStorage.setItem(
+        "studentSelectedClass",
+        className
+    );
+
+
+    /*
+       अभी Live Class Management page खोलेगा।
+
+       बाद में Firebase से purchased course
+       और live class automatically verify होगी।
+    */
+
+    window.location.href =
+        "live-class-management.html";
+
+}
+
+
+/*
+----------------------------------------------------
+HTML SECURITY
+----------------------------------------------------
+*/
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/*
+----------------------------------------------------
+START
+----------------------------------------------------
+*/
+
+displayCourses();
+
+</script>
+
+</body>
+</html>
