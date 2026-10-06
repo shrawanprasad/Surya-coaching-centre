@@ -1,122 +1,495 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Class Details | Surya Coaching Centre</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
 body{
-  font-family:Arial,sans-serif;
-  background:#f3f6fc;color:#172033
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f6fc;
+    color:#172033;
 }
+
+/* HEADER */
 header{
-  background:linear-gradient(135deg,#092f70,#1976d2);
-  color:white;padding:16px;
-  display:flex;align-items:center;
-  justify-content:space-between;gap:10px
+    background:linear-gradient(135deg,#092f70,#1976d2);
+    color:white;
+    padding:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
 }
-.brand{display:flex;align-items:center;gap:10px}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
 .logo{
-  width:44px;height:44px;border-radius:12px;
-  display:grid;place-items:center;
-  background:white;color:#104a9b;font-weight:bold
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    background:white;
+    color:#104a9b;
+    font-weight:bold;
 }
-header h1{font-size:17px}
-header small{display:block;margin-top:4px;opacity:.85}
-button{cursor:pointer;font-weight:bold}
+
+header h1{
+    font-size:17px;
+}
+
+header small{
+    display:block;
+    margin-top:4px;
+    opacity:.85;
+}
+
+button{
+    cursor:pointer;
+    font-weight:bold;
+}
+
 .back{
-  padding:10px;border:0;border-radius:9px;
-  background:white;color:#104a9b
+    padding:10px 12px;
+    border:0;
+    border-radius:9px;
+    background:white;
+    color:#104a9b;
 }
-main{max-width:1050px;margin:auto;padding:18px 14px 35px}
+
+/* MAIN */
+main{
+    max-width:1050px;
+    margin:auto;
+    padding:18px 14px 35px;
+}
+
 .hero{
-  padding:24px 20px;border-radius:18px;color:white;
-  background:linear-gradient(135deg,#1565c0,#42a5f5);
-  box-shadow:0 7px 20px #12305a20
+    padding:24px 20px;
+    border-radius:18px;
+    color:white;
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    box-shadow:0 7px 20px rgba(18,48,90,.12);
 }
-.hero h2{font-size:25px;margin-bottom:9px}
-.hero p{line-height:1.6;font-size:14px}
+
+.hero h2{
+    font-size:25px;
+    margin-bottom:9px;
+}
+
+.hero p{
+    line-height:1.6;
+    font-size:14px;
+}
+
 .tag{
-  display:inline-block;background:#ffffff25;
-  padding:6px 10px;border-radius:20px;
-  margin-bottom:12px;font-size:12px
+    display:inline-block;
+    background:rgba(255,255,255,.15);
+    padding:6px 10px;
+    border-radius:20px;
+    margin-bottom:12px;
+    font-size:12px;
 }
-.section-title{font-size:20px;margin:25px 0 14px}
+
+/* SECTION */
+.section-title{
+    font-size:20px;
+    margin:25px 0 14px;
+}
+
+/* SUBJECT GRID */
 .grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
 }
+
 .card{
-  background:white;border:1px solid #e1e8f0;
-  border-radius:16px;padding:17px 13px;
-  box-shadow:0 4px 14px #152c4d0b
+    background:white;
+    border:1px solid #e1e8f0;
+    border-radius:16px;
+    padding:17px 13px;
+    box-shadow:0 4px 14px rgba(21,44,77,.07);
 }
+
 .subject-icon{
-  width:48px;height:48px;border-radius:13px;
-  background:#eaf2ff;display:grid;place-items:center;
-  font-size:25px;margin-bottom:12px
+    width:48px;
+    height:48px;
+    border-radius:13px;
+    background:#eaf2ff;
+    display:grid;
+    place-items:center;
+    font-size:25px;
+    margin-bottom:12px;
 }
-.card h3{font-size:16px;margin-bottom:7px}
-.card p{font-size:13px;color:#6b7588;line-height:1.5}
+
+.card h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.card p{
+    font-size:13px;
+    color:#6b7588;
+    line-height:1.5;
+}
+
 .action{
-  width:100%;margin-top:14px;padding:11px 8px;
-  background:#1558b0;color:white;border:0;border-radius:9px
+    width:100%;
+    margin-top:14px;
+    padding:11px 8px;
+    background:#1558b0;
+    color:white;
+    border:0;
+    border-radius:9px;
 }
+
+.action:active{
+    transform:scale(.98);
+}
+
+/* COURSE PACKAGE */
 .package{
-  margin-top:22px;background:white;
-  border:1px solid #e1e8f0;border-radius:16px;padding:20px
+    margin-top:22px;
+    background:white;
+    border:1px solid #e1e8f0;
+    border-radius:16px;
+    padding:20px;
 }
-.package p{color:#687386;line-height:1.6;margin-top:8px;font-size:14px}
-.package .action{background:#087f5b}
+
+.package h2{
+    font-size:19px;
+}
+
+.package p{
+    color:#687386;
+    line-height:1.6;
+    margin-top:8px;
+    font-size:14px;
+}
+
+.package .action{
+    background:#087f5b;
+}
+
+/* NOTICE */
 .notice{
-  margin-top:15px;padding:13px;border-radius:10px;
-  background:#fff8e1;color:#765400;font-size:12px;line-height:1.6
+    margin-top:15px;
+    padding:13px;
+    border-radius:10px;
+    background:#fff8e1;
+    color:#765400;
+    font-size:12px;
+    line-height:1.6;
 }
-footer{text-align:center;color:#778196;padding:22px;font-size:12px}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    color:#778196;
+    padding:22px;
+    font-size:12px;
+}
+
+/* DESKTOP */
 @media(min-width:650px){
-  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  header h1{font-size:20px}
+
+    .grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+    }
+
+    header h1{
+        font-size:20px;
+    }
+}
+
+/* SMALL MOBILE */
+@media(max-width:360px){
+
+    .brand h1{
+        font-size:15px;
+    }
+
+    .card{
+        padding:18px 12px;
+    }
+
+    .hero h2{
+        font-size:21px;
+    }
 }
 </style>
 </head>
 
 <body>
+
+<!-- HEADER -->
+
 <header>
-  <div class="brand">
-    <div class="logo">SC</div>
-    <div>
-      <h1>Surya Coaching Centre</h1>
-      <small>Class Management</small>
+
+    <div class="brand">
+
+        <div class="logo">
+            SC
+        </div>
+
+        <div>
+            <h1>Surya Coaching Centre</h1>
+            <small>Class Management</small>
+        </div>
+
     </div>
-  </div>
-  <button class="back" onclick="goBack()">← वापस</button>
+
+    <button class="back" onclick="goBack()">
+        ← वापस
+    </button>
+
 </header>
 
+
+<!-- MAIN -->
+
 <main>
-  <section class="hero">
-    <span class="tag">ADMIN LEARNING PANEL</span>
-    <h2 id="classTitle">Class Details</h2>
-    <p>
-      चुनी हुई कक्षा के subjects और course package
-      को यहाँ से खोलें। आगे chapter-wise notes और
-      video management भी जोड़ा जा सकता है।
-    </p>
-  </section>
 
-  <h2 class="section-title">📚 Subjects / विषय</h2>
+    <!-- CLASS HERO -->
 
-  <section class="grid">
-    <article class="card">
-      <div class="subject-icon">📐</div>
-      <h3>Mathematics</h3>
-      <p>गणित के chapters और study material</p>
-      <button class="action" onclick="openSubject('Mathematics')">
-        Subject खोलें
-      </button>
-    </article>
+    <section class="hero">
+
+        <span class="tag">
+            ADMIN LEARNING PANEL
+        </span>
+
+        <h2 id="classTitle">
+            Class Details
+        </h2>
+
+        <p>
+            चुनी हुई कक्षा के subjects और course
+            management को यहाँ से खोलें।
+        </p>
+
+    </section>
+
+
+    <!-- SUBJECTS -->
+
+    <h2 class="section-title">
+        📚 Subjects / विषय
+    </h2>
+
+
+    <section class="grid">
+
+
+        <!-- MATHEMATICS -->
+
+        <article class="card">
+
+            <div class="subject-icon">
+                📐
+            </div>
+
+            <h3>
+                Mathematics
+            </h3>
+
+            <p>
+                गणित के chapters और study material
+                manage करें।
+            </p>
+
+            <button
+                class="action"
+                onclick="openSubject('Mathematics')">
+
+                📐 Subject खोलें
+
+            </button>
+
+        </article>
+
+
+        <!-- PHYSICS -->
+
+        <article class="card">
+
+            <div class="subject-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Physics
+            </h3>
+
+            <p>
+                भौतिक विज्ञान के chapters और
+                study material manage करें।
+            </p>
+
+            <button
+                class="action"
+                onclick="openSubject('Physics')">
+
+                ⚡ Subject खोलें
+
+            </button>
+
+        </article>
+
+
+        <!-- CHEMISTRY -->
+
+        <article class="card">
+
+            <div class="subject-icon">
+                🧪
+            </div>
+
+            <h3>
+                Chemistry
+            </h3>
+
+            <p>
+                रसायन विज्ञान के chapters और
+                study material manage करें।
+            </p>
+
+            <button
+                class="action"
+                onclick="openSubject('Chemistry')">
+
+                🧪 Subject खोलें
+
+            </button>
+
+        </article>
+
+
+        <!-- BIOLOGY -->
+
+        <article class="card">
+
+            <div class="subject-icon">
+                🧬
+            </div>
+
+            <h3>
+                Biology
+            </h3>
+
+            <p>
+                जीव विज्ञान के chapters और
+                study material manage करें।
+            </p>
+
+            <button
+                class="action"
+                onclick="openSubject('Biology')">
+
+                🧬 Subject खोलें
+
+            </button>
+
+        </article>
+
+    </section>
+
+
+    <!-- COURSE PACKAGE -->
+
+    <section class="package">
+
+        <h2>
+            📦 Class Course Package
+        </h2>
+
+        <p>
+            इस Class के complete course package,
+            price और course settings को manage करने
+            के लिए Course Management खोलें।
+        </p>
+
+        <button
+            class="action"
+            onclick="openCourseManagement()">
+
+            📦 Course Management खोलें
+
+        </button>
+
+    </section>
+
+
+    <!-- NOTES -->
+
+    <section class="package">
+
+        <h2>
+            📝 Notes Management
+        </h2>
+
+        <p>
+            इस Class के notes और study material
+            manage करने के लिए Notes Management खोलें।
+        </p>
+
+        <button
+            class="action"
+            onclick="openNotesManagement()">
+
+            📝 Notes Management खोलें
+
+        </button>
+
+    </section>
+
+
+    <!-- LIVE CLASS -->
+
+    <section class="package">
+
+        <h2>
+            🎥 Live Class Management
+        </h2>
+
+        <p>
+            इस Class की live class और meeting
+            links manage करें।
+        </p>
+
+        <button
+            class="action"
+            onclick="openLiveClassManagement()">
+
+            🎥 Live Class Management खोलें
+
+        </button>
+
+    </section>
+
+
+    <!-- NOTICE -->
+
+    <div class="notice">
+
+        ⚠️ ध्यान दें:
+        यह Admin frontend management page है।
+        वास्तविक database, secure login, payment
+        verification और student access control को</article>
 
     <article class="card">
       <div class="subject-icon">⚡</div>
@@ -130,78 +503,160 @@ footer{text-align:center;color:#778196;padding:22px;font-size:12px}
     <article class="card">
       <div class="subject-icon">🧪</div>
       <h3>Chemistry</h3>
-      <p>रसायन विज्ञान के chapters और material</p>
-      <button class="action" onclick="openSubject('Chemistry')">
-        Subject खोलें
-      </button>
-    </article>
+      
+        बाद में Firebase/database से जोड़ा जाएगा।
 
-    <article class="card">
-      <div class="subject-icon">🧬</div>
-      <h3>Biology</h3>
-      <p>जीव विज्ञान के chapters और material</p>
-      <button class="action" onclick="openSubject('Biology')">
-        Subject खोलें
-      </button>
-    </article>
-  </section>
+    </div>
 
-  <section class="package">
-    <h2>📦 Class Course Package</h2>
-    <p>
-      एक class के सभी निर्धारित subjects को एक package
-      में व्यवस्थित करने के लिए यह section है।
-      वास्तविक price और purchase access आगे जोड़े जाएँगे।
-    </p>
-    <button class="action" onclick="openPackage()">
-      Course Package Management
-    </button>
-  </section>
-
-  <div class="notice">
-    ध्यान दें: यह management page का frontend है।
-    वास्तविक login security, database, price saving और
-    student purchase verification अलग से लागू करना होगा।
-  </div>
 </main>
 
-<footer>© 2026 Surya Coaching Centre</footer>
+
+<footer>
+
+    © 2026 Surya Coaching Centre
+    <br>
+    Professional Class Management
+
+</footer>
+
 
 <script>
-const params = new URLSearchParams(location.search);
-const classNumber = params.get("class");
-const validClasses = ["9","10","11","12"];
+
+/*
+==================================================
+CLASS DETAILS
+Surya Coaching Centre
+==================================================
+*/
+
+
+/* URL से Class Number प्राप्त करें */
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const classNumber =
+    params.get("class");
+
+
+/* केवल 9, 10, 11 और 12 को अनुमति */
+
+const validClasses =
+    ["9","10","11","12"];
+
+
+/* Class Title */
 
 if(validClasses.includes(classNumber)){
-  document.getElementById("classTitle").textContent =
-    "🏫 Class " + classNumber;
+
+    document.getElementById("classTitle").textContent =
+        "🏫 Class " + classNumber;
+
 }else{
-  document.getElementById("classTitle").textContent =
-    "🏫 Class Details";
+
+    document.getElementById("classTitle").textContent =
+        "🏫 Class Details";
+
 }
+
+
+/* Subject Management */
 
 function openSubject(subject){
-  if(!validClasses.includes(classNumber)){
-    alert("पहले Class 9, 10, 11 या 12 चुनें।");
-    return;
-  }
-  location.href = "subject-management.html?class=" +
-    encodeURIComponent(classNumber) + "&subject=" +
-    encodeURIComponent(subject);
+
+    if(!validClasses.includes(classNumber)){
+
+        alert(
+            "पहले Class 9, 10, 11 या 12 चुनें।"
+        );
+
+        return;
+    }
+
+    /*
+    आपकी GitHub repository में वास्तविक file:
+    subject- management.html
+    */
+
+    window.location.href =
+        "subject-%20management.html?class=" +
+        encodeURIComponent(classNumber) +
+        "&subject=" +
+        encodeURIComponent(subject);
+
 }
 
-function openPackage(){
-  if(!validClasses.includes(classNumber)){
-    alert("पहले अपनी Class चुनें।");
-    return;
-  }
-  location.href = "course-package.html?class=" +
-    encodeURIComponent(classNumber);
+
+/* Course Management */
+
+function openCourseManagement(){
+
+    if(!validClasses.includes(classNumber)){
+
+        alert(
+            "पहले Class 9, 10, 11 या 12 चुनें।"
+        );
+
+        return;
+    }
+
+    window.location.href =
+        "admin-courses.html?class=" +
+        encodeURIComponent(classNumber);
+
 }
+
+
+/* Notes Management */
+
+function openNotesManagement(){
+
+    if(!validClasses.includes(classNumber)){
+
+        alert(
+            "पहले Class 9, 10, 11 या 12 चुनें।"
+        );
+
+        return;
+    }
+
+    window.location.href =
+        "notes-management.html?class=" +
+        encodeURIComponent(classNumber);
+
+}
+
+
+/* Live Class Management */
+
+function openLiveClassManagement(){
+
+    if(!validClasses.includes(classNumber)){
+
+        alert(
+            "पहले Class 9, 10, 11 या 12 चुनें।"
+        );
+
+        return;
+    }
+
+    window.location.href =
+        "live-class-management.html?class=" +
+        encodeURIComponent(classNumber);
+
+}
+
+
+/* वापस Class Management */
 
 function goBack(){
-  location.href = "admin-class.html";
+
+    window.location.href =
+        "admin-class.html";
+
 }
+
 </script>
+
 </body>
 </html>
