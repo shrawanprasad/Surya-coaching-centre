@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Purchase Course - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:20px 15px;
+    text-align:center;
+}
+
+.header h1{
+    font-size:24px;
+    margin-bottom:6px;
+}
+
+.header p{
+    font-size:14px;
+}
+
+.container{
+    width:95%;
+    max-width:1000px;
+    margin:20px auto;
+}
+
+.info-box{
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.info-box h2{
+    color:#1565c0;
+    margin-bottom:8px;
+    font-size:20px;
+}
+
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.course-card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.10);
+    border:1px solid #e5e5e5;
+}
+
+.course-card h3{
+    color:#1565c0;
+    margin-bottom:12px;
+    font-size:20px;
+}
+
+.course-card ul{
+    list-style:none;
+    margin:12px 0;
+}
+
+.course-card li{
+    padding:6px 0;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+}
+
+.price{
+    font-size:24px;
+    font-weight:bold;
+    color:#e65100;
+    margin:15px 0;
+}
+
+.validity{
+    background:#e8f5e9;
+    color:#2e7d32;
+    padding:8px;
+    border-radius:8px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.buy-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#1565c0;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.buy-btn:hover{
+    background:#0d47a1;
+}
+
+.notice{
+    margin-top:20px;
+    background:#fff8e1;
+    border-left:5px solid #ffb300;
+    padding:15px;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.back-btn{
+    display:block;
+    width:100%;
+    max-width:300px;
+    margin:25px auto;
+    padding:12px;
+    text-align:center;
+    text-decoration:none;
+    background:#424242;
+    color:white;
+    border-radius:8px;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>☀️ Surya Coaching Centre</h1>
+    <p>अपना कोर्स चुनें और पढ़ाई शुरू करें</p>
+</div>
+
+<div class="container">
+
+    <div class="info-box">
+        <h2>📚 Available Courses</h2>
+        <p>
+            अपनी कक्षा चुनें। प्रत्येक कक्षा में दिए गए विषय एक ही course package
+            में शामिल हैं।
+        </p>
+    </div>
+
+    <div class="course-grid">
+
+        <!-- CLASS 9 -->
+        <div class="course-card">
+            <h3>Class 9</h3>
+
+            <ul>
+                <li>📘 Mathematics</li>
+                <li>⚛️ Physics</li>
+                <li>🧪 Chemistry</li>
+                <li>🧬 Biology</li>
+            </ul>
+
+            <div class="price">₹499</div>
+
+            <div class="validity">
+                ⏳ Course Validity: 365 Days
+            </div>
+
+            <button class="buy-btn"
+                onclick="purchaseCourse('Class 9','499')">
+                Purchase Course
+            </button>
+        </div>
+
+        <!-- CLASS 10 -->
+        <div class="course-card">
+            <h3>Class 10</h3>
+
+            <ul>
+                <li>📘 Mathematics</li>
+                <li>⚛️ Physics</li>
+                <li>🧪 Chemistry</li>
+                <li>🧬 Biology</li>
+            </ul>
+
+            <div class="price">₹499</div>
+
+            <div class="validity">
+                ⏳ Course Validity: 365 Days
+            </div>
+
+            <button class="buy-btn"
+                onclick="purchaseCourse('Class 10','499')">
+                Purchase Course
+            </button>
+        </div>
+
+        <!-- CLASS 11 -->
+        <div class="course-card">
+            <h3>Class 11</h3>
+
+            <ul>
+                <li>📘 Mathematics</li>
+                <li>⚛️ Physics</li>
+                <li>🧪 Chemistry</li>
+                <li>🧬 Biology</li>
+            </ul>
+
+            <div class="price">₹499</div>
+
+            <div class="validity">
+                ⏳ Course Validity: 365 Days
+            </div>
+
+            <button class="buy-btn"
+                onclick="purchaseCourse('Class 11','499')">
+                Purchase Course
+            </button>
+        </div>
+
+        <!-- CLASS 12 -->
+        <div class="course-card">
+            <h3>Class 12</h3>
+
+            <ul>
+                <li>📘 Mathematics</li>
+                <li>⚛️ Physics</li>
+                <li>🧪 Chemistry</li>
+                <li>🧬 Biology</li>
+            </ul>
+
+            <div class="price">₹499</div>
+
+            <div class="validity">
+                ⏳ Course Validity: 365 Days
+            </div>
+
+            <button class="buy-btn"
+                onclick="purchaseCourse('Class 12','499')">
+                Purchase Course
+            </button>
+        </div>
+
+    </div>
+
+    <div class="notice">
+        <strong>महत्वपूर्ण:</strong><br>
+        अभी यह Purchase page तैयार किया गया है।
+        वास्तविक online payment, payment verification और automatic course access
+        database/payment system जोड़ने के बाद काम करेंगे।
+    </div>
+
+    <a href="student-dashboard.html" class="back-btn">
+        ← Student Dashboard पर वापस जाएँ
+    </a>
+
+</div>
+
+<div class="footer">
+    © 2026 Surya Coaching Centre. All Rights Reserved.
+</div>
+
+<script>
+function purchaseCourse(course, price){
+
+    const confirmPurchase = confirm(
+        course + " Course\n" +
+        "Price: ₹" + price +
+        "\n\nक्या आप यह course खरीदना चाहते हैं?"
+    );
+
+    if(confirmPurchase){
+
+        alert(
+            "आपने " + course +
+            " select किया है।\n\n" +
+            "अगला चरण Payment रहेगा।"
+        );
+
+        /*
+        बाद में यहाँ payment-management.html
+        या secure payment gateway जोड़ा जाएगा।
+        */
+
+        window.location.href =
+            "payment-management.html";
+    }
+}
+</script>
+
+</body>
+</html>
