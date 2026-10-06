@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Course Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:22px 15px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0;
+    font-size:25px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:18px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin-top:0;
+    color:#1565c0;
+    font-size:20px;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    font-weight:bold;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin-top:6px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.subjects{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
+}
+
+.subject{
+    border:1px solid #ddd;
+    padding:10px;
+    border-radius:8px;
+    background:#fafafa;
+}
+
+.subject input{
+    width:auto;
+    margin-right:7px;
+}
+
+button{
+    border:0;
+    border-radius:8px;
+    padding:12px 16px;
+    margin-top:15px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.save{
+    background:#1565c0;
+    color:white;
+    width:100%;
+}
+
+.clear{
+    background:#e0e0e0;
+    color:#222;
+    width:100%;
+}
+
+.course{
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:15px;
+    margin-top:12px;
+    background:#fff;
+}
+
+.course h3{
+    margin:0 0 8px;
+    color:#1565c0;
+}
+
+.price{
+    font-size:20px;
+    font-weight:bold;
+    color:#008000;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#e3f2fd;
+    color:#1565c0;
+    font-size:12px;
+    margin:3px;
+}
+
+.actions button{
+    width:auto;
+    margin-right:6px;
+}
+
+.edit{
+    background:#ff9800;
+    color:white;
+}
+
+.delete{
+    background:#d32f2f;
+    color:white;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:20px;
+}
+
+@media(max-width:600px){
+    .subjects{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>☀️ Surya Coaching Centre</h1>
+    <p>Course Management</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>➕ Add / Edit Course</h2>
+
+<label>Class / Course</label>
+<select id="courseClass">
+    <option value="">Select Class</option>
+    <option value="Class 9">Class 9</option>
+    <option value="Class 10">Class 10</option>
+    <option value="Class 11">Class 11</option>
+    <option value="Class 12">Class 12</option>
+    <option value="Competition">Competition Course</option>
+</select>
+
+<label>Course Name</label>
+<input type="text" id="courseName"
+placeholder="Example: Class 9 Complete Course">
+
+<label>Course Price (₹)</label>
+<input type="number" id="coursePrice"
+placeholder="Example: 499">
+
+<label>Select Subjects</label>
+
+<div class="subjects">
+
+<div class="subject">
+<label>
+<input type="checkbox" value="Physics" class="subjectBox">
+Physics
+</label>
+</div>
+
+<div class="subject">
+<label>
+<input type="checkbox" value="Chemistry" class="subjectBox">
+Chemistry
+</label>
+</div>
+
+<div class="subject">
+<label>
+<input type="checkbox" value="Mathematics" class="subjectBox">
+Mathematics
+</label>
+</div>
+
+<div class="subject">
+<label>
+<input type="checkbox" value="Biology" class="subjectBox">
+Biology
+</label>
+</div>
+
+</div>
+
+<button class="save" onclick="saveCourse()">
+💾 Save Course
+</button>
+
+<button class="clear" onclick="clearForm()">
+↻ Clear
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📚 Course List</h2>
+
+<div id="courseList"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let courses = JSON.parse(localStorage.getItem("suryaCourses")) || [];
+
+let editIndex = -1;
+
+
+function saveCourse(){
+
+    const courseClass =
+        document.getElementById("courseClass").value;
+
+    const courseName =
+        document.getElementById("courseName").value.trim();
+
+    const coursePrice =
+        document.getElementById("coursePrice").value;
+
+    const boxes =
+        document.querySelectorAll(".subjectBox");
+
+    let subjects = [];
+
+    boxes.forEach(box => {
+
+        if(box.checked){
+            subjects.push(box.value);
+        }
+
+    });
+
+
+    if(courseClass === ""){
+        alert("कृपया Class चुनें।");
+        return;
+    }
+
+    if(courseName === ""){
+        alert("कृपया Course Name लिखें।");
+        return;
+    }
+
+    if(coursePrice === ""){
+        alert("कृपया Course Price डालें।");
+        return;
+    }
+
+    if(subjects.length === 0){
+        alert("कम से कम एक Subject चुनें।");
+        return;
+    }
+
+
+    const course = {
+
+        className:courseClass,
+
+        name:courseName,
+
+        price:coursePrice,
+
+        subjects:subjects
+
+    };
+
+
+    if(editIndex === -1){
+
+        courses.push(course);
+
+        alert("Course successfully added.");
+
+    }else{
+
+        courses[editIndex] = course;
+
+        editIndex = -1;
+
+        alert("Course successfully updated.");
+
+    }
+
+
+    localStorage.setItem(
+        "suryaCourses",
+        JSON.stringify(courses)
+    );
+
+
+    clearForm();
+
+    displayCourses();
+
+}
+
+
+function displayCourses(){
+
+    const list =
+        document.getElementById("courseList");
+
+    list.innerHTML = "";
+
+
+    if(courses.length === 0){
+
+        list.innerHTML =
+        '<div class="empty">अभी कोई Course नहीं है।</div>';
+
+        return;
+
+    }
+
+
+    courses.forEach((course,index)=>{
+
+        let subjectHTML = "";
+
+        course.subjects.forEach(subject=>{
+
+            subjectHTML +=
+            `<span class="badge">${subject}</span>`;
+
+        });
+
+
+        list.innerHTML += `
+
+        <div class="course">
+
+            <h3>${course.name}</h3>
+
+            <p>
+            <b>Class:</b> ${course.className}
+            </p>
+
+            <p class="price">
+            ₹${course.price}
+            </p>
+
+            <p>
+            <b>Subjects:</b><br>
+            ${subjectHTML}
+            </p>
+
+            <div class="actions">
+
+                <button
+                class="edit"
+                onclick="editCourse(${index})">
+                ✏️ Edit
+                </button>
+
+                <button
+                class="delete"
+                onclick="deleteCourse(${index})">
+                🗑️ Delete
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+function editCourse(index){
+
+    const course = courses[index];
+
+    editIndex = index;
+
+
+    document.getElementById("courseClass").value =
+        course.className;
+
+    document.getElementById("courseName").value =
+        course.name;
+
+    document.getElementById("coursePrice").value =
+        course.price;
+
+
+    document.querySelectorAll(".subjectBox")
+    .forEach(box=>{
+
+        box.checked =
+        course.subjects.includes(box.value);
+
+    });
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+function deleteCourse(index){
+
+    const confirmDelete =
+        confirm("क्या आप इस Course को Delete करना चाहते हैं?");
+
+    if(!confirmDelete){
+        return;
+    }
+
+
+    courses.splice(index,1);
+
+
+    localStorage.setItem(
+        "suryaCourses",
+        JSON.stringify(courses)
+    );
+
+
+    displayCourses();
+
+}
+
+
+function clearForm(){
+
+    document.getElementById("courseClass").value = "";
+
+    document.getElementById("courseName").value = "";
+
+    document.getElementById("coursePrice").value = "";
+
+
+    document.querySelectorAll(".subjectBox")
+    .forEach(box=>{
+
+        box.checked = false;
+
+    });
+
+
+    editIndex = -1;
+
+}
+
+
+displayCourses();
+
+</script>
+
+</body>
+</html>
