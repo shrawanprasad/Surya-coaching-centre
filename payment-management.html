@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+.header{
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    text-align:center;
+    padding:22px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:18px;
+}
+
+.card{
+    background:white;
+    padding:18px;
+    margin-bottom:18px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin-top:0;
+    color:#1565c0;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin-top:6px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    border:0;
+    border-radius:8px;
+    padding:12px 16px;
+    margin-top:15px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.save{
+    width:100%;
+    background:#1565c0;
+    color:white;
+}
+
+.clear{
+    width:100%;
+    background:#e0e0e0;
+}
+
+.payment{
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:15px;
+    margin-top:12px;
+}
+
+.payment h3{
+    margin:0 0 8px;
+    color:#1565c0;
+}
+
+.price{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.active{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.expired{
+    background:#ffebee;
+    color:#c62828;
+}
+
+.pending{
+    background:#fff3e0;
+    color:#ef6c00;
+}
+
+.actions button{
+    width:auto;
+    margin-right:6px;
+}
+
+.delete{
+    background:#d32f2f;
+    color:white;
+}
+
+.extend{
+    background:#2e7d32;
+    color:white;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:20px;
+}
+
+.info{
+    background:#e3f2fd;
+    padding:12px;
+    border-radius:8px;
+    margin-top:12px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+    .header h1{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>☀️ Surya Coaching Centre</h1>
+    <p>Payment & Course Purchase Management</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>💳 Add Course Purchase</h2>
+
+<label>Student Name</label>
+<input
+    type="text"
+    id="studentName"
+    placeholder="Student का नाम">
+
+<label>Student Email / ID</label>
+<input
+    type="text"
+    id="studentId"
+    placeholder="Student Email या ID">
+
+<label>Course Name</label>
+<input
+    type="text"
+    id="courseName"
+    placeholder="Example: Class 11 Complete Course">
+
+<label>Course Price (₹)</label>
+<input
+    type="number"
+    id="price"
+    placeholder="Example: 499">
+
+<label>Payment Status</label>
+<select id="paymentStatus">
+    <option value="Paid">Paid</option>
+    <option value="Pending">Pending</option>
+</select>
+
+<label>Course Start Date</label>
+<input
+    type="date"
+    id="startDate">
+
+<div class="info">
+    ⏳ Course Validity: <b>12 महीने</b><br>
+    Course की Expiry Date Start Date से 12 महीने बाद होगी।
+</div>
+
+<button class="save" onclick="savePayment()">
+💾 Save Purchase
+</button>
+
+<button class="clear" onclick="clearForm()">
+↻ Clear
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📋 Purchase Records</h2>
+
+<div id="paymentList"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let payments =
+JSON.parse(localStorage.getItem("suryaPayments")) || [];
+
+let editIndex = -1;
+
+
+/* आज की तारीख */
+
+function todayDate(){
+
+    const d = new Date();
+
+    const year = d.getFullYear();
+
+    const month =
+        String(d.getMonth()+1).padStart(2,"0");
+
+    const day =
+        String(d.getDate()).padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
+}
+
+
+/* 12 महीने बाद की तारीख */
+
+function add12Months(dateString){
+
+    const date = new Date(dateString);
+
+    date.setMonth(date.getMonth()+12);
+
+    const year = date.getFullYear();
+
+    const month =
+        String(date.getMonth()+1).padStart(2,"0");
+
+    const day =
+        String(date.getDate()).padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
+}
+
+
+/* Save Payment */
+
+function savePayment(){
+
+    const studentName =
+        document.getElementById("studentName").value.trim();
+
+    const studentId =
+        document.getElementById("studentId").value.trim();
+
+    const courseName =
+        document.getElementById("courseName").value.trim();
+
+    const price =
+        document.getElementById("price").value;
+
+    const paymentStatus =
+        document.getElementById("paymentStatus").value;
+
+    const startDate =
+        document.getElementById("startDate").value;
+
+
+    if(studentName === ""){
+        alert("Student Name डालें।");
+        return;
+    }
+
+    if(studentId === ""){
+        alert("Student Email / ID डालें।");
+        return;
+    }
+
+    if(courseName === ""){
+        alert("Course Name डालें।");
+        return;
+    }
+
+    if(price === ""){
+        alert("Course Price डालें।");
+        return;
+    }
+
+    if(startDate === ""){
+        alert("Course Start Date चुनें।");
+        return;
+    }
+
+
+    const expiryDate =
+        add12Months(startDate);
+
+
+    const record = {
+
+        studentName:studentName,
+
+        studentId:studentId,
+
+        courseName:courseName,
+
+        price:price,
+
+        paymentStatus:paymentStatus,
+
+        startDate:startDate,
+
+        expiryDate:expiryDate
+
+    };
+
+
+    if(editIndex === -1){
+
+        payments.push(record);
+
+        alert("Course Purchase successfully saved.");
+
+    }else{
+
+        payments[editIndex] = record;
+
+        editIndex = -1;
+
+        alert("Purchase record updated.");
+
+    }
+
+
+    localStorage.setItem(
+        "suryaPayments",
+        JSON.stringify(payments)
+    );
+
+
+    clearForm();
+
+    displayPayments();
+
+}
+
+
+/* Status Check */
+
+function getStatus(payment){
+
+    if(payment.paymentStatus !== "Paid"){
+        return "pending";
+    }
+
+
+    const today =
+        new Date(todayDate());
+
+    const expiry =
+        new Date(payment.expiryDate);
+
+
+    if(today > expiry){
+
+        return "expired";
+
+    }
+
+
+    return "active";
+
+}
+
+
+/* Display */
+
+function displayPayments(){
+
+    const list =
+        document.getElementById("paymentList");
+
+    list.innerHTML = "";
+
+
+    if(payments.length === 0){
+
+        list.innerHTML =
+        '<div class="empty">अभी कोई Purchase Record नहीं है।</div>';
+
+        return;
+
+    }
+
+
+    payments.forEach((payment,index)=>{
+
+        const status =
+            getStatus(payment);
+
+
+        let statusText = "";
+
+        let statusClass = "";
+
+
+        if(status === "active"){
+
+            statusText = "ACTIVE";
+
+            statusClass = "active";
+
+        }
+
+        else if(status === "expired"){
+
+            statusText = "EXPIRED";
+
+            statusClass = "expired";
+
+        }
+
+        else{
+
+            statusText = "PAYMENT PENDING";
+
+            statusClass = "pending";
+
+        }
+
+
+        list.innerHTML += `
+
+        <div class="payment">
+
+            <h3>${payment.studentName}</h3>
+
+            <p>
+            <b>Student ID:</b>
+            ${payment.studentId}
+            </p>
+
+            <p>
+            <b>Course:</b>
+            ${payment.courseName}
+            </p>
+
+            <p class="price">
+            ₹${payment.price}
+            </p>
+
+            <p>
+            <b>Payment:</b>
+            ${payment.paymentStatus}
+            </p>
+
+            <p>
+            <b>Start Date:</b>
+            ${payment.startDate}
+            </p>
+
+            <p>
+            <b>Valid Till:</b>
+            ${payment.expiryDate}
+            </p>
+
+            <span class="status ${statusClass}">
+            ${statusText}
+            </span>
+
+            <div class="actions">
+
+                <button
+                class="extend"
+                onclick="extendCourse(${index})">
+                🔄 Extend 12 Months
+                </button>
+
+                <button
+                class="delete"
+                onclick="deletePayment(${index})">
+                🗑️ Delete
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* Extend Course */
+
+function extendCourse(index){
+
+    const payment =
+        payments[index];
+
+
+    const newExpiry =
+        add12Months(payment.expiryDate);
+
+
+    payment.expiryDate =
+        newExpiry;
+
+
+    payment.paymentStatus =
+        "Paid";
+
+
+    localStorage.setItem(
+        "suryaPayments",
+        JSON.stringify(payments)
+    );
+
+
+    displayPayments();
+
+
+    alert(
+        "Course की validity 12 महीने बढ़ा दी गई है।"
+    );
+
+}
+
+
+/* Delete */
+
+function deletePayment(index){
+
+    const ok =
+        confirm(
+        "क्या आप इस Purchase Record को Delete करना चाहते हैं?"
+        );
+
+
+    if(!ok){
+        return;
+    }
+
+
+    payments.splice(index,1);
+
+
+    localStorage.setItem(
+        "suryaPayments",
+        JSON.stringify(payments)
+    );
+
+
+    displayPayments();
+
+}
+
+
+/* Clear */
+
+function clearForm(){
+
+    document.getElementById("studentName").value = "";
+
+    document.getElementById("studentId").value = "";
+
+    document.getElementById("courseName").value = "";
+
+    document.getElementById("price").value = "";
+
+    document.getElementById("paymentStatus").value =
+        "Paid";
+
+    document.getElementById("startDate").value =
+        todayDate();
+
+    editIndex = -1;
+
+}
+
+
+/* Default date */
+
+document.getElementById("startDate").value =
+    todayDate();
+
+
+displayPayments();
+
+</script>
+
+</body>
+</html>
