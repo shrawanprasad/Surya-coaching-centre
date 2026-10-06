@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Subject Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#1f2937;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);
+    color:white;
+    padding:16px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 12px rgba(0,0,0,.18);
+}
+
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:white;
+    color:#1565c0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.title{
+    font-size:19px;
+    font-weight:bold;
+}
+
+.subtitle{
+    font-size:12px;
+    opacity:.9;
+    margin-top:3px;
+}
+
+.back-btn{
+    border:1px solid rgba(255,255,255,.5);
+    background:rgba(255,255,255,.15);
+    color:white;
+    padding:9px 13px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* MAIN */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px 15px 40px;
+}
+
+.hero{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.badge{
+    display:inline-block;
+    background:#e3f2fd;
+    color:#1565c0;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+h1{
+    margin:12px 0 6px;
+    font-size:27px;
+    color:#123b6d;
+}
+
+.hero p{
+    margin:0;
+    color:#667085;
+}
+
+/* INFO */
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:18px;
+}
+
+.info{
+    background:#f8fafc;
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+}
+
+.info strong{
+    display:block;
+    font-size:20px;
+    color:#1565c0;
+    margin-bottom:4px;
+}
+
+.info span{
+    font-size:12px;
+    color:#667085;
+}
+
+/* MANAGEMENT CARDS */
+.section-title{
+    margin:25px 0 13px;
+    font-size:21px;
+    color:#123b6d;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    border:1px solid #e8eef5;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+}
+
+.icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:#e3f2fd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    margin-bottom:13px;
+}
+
+.card h3{
+    margin:0 0 7px;
+    font-size:19px;
+}
+
+.card p{
+    margin:0 0 16px;
+    color:#667085;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.manage-btn{
+    width:100%;
+    border:0;
+    background:#1565c0;
+    color:white;
+    padding:12px;
+    border-radius:9px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.manage-btn:hover{
+    background:#0d47a1;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    margin-top:30px;
+    padding:15px;
+}
+
+/* MOBILE */
+@media(max-width:650px){
+
+    .header-inner{
+        align-items:flex-start;
+    }
+
+    .title{
+        font-size:16px;
+    }
+
+    .subtitle{
+        font-size:11px;
+    }
+
+    .logo{
+        width:42px;
+        height:42px;
+        font-size:17px;
+    }
+
+    .back-btn{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    h1{
+        font-size:23px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <div class="logo-area">
+
+            <div class="logo">SC</div>
+
+            <div>
+                <div class="title">Surya Coaching Centre</div>
+                <div class="subtitle">Subject Management Panel</div>
+            </div>
+
+        </div>
+
+        <button class="back-btn" onclick="goBack()">
+            ← Back
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section class="hero">
+
+        <span class="badge" id="classBadge">
+            Class
+        </span>
+
+        <h1 id="pageTitle">
+            Subject Management
+        </h1>
+
+        <p id="pageDescription">
+            Manage subject content for this class.
+        </p>
+
+        <div class="info-grid">
+
+            <div class="info">
+                <strong id="classNumber">-</strong>
+                <span>Selected Class</span>
+            </div>
+
+            <div class="info">
+                <strong id="subjectName">-</strong>
+                <span>Selected Subject</span>
+            </div>
+
+            <div class="info">
+                <strong>4</strong>
+                <span>Main Sections</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <h2 class="section-title">
+        Subject Management
+    </h2>
+
+
+    <section class="grid">
+
+        <div class="card">
+
+            <div class="icon">📚</div>
+
+            <h3>Chapters</h3>
+
+            <p>
+                इस subject के chapters और topics को manage करें।
+            </p>
+
+            <button class="manage-btn"
+                    onclick="openFeature('chapters')">
+                Manage Chapters
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">📝</div>
+
+            <h3>Notes</h3>
+
+            <p>
+                Subject के notes और study material को manage करें।
+            </p>
+
+            <button class="manage-btn"
+                    onclick="openFeature('notes')">
+                Manage Notes
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎥</div>
+
+            <h3>Videos</h3>
+
+            <p>
+                Subject के video lessons और classes को manage करें।
+            </p>
+
+            <button class="manage-btn"
+                    onclick="openFeature('videos')">
+                Manage Videos
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">❓</div>
+
+            <h3>Quiz</h3>
+
+            <p>
+                Subject के quiz और practice questions को manage करें।
+            </p>
+
+            <button class="manage-btn"
+                    onclick="openFeature('quiz')">
+                Manage Quiz
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+        © 2026 Surya Coaching Centre • Admin Panel
+    </div>
+
+</main>
+
+
+<script>
+
+/* LOGIN CHECK */
+
+if(localStorage.getItem("suryaAdminLogin") !== "true"){
+    window.location.href = "admin-login.html";
+}
+
+
+/* GET CLASS AND SUBJECT */
+
+const params = new URLSearchParams(window.location.search);
+
+const classNumber = params.get("class");
+const subject = params.get("subject");
+
+
+const validClasses = ["9","10","11","12"];
+
+const validSubjects = [
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology"
+];
+
+
+/* VALIDATION */
+
+if(!validClasses.includes(classNumber)){
+
+    alert("Invalid class selected.");
+
+    window.location.href = "admin-class.html";
+
+}
+
+
+if(!validSubjects.includes(subject)){
+
+    alert("Invalid subject selected.");
+
+    window.location.href =
+        "class-details.html?class=" + classNumber;
+
+}
+
+
+/* SHOW DATA */
+
+document.getElementById("classNumber").textContent =
+    "Class " + classNumber;
+
+document.getElementById("classBadge").textContent =
+    "Class " + classNumber;
+
+document.getElementById("subjectName").textContent =
+    subject;
+
+document.getElementById("pageTitle").textContent =
+    subject + " Management";
+
+document.getElementById("pageDescription").textContent =
+    "Class " + classNumber +
+    " के " + subject +
+    " content को manage करें.";
+
+
+/* BACK */
+
+function goBack(){
+
+    window.location.href =
+        "class-details.html?class=" + classNumber;
+
+}
+
+
+/* FEATURE */
+
+function openFeature(feature){
+
+    if(feature === "chapters"){
+
+        alert(
+            "Chapters Management अगला चरण है."
+        );
+
+    }
+
+    else if(feature === "notes"){
+
+        window.location.href =
+            "notes.html?class=" +
+            classNumber +
+            "&subject=" +
+            encodeURIComponent(subject);
+
+    }
+
+    else if(feature === "videos"){
+
+        window.location.href =
+            "admin-videos.html?class=" +
+            classNumber +
+            "&subject=" +
+            encodeURIComponent(subject);
+
+    }
+
+    else if(feature === "quiz"){
+
+        window.location.href =
+            "quiz.html?class=" +
+            classNumber +
+            "&subject=" +
+            encodeURIComponent(subject);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
