@@ -18,17 +18,16 @@ body{
     color:#222;
 }
 
-/* Header */
 .header{
     background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);
     color:white;
-    padding:24px 15px;
     text-align:center;
+    padding:25px 15px;
 }
 
 .header h1{
     margin:0;
-    font-size:25px;
+    font-size:24px;
 }
 
 .header p{
@@ -36,125 +35,122 @@ body{
     font-size:14px;
 }
 
-/* Main */
 .container{
-    max-width:1050px;
+    max-width:1000px;
     margin:auto;
-    padding:20px 15px 35px;
+    padding:18px;
 }
 
-/* Admin Info */
-.admin-box{
+.welcome{
     background:white;
-    border-radius:16px;
     padding:18px;
-    margin-bottom:20px;
+    border-radius:16px;
+    margin-bottom:18px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
-.admin-box h2{
+.welcome h2{
     margin:0 0 6px;
-    color:#0d47a1;
-    font-size:20px;
+    color:#1565c0;
 }
 
-.admin-box p{
+.welcome p{
     margin:0;
     color:#666;
-    font-size:14px;
 }
 
-/* Grid */
-.menu-grid{
+.grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:16px;
 }
 
-/* Card */
-.menu-card{
+.card{
     background:white;
+    padding:20px;
     border-radius:16px;
-    padding:20px 16px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
-    border:1px solid #e7edf5;
+    border:1px solid #e1e5ea;
 }
 
-.menu-icon{
-    width:52px;
-    height:52px;
-    border-radius:14px;
-    background:#e3f2fd;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    margin-bottom:12px;
+.icon{
+    font-size:34px;
+    margin-bottom:8px;
 }
 
-.menu-card h3{
-    margin:0 0 7px;
-    color:#0d47a1;
-    font-size:18px;
+.card h3{
+    margin:0 0 8px;
+    color:#1565c0;
 }
 
-.menu-card p{
-    margin:0 0 15px;
-    color:#777;
-    font-size:13px;
+.card p{
+    margin:0;
+    color:#666;
     line-height:1.5;
+    min-height:45px;
 }
 
-.menu-card button{
+button{
     width:100%;
-    padding:12px;
     border:0;
-    border-radius:9px;
-    background:#1565c0;
-    color:white;
+    border-radius:10px;
+    padding:13px;
+    margin-top:15px;
     font-size:15px;
     font-weight:bold;
+    cursor:pointer;
+    background:#1565c0;
+    color:white;
 }
 
-.menu-card button:active{
+button:active{
     transform:scale(.98);
 }
 
-/* Bottom */
-.bottom{
-    text-align:center;
-    margin-top:25px;
+/* SPECIAL CARDS */
+
+.payment{
+    border:2px solid #1976d2;
+    background:#e3f2fd;
+}
+
+.validity{
+    border:2px solid #7b1fa2;
+    background:#f3e5f5;
+}
+
+.payment button{
+    background:#0d47a1;
+}
+
+.validity button{
+    background:#7b1fa2;
+}
+
+.logout-box{
+    background:white;
+    margin-top:18px;
+    padding:18px;
+    border-radius:16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .logout{
-    border:0;
     background:#d32f2f;
-    color:white;
-    padding:12px 35px;
-    border-radius:9px;
-    font-size:15px;
-    font-weight:bold;
 }
 
-.footer{
-    text-align:center;
-    color:#777;
-    font-size:12px;
-    margin-top:20px;
-}
+@media(max-width:650px){
 
-/* Mobile */
-@media(max-width:600px){
-    .menu-grid{
+    .grid{
         grid-template-columns:1fr;
     }
 
     .header h1{
-        font-size:22px;
+        font-size:21px;
     }
 
     .container{
-        padding:15px 12px 30px;
+        padding:12px;
     }
 }
 </style>
@@ -162,128 +158,237 @@ body{
 
 <body>
 
-<header class="header">
+<!-- HEADER -->
+
+<div class="header">
+
     <h1>☀️ Surya Coaching Centre</h1>
-    <p>Admin Control Panel</p>
-</header>
 
-<main class="container">
+    <p>Professional Admin Control Panel</p>
 
-    <section class="admin-box">
-        <h2>Welcome, Admin 👨‍💼</h2>
-        <p>
-            Coaching Centre की सभी महत्वपूर्ण व्यवस्थाएँ
-            एक ही जगह से नियंत्रित करें।
-        </p>
-    </section>
+</div>
 
-    <section class="menu-grid">
 
-        <!-- Student -->
-        <div class="menu-card">
-            <div class="menu-icon">👨‍🎓</div>
-            <h3>Student Management</h3>
-            <p>Students की जानकारी और records manage करें।</p>
-            <button onclick="openPage('student-management.html')">
-                Open Student Management
-            </button>
-        </div>
+<div class="container">
 
-        <!-- Class -->
-        <div class="menu-card">
-            <div class="menu-icon">🏫</div>
-            <h3>Class Management</h3>
-            <p>Class 9, 10, 11 और 12 की व्यवस्था manage करें।</p>
-            <button onclick="openPage('class-management.html')">
-                Open Class Management
-            </button>
-        </div>
 
-        <!-- Subject -->
-        <div class="menu-card">
-            <div class="menu-icon">📚</div>
-            <h3>Subject Management</h3>
-            <p>Physics, Chemistry, Mathematics और Biology manage करें।</p>
-            <button onclick="openPage('subject-management.html')">
-                Open Subject Management
-            </button>
-        </div>
+<!-- WELCOME -->
 
-        <!-- Course -->
-        <div class="menu-card">
-            <div class="menu-icon">🎓</div>
-            <h3>Course Management</h3>
-            <p>Class-wise course package और course information manage करें।</p>
-            <button onclick="openPage('course-management.html')">
-                Open Course Management
-            </button>
-        </div>
+<div class="welcome">
 
-        <!-- Payment -->
-        <div class="menu-card">
-            <div class="menu-icon">💳</div>
-            <h3>open Payment Management</h3>
-            <p>Course purchase और payment records manage करें।</p>
-            <button onclick="openPage('payment-management.html')">
-                Open Payment Management
-            </button>
-        </div>
+    <h2>👨‍💼 Admin Dashboard</h2>
 
-        <!-- Live Class -->
-        <div class="menu-card">
-            <div class="menu-icon">🎥</div>
-            <h3>Live Class Management</h3>
-            <p>Live class और online meeting links manage करें।</p>
-            <button onclick="openPage('live-class-management.html')">
-                Open Live Class Management
-            </button>
-        </div>
+    <p>
+        यहाँ से Surya Coaching Centre की सभी management files खोलें।
+    </p>
 
-        <!-- Notes -->
-        <div class="menu-card">
-            <div class="menu-icon">📝</div>
-            <h3>Notes Management</h3>
-            <p>Class और subject के notes manage करें।</p>
-            <button onclick="openPage('notes-management.html')">
-                Open Notes Management
-            </button>
-        </div>
+</div>
 
-        <!-- Validity -->
-        <div class="menu-card">
-            <div class="menu-icon">⏳</div>
-            <h3>Course Validity</h3>
-            <p>Student course की 12 महीने की validity manage करें।</p>
-            <button onclick="openPage('course-validity-management.html')">
-                Open Course Validity
-            </button>
-        </div>
 
-    </section>
+<!-- ALL MANAGEMENT -->
 
-    <div class="bottom">
-        <button class="logout" onclick="logoutAdmin()">
-            Logout
-        </button>
-    </div>
+<div class="grid">
 
-    <div class="footer">
-        © 2026 Surya Coaching Centre • Admin Panel
-    </div>
 
-</main>
+<!-- 1 STUDENT -->
+
+<div class="card">
+
+    <div class="icon">👨‍🎓</div>
+
+    <h3>Student Management</h3>
+
+    <p>
+        Students की जानकारी और records manage करें।
+    </p>
+
+    <button onclick="openFile('student-management.html')">
+        Open Student Management
+    </button>
+
+</div>
+
+
+<!-- 2 CLASS -->
+
+<div class="card">
+
+    <div class="icon">📚</div>
+
+    <h3>Class Management</h3>
+
+    <p>
+        Class 9, 10, 11 और 12 manage करें।
+    </p>
+
+    <button onclick="openFile('class-management.html')">
+        Open Class Management
+    </button>
+
+</div>
+
+
+<!-- 3 SUBJECT -->
+
+<div class="card">
+
+    <div class="icon">📖</div>
+
+    <h3>Subject Management</h3>
+
+    <p>
+        Physics, Chemistry, Mathematics और Biology manage करें।
+    </p>
+
+    <button onclick="openFile('subject-management.html')">
+        Open Subject Management
+    </button>
+
+</div>
+
+
+<!-- 4 COURSE -->
+
+<div class="card">
+
+    <div class="icon">📦</div>
+
+    <h3>Course Management</h3>
+
+    <p>
+        Class के complete course packages manage करें।
+    </p>
+
+    <button onclick="openFile('course-management.html')">
+        Open Course Management
+    </button>
+
+</div>
+
+
+<!-- 5 PAYMENT -->
+
+<div class="card payment">
+
+    <div class="icon">💳</div>
+
+    <h3>Payment Management</h3>
+
+    <p>
+        Course purchase, price और payment status manage करें।
+    </p>
+
+    <button onclick="openFile('payment-management.html')">
+        💳 Open Payment Management
+    </button>
+
+</div>
+
+
+<!-- 6 LIVE CLASS -->
+
+<div class="card">
+
+    <div class="icon">🎥</div>
+
+    <h3>Live Class Management</h3>
+
+    <p>
+        Live class और meeting links manage करें।
+    </p>
+
+    <button onclick="openFile('live-class-management.html')">
+        Open Live Class Management
+    </button>
+
+</div>
+
+
+<!-- 7 NOTES -->
+
+<div class="card">
+
+    <div class="icon">📝</div>
+
+    <h3>Notes Management</h3>
+
+    <p>
+        Class और subject के notes manage करें।
+    </p>
+
+    <button onclick="openFile('notes-management.html')">
+        Open Notes Management
+    </button>
+
+</div>
+
+
+<!-- 8 VALIDITY -->
+
+<div class="card validity">
+
+    <div class="icon">⏳</div>
+
+    <h3>Course Validity Management</h3>
+
+    <p>
+        Course की start date, expiry date और validity manage करें।
+    </p>
+
+    <button onclick="openFile('course-validity-management.html')">
+        ⏳ Open Course Validity
+    </button>
+
+</div>
+
+
+</div>
+
+
+<!-- LOGOUT -->
+
+<div class="logout-box">
+
+    <button
+        class="logout"
+        onclick="logoutAdmin()">
+
+        🚪 Logout Admin
+
+    </button>
+
+</div>
+
+
+</div>
+
 
 <script>
 
-function openPage(page){
-    window.location.href = page;
+/* OPEN MANAGEMENT FILE */
+
+function openFile(fileName){
+
+    window.location.href = fileName;
+
 }
+
+
+/* ADMIN LOGOUT */
 
 function logoutAdmin(){
 
-    localStorage.removeItem("adminLoggedIn");
+    const confirmLogout =
+        confirm("क्या आप Admin Panel से Logout करना चाहते हैं?");
 
-    window.location.href = "admin-login.html";
+    if(confirmLogout){
+
+        localStorage.removeItem("adminLoggedIn");
+
+        window.location.href = "admin-login.html";
+
+    }
+
 }
 
 </script>
