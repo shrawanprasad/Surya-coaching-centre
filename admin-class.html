@@ -4,953 +4,374 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class Management - Surya Coaching Centre</title>
+<title>Class Management | Surya Coaching Centre</title>
 
 <style>
-
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
 body{
-    margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f4f7fb;
-    color:#1f2937;
+    color:#172033;
 }
 
 /* HEADER */
-
 .header{
-    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    background:linear-gradient(135deg,#0b3d91,#1976d2);
     color:white;
-    padding:18px 16px;
-    border-radius:0 0 24px 24px;
-    box-shadow:0 4px 15px rgba(0,0,0,.12);
-}
-
-.header-top{
+    padding:16px;
     display:flex;
     align-items:center;
-    gap:12px;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
 }
 
-.back-btn{
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
     width:42px;
     height:42px;
-    border:0;
-    border-radius:12px;
-    background:rgba(255,255,255,.18);
-    color:white;
-    font-size:25px;
-    cursor:pointer;
-}
-
-.header h1{
-    margin:0;
-    font-size:21px;
-}
-
-.header p{
-    margin:6px 0 0 54px;
-    font-size:13px;
-    opacity:.9;
-}
-
-
-/* MAIN */
-
-.container{
-    max-width:850px;
-    margin:auto;
-    padding:18px 14px 100px;
-}
-
-
-/* TOP ACTION */
-
-.top-action{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:16px;
-}
-
-.page-title{
-    font-size:19px;
-    font-weight:bold;
-}
-
-.add-class{
-    border:0;
-    background:linear-gradient(135deg,#1565c0,#42a5f5);
-    color:white;
-    padding:11px 14px;
-    border-radius:12px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-
-/* SEARCH */
-
-.search-box{
     background:white;
-    padding:14px;
-    border-radius:16px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
-    margin-bottom:18px;
-}
-
-.search-box label{
-    display:block;
-    font-size:14px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.search-input{
-    width:100%;
-    padding:13px;
-    border:1px solid #dbe3ec;
-    border-radius:11px;
-    font-size:14px;
-    outline:none;
-}
-
-.search-input:focus{
-    border-color:#1565c0;
-}
-
-
-/* CLASS CARD */
-
-.class-card{
-    background:white;
-    border-radius:19px;
-    padding:17px;
-    margin-bottom:15px;
-    box-shadow:0 3px 13px rgba(0,0,0,.07);
-}
-
-.class-header{
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.class-icon{
-    width:56px;
-    height:56px;
-    border-radius:15px;
-    background:linear-gradient(135deg,#e3f2fd,#bbdefb);
+    color:#0b3d91;
+    border-radius:12px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:28px;
-}
-
-.class-name{
-    font-size:20px;
     font-weight:bold;
 }
 
-.class-subtitle{
-    color:#6b7280;
-    font-size:13px;
-    margin-top:4px;
+.brand h1{
+    font-size:18px;
 }
 
+.brand small{
+    display:block;
+    opacity:.85;
+    margin-top:3px;
+}
 
-/* DETAILS */
+.back-btn{
+    border:0;
+    background:white;
+    color:#0b3d91;
+    padding:9px 12px;
+    border-radius:9px;
+    font-weight:bold;
+}
 
-.details{
+/* MAIN */
+.main{
+    max-width:1100px;
+    margin:auto;
+    padding:20px 15px 40px;
+}
+
+.title-box{
+    background:white;
+    padding:22px;
+    border-radius:18px;
+    border:1px solid #e1e7ef;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.title-box h2{
+    color:#0b3d91;
+    margin-bottom:7px;
+}
+
+.title-box p{
+    color:#687386;
+    line-height:1.5;
+}
+
+/* CLASS GRID */
+.class-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:16px;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:20px;
 }
 
-.detail{
-    background:#f7f9fc;
-    padding:11px;
-    border-radius:11px;
+.class-card{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:18px;
+    padding:22px 16px;
+    min-height:190px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    cursor:pointer;
+    transition:.2s;
 }
 
-.detail small{
-    display:block;
-    color:#6b7280;
-    font-size:11px;
+.class-card:active{
+    transform:scale(.97);
 }
 
-.detail strong{
-    display:block;
-    margin-top:4px;
-    font-size:14px;
-}
-
-
-/* SUBJECTS */
-
-.subject-title{
-    margin-top:15px;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.subjects{
+.class-number{
+    width:62px;
+    height:62px;
+    border-radius:16px;
+    background:#eaf2ff;
+    color:#0b3d91;
     display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin-top:8px;
-}
-
-.subject{
-    background:#e8f4ff;
-    color:#1565c0;
-    padding:7px 10px;
-    border-radius:20px;
-    font-size:12px;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
     font-weight:bold;
+    margin-bottom:15px;
 }
 
+.class-card h3{
+    font-size:18px;
+    margin-bottom:7px;
+}
+
+.class-card p{
+    font-size:13px;
+    color:#748095;
+    line-height:1.5;
+}
 
 /* STATUS */
-
 .status{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    color:#16803c;
-}
-
-.dot{
-    width:8px;
-    height:8px;
-    background:#16a34a;
-    border-radius:50%;
     display:inline-block;
-}
-
-
-/* BUTTONS */
-
-.actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
-    margin-top:16px;
-}
-
-.btn{
-    border:0;
-    padding:11px;
-    border-radius:10px;
-    font-weight:bold;
-    font-size:13px;
-    cursor:pointer;
-}
-
-.manage{
-    background:#e3f2fd;
-    color:#1565c0;
-}
-
-.edit{
-    background:#fff3cd;
-    color:#856404;
-}
-
-.students{
+    margin-top:12px;
+    padding:6px 10px;
     background:#e8f5e9;
     color:#2e7d32;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
 }
 
-.disable{
-    background:#ffe8e8;
-    color:#c62828;
-}
-
-
-/* EMPTY */
-
-.empty{
-    display:none;
+/* FOOTER */
+.footer{
     text-align:center;
-    background:white;
-    padding:35px 15px;
-    border-radius:16px;
-    color:#6b7280;
+    color:#7a8495;
+    font-size:12px;
+    padding:25px 10px;
 }
 
-.empty-icon{
-    font-size:40px;
-}
+@media(min-width:700px){
 
-
-/* BOTTOM NOTE */
-
-.notice{
-    margin-top:20px;
-    padding:15px;
-    border-radius:15px;
-    background:#fff8e1;
-    color:#795548;
-    font-size:13px;
-    line-height:1.6;
-}
-
-
-/* MOBILE */
-
-@media(max-width:430px){
-
-    .top-action{
-        align-items:flex-start;
-        gap:10px;
-    }
-
-    .page-title{
-        font-size:17px;
-    }
-
-    .add-class{
-        font-size:12px;
-        padding:10px;
+    .class-grid{
+        grid-template-columns:repeat(4,1fr);
     }
 
 }
 
+@media(max-width:360px){
+
+    .brand h1{
+        font-size:15px;
+    }
+
+    .class-card{
+        padding:18px 12px;
+    }
+
+}
 </style>
 </head>
 
-
 <body>
-
 
 <!-- HEADER -->
 
-<div class="header">
+<header class="header">
 
-    <div class="header-top">
+    <div class="brand">
 
-        <button class="back-btn" onclick="goBack()">‹</button>
+        <div class="logo">
+            SC
+        </div>
 
         <div>
-            <h1>Class Management</h1>
+            <h1>Surya Coaching Centre</h1>
+            <small>Class Management</small>
         </div>
 
     </div>
 
-    <p>Surya Coaching Centre • Admin Panel</p>
+    <button class="back-btn" onclick="goDashboard()">
+        ← Dashboard
+    </button>
 
-</div>
-
-
-
-<div class="container">
+</header>
 
 
-    <!-- TITLE -->
+<!-- MAIN -->
 
-    <div class="top-action">
+<main class="main">
 
-        <div class="page-title">
-            🏫 Manage Classes
-        </div>
+    <section class="title-box">
 
-        <button class="add-class" onclick="addClass()">
-            ＋ Add Class
-        </button>
+        <h2>🏫 Class Management</h2>
 
-    </div>
+        <p>
+            यहाँ से Class 9, Class 10, Class 11 और
+            Class 12 को manage करें।
+        </p>
 
-
-
-    <!-- SEARCH -->
-
-    <div class="search-box">
-
-        <label>🔍 Class Search</label>
-
-        <input
-            type="text"
-            id="searchInput"
-            class="search-input"
-            placeholder="Class 9, 10, 11 या 12 खोजें..."
-            onkeyup="searchClasses()"
-        >
-
-    </div>
+    </section>
 
 
+    <!-- CLASSES -->
 
-    <!-- CLASS 9 -->
+    <section class="class-grid">
 
-    <div class="class-card" data-search="class 9 ninth 9">
 
-        <div class="class-header">
+        <!-- CLASS 9 -->
 
-            <div class="class-icon">
-                📘
+        <div class="class-card"
+             onclick="openClass(9)">
+
+            <div class="class-number">
+                9
             </div>
 
-            <div>
+            <h3>Class 9</h3>
 
-                <div class="class-name">
-                    Class 9
-                </div>
+            <p>
+                Class 9 के courses, subjects,
+                notes, videos और learning content।
+            </p>
 
-                <div class="class-subtitle">
-                    Complete Class 9 Package
-                </div>
-
-            </div>
+            <span class="status">
+                ACTIVE
+            </span>
 
         </div>
 
 
-        <div class="details">
+        <!-- CLASS 10 -->
 
-            <div class="detail">
+        <div class="class-card"
+             onclick="openClass(10)">
 
-                <small>Course Price</small>
-
-                <strong>₹499</strong>
-
+            <div class="class-number">
+                10
             </div>
 
-            <div class="detail">
+            <h3>Class 10</h3>
 
-                <small>Students</small>
+            <p>
+                Class 10 के courses, subjects,
+                notes, videos और learning content।
+            </p>
 
-                <strong>24 Students</strong>
-
-            </div>
-
-            <div class="detail">
-
-                <small>Chapters</small>
-
-                <strong>48 Chapters</strong>
-
-            </div>
-
-            <div class="detail">
-
-                <small>Status</small>
-
-                <strong class="status">
-                    <span class="dot"></span>
-                    Active
-                </strong>
-
-            </div>
+            <span class="status">
+                ACTIVE
+            </span>
 
         </div>
 
 
-        <div class="subject-title">
-            Included Subjects
-        </div>
+        <!-- CLASS 11 -->
 
-        <div class="subjects">
+        <div class="class-card"
+             onclick="openClass(11)">
 
-            <span class="subject">Mathematics</span>
-            <span class="subject">Physics</span>
-            <span class="subject">Chemistry</span>
-            <span class="subject">Biology</span>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button class="btn manage"
-                onclick="manageClass('Class 9')">
-                📚 Manage
-            </button>
-
-            <button class="btn edit"
-                onclick="editClass('Class 9')">
-                ✏️ Edit
-            </button>
-
-            <button class="btn students"
-                onclick="viewStudents('Class 9')">
-                👨‍🎓 Students
-            </button>
-
-            <button class="btn disable"
-                onclick="disableClass('Class 9')">
-                🔒 Disable
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- CLASS 10 -->
-
-    <div class="class-card" data-search="class 10 tenth 10">
-
-        <div class="class-header">
-
-            <div class="class-icon">
-                📗
+            <div class="class-number">
+                11
             </div>
 
-            <div>
+            <h3>Class 11</h3>
 
-                <div class="class-name">
-                    Class 10
-                </div>
+            <p>
+                Class 11 के courses, subjects,
+                notes, videos और learning content।
+            </p>
 
-                <div class="class-subtitle">
-                    Complete Class 10 Package
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="details">
-
-            <div class="detail">
-                <small>Course Price</small>
-                <strong>₹499</strong>
-            </div>
-
-            <div class="detail">
-                <small>Students</small>
-                <strong>31 Students</strong>
-            </div>
-
-            <div class="detail">
-                <small>Chapters</small>
-                <strong>52 Chapters</strong>
-            </div>
-
-            <div class="detail">
-                <small>Status</small>
-                <strong class="status">
-                    <span class="dot"></span>
-                    Active
-                </strong>
-            </div>
+            <span class="status">
+                ACTIVE
+            </span>
 
         </div>
 
 
-        <div class="subject-title">
-            Included Subjects
-        </div>
+        <!-- CLASS 12 -->
 
-        <div class="subjects">
+        <div class="class-card"
+             onclick="openClass(12)">
 
-            <span class="subject">Mathematics</span>
-            <span class="subject">Physics</span>
-            <span class="subject">Chemistry</span>
-            <span class="subject">Biology</span>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button class="btn manage"
-                onclick="manageClass('Class 10')">
-                📚 Manage
-            </button>
-
-            <button class="btn edit"
-                onclick="editClass('Class 10')">
-                ✏️ Edit
-            </button>
-
-            <button class="btn students"
-                onclick="viewStudents('Class 10')">
-                👨‍🎓 Students
-            </button>
-
-            <button class="btn disable"
-                onclick="disableClass('Class 10')">
-                🔒 Disable
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- CLASS 11 -->
-
-    <div class="class-card" data-search="class 11 eleventh 11">
-
-        <div class="class-header">
-
-            <div class="class-icon">
-                📙
+            <div class="class-number">
+                12
             </div>
 
-            <div>
+            <h3>Class 12</h3>
 
-                <div class="class-name">
-                    Class 11
-                </div>
+            <p>
+                Class 12 के courses, subjects,
+                notes, videos और learning content।
+            </p>
 
-                <div class="class-subtitle">
-                    Complete Class 11 Package
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="details">
-
-            <div class="detail">
-                <small>Course Price</small>
-                <strong>₹499</strong>
-            </div>
-
-            <div class="detail">
-                <small>Students</small>
-                <strong>42 Students</strong>
-            </div>
-
-            <div class="detail">
-                <small>Chapters</small>
-                <strong>60 Chapters</strong>
-            </div>
-
-            <div class="detail">
-                <small>Status</small>
-                <strong class="status">
-                    <span class="dot"></span>
-                    Active
-                </strong>
-            </div>
+            <span class="status">
+                ACTIVE
+            </span>
 
         </div>
 
+    </section>
 
-        <div class="subject-title">
-            Included Subjects
-        </div>
-
-        <div class="subjects">
-
-            <span class="subject">Mathematics</span>
-            <span class="subject">Physics</span>
-            <span class="subject">Chemistry</span>
-            <span class="subject">Biology</span>
-
-        </div>
+</main>
 
 
-        <div class="actions">
+<footer class="footer">
 
-            <button class="btn manage"
-                onclick="manageClass('Class 11')">
-                📚 Manage
-            </button>
+    © 2026 Surya Coaching Centre
+    <br>
+    Professional Class Management
 
-            <button class="btn edit"
-                onclick="editClass('Class 11')">
-                ✏️ Edit
-            </button>
-
-            <button class="btn students"
-                onclick="viewStudents('Class 11')">
-                👨‍🎓 Students
-            </button>
-
-            <button class="btn disable"
-                onclick="disableClass('Class 11')">
-                🔒 Disable
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- CLASS 12 -->
-
-    <div class="class-card" data-search="class 12 twelfth 12">
-
-        <div class="class-header">
-
-            <div class="class-icon">
-                📕
-            </div>
-
-            <div>
-
-                <div class="class-name">
-                    Class 12
-                </div>
-
-                <div class="class-subtitle">
-                    Complete Class 12 Package
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="details">
-
-            <div class="detail">
-                <small>Course Price</small>
-                <strong>₹499</strong>
-            </div>
-
-            <div class="detail">
-                <small>Students</small>
-                <strong>38 Students</strong>
-            </div>
-
-            <div class="detail">
-                <small>Chapters</small>
-                <strong>64 Chapters</strong>
-            </div>
-
-            <div class="detail">
-                <small>Status</small>
-                <strong class="status">
-                    <span class="dot"></span>
-                    Active
-                </strong>
-            </div>
-
-        </div>
-
-
-        <div class="subject-title">
-            Included Subjects
-        </div>
-
-        <div class="subjects">
-
-            <span class="subject">Mathematics</span>
-            <span class="subject">Physics</span>
-            <span class="subject">Chemistry</span>
-            <span class="subject">Biology</span>
-
-        </div>
-
-
-        <div class="actions">
-
-            <button class="btn manage"
-                onclick="manageClass('Class 12')">
-                📚 Manage
-            </button>
-
-            <button class="btn edit"
-                onclick="editClass('Class 12')">
-                ✏️ Edit
-            </button>
-
-            <button class="btn students"
-                onclick="viewStudents('Class 12')">
-                👨‍🎓 Students
-            </button>
-
-            <button class="btn disable"
-                onclick="disableClass('Class 12')">
-                🔒 Disable
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- NO RESULT -->
-
-    <div class="empty" id="noResult">
-
-        <div class="empty-icon">
-            🔎
-        </div>
-
-        <strong>Class नहीं मिली</strong>
-
-        <p>कृपया Class 9, 10, 11 या 12 खोजें।</p>
-
-    </div>
-
-
-
-    <!-- NOTICE -->
-
-    <div class="notice">
-
-        <strong>⚠️ Important:</strong><br>
-
-        अभी यह Class Management का professional
-        front-end demo है। Firebase/database जुड़ने के बाद
-        Admin वास्तविक रूप से class, price, students,
-        chapters और status को manage कर सकेगा।
-
-    </div>
-
-
-</div>
-
+</footer>
 
 
 <script>
 
+/*
+=================================================
+CLASS MANAGEMENT
+Future-ready navigation structure
+=================================================
+*/
 
-/* BACK */
+function openClass(classNumber){
 
-function goBack(){
+    /*
+    आगे चलकर प्रत्येक class का अलग
+    management page बनाया जा सकता है।
 
-    if(document.referrer){
+    अभी class number सुरक्षित रूप से
+    अगले page को भेजा जा रहा है।
+    */
 
-        history.back();
-
-    }else{
-
-        window.location.href="admin-login.html";
-
-    }
-
-}
-
-
-/* SEARCH */
-
-function searchClasses(){
-
-    let input =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
-
-    let cards =
-        document.querySelectorAll(".class-card");
-
-    let found = 0;
-
-    cards.forEach(function(card){
-
-        let text =
-            card.getAttribute("data-search")
-            .toLowerCase();
-
-        if(text.includes(input)){
-
-            card.style.display="block";
-
-            found++;
-
-        }else{
-
-            card.style.display="none";
-
-        }
-
-    });
-
-
-    document.getElementById("noResult").style.display =
-        found === 0 ? "block" : "none";
+    window.location.href =
+        "class-details.html?class=" + classNumber;
 
 }
 
 
-/* ADD CLASS */
+/* Dashboard */
 
-function addClass(){
+function goDashboard(){
 
-    alert(
-        "Add Class\n\n" +
-        "यहाँ बाद में Admin नई Class जोड़ सकेगा।\n\n" +
-        "Firebase जोड़ने के बाद यह सुविधा पूरी तरह काम करेगी।"
-    );
-
-}
-
-
-/* MANAGE */
-
-function manageClass(className){
-
-    alert(
-        className +
-        " Management\n\n" +
-        "यहाँ बाद में Chapters, Videos, PDFs और Quiz manage किए जाएंगे।"
-    );
-
-}
-
-
-/* EDIT */
-
-function editClass(className){
-
-    alert(
-        "Edit " +
-        className +
-        "\n\n" +
-        "Admin यहाँ Class Name, Price और Subjects बदल सकेगा।\n\n" +
-        "Firebase जोड़ने के बाद यह सुविधा सक्रिय होगी।"
-    );
-
-}
-
-
-/* STUDENTS */
-
-function viewStudents(className){
-
-    alert(
-        className +
-        " के Students\n\n" +
-        "बाद में यहाँ उस Class में enrolled students की पूरी list दिखाई जाएगी।"
-    );
-
-}
-
-
-/* DISABLE */
-
-function disableClass(className){
-
-    let result =
-        confirm(
-            "क्या आप " +
-            className +
-            " को Disable करना चाहते हैं?"
-        );
-
-    if(result){
-
-        alert(
-            className +
-            " को Disable करने की सुविधा Firebase जोड़ने के बाद पूरी तरह काम करेगी।"
-        );
-
-    }
+    window.location.href =
+        "admin-dashboard.html";
 
 }
 
 </script>
-
 
 </body>
 </html>
