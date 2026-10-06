@@ -19,10 +19,10 @@ body{
 }
 
 .header{
-    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    background:linear-gradient(135deg,#0d47a1,#1976d2,#42a5f5);
     color:white;
     text-align:center;
-    padding:22px 15px;
+    padding:24px 15px;
 }
 
 .header h1{
@@ -43,9 +43,9 @@ body{
 
 .card{
     background:white;
-    padding:18px;
+    padding:20px;
     margin-bottom:18px;
-    border-radius:15px;
+    border-radius:16px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
@@ -57,21 +57,21 @@ body{
 label{
     display:block;
     font-weight:bold;
-    margin-top:12px;
+    margin-top:13px;
 }
 
 input,select{
     width:100%;
-    padding:12px;
+    padding:13px;
     margin-top:6px;
     border:1px solid #ccc;
-    border-radius:8px;
+    border-radius:9px;
     font-size:15px;
 }
 
 button{
     border:0;
-    border-radius:8px;
+    border-radius:9px;
     padding:12px 16px;
     margin-top:15px;
     font-weight:bold;
@@ -92,9 +92,9 @@ button{
 
 .payment{
     border:1px solid #ddd;
-    border-radius:12px;
-    padding:15px;
-    margin-top:12px;
+    border-radius:13px;
+    padding:16px;
+    margin-top:13px;
 }
 
 .payment h3{
@@ -103,7 +103,7 @@ button{
 }
 
 .price{
-    font-size:20px;
+    font-size:21px;
     font-weight:bold;
 }
 
@@ -111,7 +111,7 @@ button{
     display:inline-block;
     padding:6px 10px;
     border-radius:20px;
-    font-size:13px;
+    font-size:12px;
     font-weight:bold;
 }
 
@@ -130,18 +130,13 @@ button{
     color:#ef6c00;
 }
 
-.actions button{
-    width:auto;
-    margin-right:6px;
+.extend{
+    background:#2e7d32;
+    color:white;
 }
 
 .delete{
     background:#d32f2f;
-    color:white;
-}
-
-.extend{
-    background:#2e7d32;
     color:white;
 }
 
@@ -153,13 +148,25 @@ button{
 
 .info{
     background:#e3f2fd;
-    padding:12px;
-    border-radius:8px;
-    margin-top:12px;
+    color:#0d47a1;
+    padding:13px;
+    border-radius:9px;
+    margin-top:13px;
     font-size:14px;
+    line-height:1.5;
+}
+
+.back{
+    width:100%;
+    background:#455a64;
+    color:white;
 }
 
 @media(max-width:600px){
+    .container{
+        padding:12px;
+    }
+
     .header h1{
         font-size:21px;
     }
@@ -171,10 +178,12 @@ button{
 
 <div class="header">
     <h1>☀️ Surya Coaching Centre</h1>
-    <p>Payment & Course Purchase Management</p>
+    <p>Payment Management</p>
 </div>
 
 <div class="container">
+
+<!-- ADD PAYMENT -->
 
 <div class="card">
 
@@ -186,56 +195,114 @@ button{
     id="studentName"
     placeholder="Student का नाम">
 
-<label>Student Email / ID</label>
+<label>Student ID / Mobile</label>
 <input
     type="text"
     id="studentId"
-    placeholder="Student Email या ID">
+    placeholder="Student ID या Mobile Number">
 
-<label>Course Name</label>
-<input
-    type="text"
-    id="courseName"
-    placeholder="Example: Class 11 Complete Course">
+<label>Course</label>
+
+<select id="courseName">
+
+    <option value="">
+        -- Course चुनें --
+    </option>
+
+    <option value="Class 9 Complete Course">
+        Class 9 Complete Course
+    </option>
+
+    <option value="Class 10 Complete Course">
+        Class 10 Complete Course
+    </option>
+
+    <option value="Class 11 Complete Course">
+        Class 11 Complete Course
+    </option>
+
+    <option value="Class 12 Complete Course">
+        Class 12 Complete Course
+    </option>
+
+</select>
 
 <label>Course Price (₹)</label>
+
 <input
     type="number"
     id="price"
     placeholder="Example: 499">
 
 <label>Payment Status</label>
+
 <select id="paymentStatus">
-    <option value="Paid">Paid</option>
-    <option value="Pending">Pending</option>
+
+    <option value="Paid">
+        Paid
+    </option>
+
+    <option value="Pending">
+        Pending
+    </option>
+
 </select>
 
 <label>Course Start Date</label>
+
 <input
     type="date"
     id="startDate">
 
 <div class="info">
-    ⏳ Course Validity: <b>12 महीने</b><br>
-    Course की Expiry Date Start Date से 12 महीने बाद होगी।
-</div>
 
-<button class="save" onclick="savePayment()">
-💾 Save Purchase
-</button>
+    ⏳ <b>Course Validity: 12 Months</b><br>
 
-<button class="clear" onclick="clearForm()">
-↻ Clear
-</button>
+    Start Date से 12 महीने बाद course expire होगा।
 
 </div>
 
+<button
+    class="save"
+    onclick="savePayment()">
+
+    💾 Save Payment
+
+</button>
+
+<button
+    class="clear"
+    onclick="clearForm()">
+
+    ↻ Clear
+
+</button>
+
+</div>
+
+
+<!-- PAYMENT RECORDS -->
 
 <div class="card">
 
-<h2>📋 Purchase Records</h2>
+<h2>📋 Payment Records</h2>
 
 <div id="paymentList"></div>
+
+</div>
+
+
+<!-- BACK -->
+
+<div class="card">
+
+<button
+    class="back"
+    onclick="goAdmin()">
+
+    ← Back to Admin Panel
+
+</button>
 
 </div>
 
@@ -247,93 +314,115 @@ button{
 let payments =
 JSON.parse(localStorage.getItem("suryaPayments")) || [];
 
-let editIndex = -1;
 
-
-/* आज की तारीख */
+/* TODAY */
 
 function todayDate(){
 
     const d = new Date();
 
-    const year = d.getFullYear();
+    const y = d.getFullYear();
 
-    const month =
+    const m =
         String(d.getMonth()+1).padStart(2,"0");
 
     const day =
         String(d.getDate()).padStart(2,"0");
 
-    return `${year}-${month}-${day}`;
+    return y + "-" + m + "-" + day;
 }
 
 
-/* 12 महीने बाद की तारीख */
+/* ADD 12 MONTHS */
 
 function add12Months(dateString){
 
-    const date = new Date(dateString);
+    const date =
+        new Date(dateString);
 
-    date.setMonth(date.getMonth()+12);
+    date.setMonth(
+        date.getMonth() + 12
+    );
 
-    const year = date.getFullYear();
+    const y =
+        date.getFullYear();
 
-    const month =
+    const m =
         String(date.getMonth()+1).padStart(2,"0");
 
     const day =
         String(date.getDate()).padStart(2,"0");
 
-    return `${year}-${month}-${day}`;
+    return y + "-" + m + "-" + day;
 }
 
 
-/* Save Payment */
+/* SAVE */
 
 function savePayment(){
 
     const studentName =
-        document.getElementById("studentName").value.trim();
+        document.getElementById("studentName")
+        .value.trim();
 
     const studentId =
-        document.getElementById("studentId").value.trim();
+        document.getElementById("studentId")
+        .value.trim();
 
     const courseName =
-        document.getElementById("courseName").value.trim();
+        document.getElementById("courseName")
+        .value;
 
     const price =
-        document.getElementById("price").value;
+        document.getElementById("price")
+        .value;
 
     const paymentStatus =
-        document.getElementById("paymentStatus").value;
+        document.getElementById("paymentStatus")
+        .value;
 
     const startDate =
-        document.getElementById("startDate").value;
+        document.getElementById("startDate")
+        .value;
 
 
     if(studentName === ""){
+
         alert("Student Name डालें।");
         return;
+
     }
+
 
     if(studentId === ""){
-        alert("Student Email / ID डालें।");
+
+        alert("Student ID / Mobile डालें।");
         return;
+
     }
+
 
     if(courseName === ""){
-        alert("Course Name डालें।");
+
+        alert("Course चुनें।");
         return;
+
     }
 
-    if(price === ""){
-        alert("Course Price डालें।");
+
+    if(price === "" || Number(price) <= 0){
+
+        alert("सही Course Price डालें।");
         return;
+
     }
+
 
     if(startDate === ""){
-        alert("Course Start Date चुनें।");
+
+        alert("Start Date चुनें।");
         return;
+
     }
 
 
@@ -360,26 +449,17 @@ function savePayment(){
     };
 
 
-    if(editIndex === -1){
-
-        payments.push(record);
-
-        alert("Course Purchase successfully saved.");
-
-    }else{
-
-        payments[editIndex] = record;
-
-        editIndex = -1;
-
-        alert("Purchase record updated.");
-
-    }
+    payments.push(record);
 
 
     localStorage.setItem(
         "suryaPayments",
         JSON.stringify(payments)
+    );
+
+
+    alert(
+        "Payment Record सफलतापूर्वक Save हो गया।"
     );
 
 
@@ -390,12 +470,14 @@ function savePayment(){
 }
 
 
-/* Status Check */
+/* STATUS */
 
 function getStatus(payment){
 
     if(payment.paymentStatus !== "Paid"){
+
         return "pending";
+
     }
 
 
@@ -418,7 +500,7 @@ function getStatus(payment){
 }
 
 
-/* Display */
+/* DISPLAY */
 
 function displayPayments(){
 
@@ -431,45 +513,46 @@ function displayPayments(){
     if(payments.length === 0){
 
         list.innerHTML =
-        '<div class="empty">अभी कोई Purchase Record नहीं है।</div>';
+        '<div class="empty">अभी कोई Payment Record नहीं है।</div>';
 
         return;
 
     }
 
 
-    payments.forEach((payment,index)=>{
+    payments.forEach(
+        function(payment,index){
 
         const status =
             getStatus(payment);
 
 
-        let statusText = "";
+        let text = "";
 
-        let statusClass = "";
+        let css = "";
 
 
         if(status === "active"){
 
-            statusText = "ACTIVE";
+            text = "ACTIVE";
 
-            statusClass = "active";
+            css = "active";
 
         }
 
         else if(status === "expired"){
 
-            statusText = "EXPIRED";
+            text = "EXPIRED";
 
-            statusClass = "expired";
+            css = "expired";
 
         }
 
         else{
 
-            statusText = "PAYMENT PENDING";
+            text = "PAYMENT PENDING";
 
-            statusClass = "pending";
+            css = "pending";
 
         }
 
@@ -478,56 +561,60 @@ function displayPayments(){
 
         <div class="payment">
 
-            <h3>${payment.studentName}</h3>
+            <h3>
+                ${payment.studentName}
+            </h3>
 
             <p>
-            <b>Student ID:</b>
-            ${payment.studentId}
+                <b>Student ID:</b>
+                ${payment.studentId}
             </p>
 
             <p>
-            <b>Course:</b>
-            ${payment.courseName}
+                <b>Course:</b>
+                ${payment.courseName}
             </p>
 
             <p class="price">
-            ₹${payment.price}
+                ₹${payment.price}
             </p>
 
             <p>
-            <b>Payment:</b>
-            ${payment.paymentStatus}
+                <b>Payment:</b>
+                ${payment.paymentStatus}
             </p>
 
             <p>
-            <b>Start Date:</b>
-            ${payment.startDate}
+                <b>Start:</b>
+                ${payment.startDate}
             </p>
 
             <p>
-            <b>Valid Till:</b>
-            ${payment.expiryDate}
+                <b>Valid Till:</b>
+                ${payment.expiryDate}
             </p>
 
-            <span class="status ${statusClass}">
-            ${statusText}
+            <span class="status ${css}">
+                ${text}
             </span>
 
-            <div class="actions">
+            <br>
 
-                <button
+            <button
                 class="extend"
-                onclick="extendCourse(${index})">
-                🔄 Extend 12 Months
-                </button>
+                onclick="extendPayment(${index})">
 
-                <button
+                🔄 Extend 12 Months
+
+            </button>
+
+            <button
                 class="delete"
                 onclick="deletePayment(${index})">
-                🗑️ Delete
-                </button>
 
-            </div>
+                🗑️ Delete
+
+            </button>
 
         </div>
 
@@ -538,20 +625,18 @@ function displayPayments(){
 }
 
 
-/* Extend Course */
+/* EXTEND */
 
-function extendCourse(index){
+function extendPayment(index){
 
     const payment =
         payments[index];
 
 
-    const newExpiry =
-        add12Months(payment.expiryDate);
-
-
     payment.expiryDate =
-        newExpiry;
+        add12Months(
+            payment.expiryDate
+        );
 
 
     payment.paymentStatus =
@@ -568,19 +653,19 @@ function extendCourse(index){
 
 
     alert(
-        "Course की validity 12 महीने बढ़ा दी गई है।"
+        "Course validity 12 महीने बढ़ा दी गई है।"
     );
 
 }
 
 
-/* Delete */
+/* DELETE */
 
 function deletePayment(index){
 
     const ok =
         confirm(
-        "क्या आप इस Purchase Record को Delete करना चाहते हैं?"
+            "क्या आप यह payment record delete करना चाहते हैं?"
         );
 
 
@@ -603,34 +688,48 @@ function deletePayment(index){
 }
 
 
-/* Clear */
+/* CLEAR */
 
 function clearForm(){
 
-    document.getElementById("studentName").value = "";
+    document.getElementById("studentName")
+        .value = "";
 
-    document.getElementById("studentId").value = "";
+    document.getElementById("studentId")
+        .value = "";
 
-    document.getElementById("courseName").value = "";
+    document.getElementById("courseName")
+        .value = "";
 
-    document.getElementById("price").value = "";
+    document.getElementById("price")
+        .value = "";
 
-    document.getElementById("paymentStatus").value =
-        "Paid";
+    document.getElementById("paymentStatus")
+        .value = "Paid";
 
-    document.getElementById("startDate").value =
-        todayDate();
-
-    editIndex = -1;
+    document.getElementById("startDate")
+        .value = todayDate();
 
 }
 
 
-/* Default date */
+/* ADMIN PANEL */
 
-document.getElementById("startDate").value =
-    todayDate();
+function goAdmin(){
 
+    window.location.href =
+        "admin-control-panel.html";
+
+}
+
+
+/* DEFAULT DATE */
+
+document.getElementById("startDate")
+    .value = todayDate();
+
+
+/* LOAD RECORDS */
 
 displayPayments();
 
