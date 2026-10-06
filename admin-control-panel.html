@@ -107,8 +107,6 @@ button:active{
     transform:scale(.98);
 }
 
-/* SPECIAL CARDS */
-
 .payment{
     border:2px solid #1976d2;
     background:#e3f2fd;
@@ -158,214 +156,132 @@ button:active{
 
 <body>
 
-<!-- HEADER -->
-
 <div class="header">
-
     <h1>☀️ Surya Coaching Centre</h1>
-
     <p>Professional Admin Control Panel</p>
-
 </div>
-
 
 <div class="container">
 
-
-<!-- WELCOME -->
-
 <div class="welcome">
-
     <h2>👨‍💼 Admin Dashboard</h2>
-
     <p>
         यहाँ से Surya Coaching Centre की सभी management files खोलें।
     </p>
-
 </div>
-
-
-<!-- ALL MANAGEMENT -->
 
 <div class="grid">
 
-
-<!-- 1 STUDENT -->
-
+<!-- STUDENT -->
 <div class="card">
-
     <div class="icon">👨‍🎓</div>
-
     <h3>Student Management</h3>
+    <p>Students की जानकारी और records manage करें।</p>
 
-    <p>
-        Students की जानकारी और records manage करें।
-    </p>
-
-    <button onclick="openFile('student-management.html')">
-        Open Student Management
+    <button onclick="openFile('admin-students.html')">
+        👨‍🎓 Open Student Management
     </button>
-
 </div>
 
 
-<!-- 2 CLASS -->
-
+<!-- CLASS -->
 <div class="card">
-
     <div class="icon">📚</div>
-
     <h3>Class Management</h3>
+    <p>Class 9, 10, 11 और 12 manage करें।</p>
 
-    <p>
-        Class 9, 10, 11 और 12 manage करें।
-    </p>
-
-    <button onclick="openFile('class-management.html')">
-        Open Class Management
+    <button onclick="openFile('admin-class.html')">
+        📚 Open Class Management
     </button>
-
 </div>
 
 
-<!-- 3 SUBJECT -->
-
+<!-- SUBJECT -->
 <div class="card">
-
     <div class="icon">📖</div>
-
     <h3>Subject Management</h3>
+    <p>Physics, Chemistry, Mathematics और Biology manage करें।</p>
 
-    <p>
-        Physics, Chemistry, Mathematics और Biology manage करें।
-    </p>
-
-    <button onclick="openFile('subject-management.html')">
-        Open Subject Management
+    <button onclick="openFile('subject- management.html')">
+        📖 Open Subject Management
     </button>
-
 </div>
 
 
-<!-- 4 COURSE -->
-
+<!-- COURSE -->
 <div class="card">
-
     <div class="icon">📦</div>
-
     <h3>Course Management</h3>
+    <p>Class के complete course packages manage करें।</p>
 
-    <p>
-        Class के complete course packages manage करें।
-    </p>
-
-    <button onclick="openFile('course-management.html')">
-        Open Course Management
+    <button onclick="openFile('admin-courses.html')">
+        📦 Open Course Management
     </button>
-
 </div>
 
 
-<!-- 5 PAYMENT -->
-
+<!-- PAYMENT -->
 <div class="card payment">
-
     <div class="icon">💳</div>
-
     <h3>Payment Management</h3>
-
-    <p>
-        Course purchase, price और payment status manage करें।
-    </p>
+    <p>Course purchase, price और payment status manage करें।</p>
 
     <button onclick="openFile('payment-management.html')">
         💳 Open Payment Management
     </button>
-
 </div>
 
 
-<!-- 6 LIVE CLASS -->
-
+<!-- LIVE CLASS -->
 <div class="card">
-
     <div class="icon">🎥</div>
-
     <h3>Live Class Management</h3>
-
-    <p>
-        Live class और meeting links manage करें।
-    </p>
+    <p>Live class और meeting links manage करें।</p>
 
     <button onclick="openFile('live-class-management.html')">
-        Open Live Class Management
+        🎥 Open Live Class Management
     </button>
-
 </div>
 
 
-<!-- 7 NOTES -->
-
+<!-- NOTES -->
 <div class="card">
-
     <div class="icon">📝</div>
-
     <h3>Notes Management</h3>
-
-    <p>
-        Class और subject के notes manage करें।
-    </p>
+    <p>Class और subject के notes manage करें।</p>
 
     <button onclick="openFile('notes-management.html')">
-        Open Notes Management
+        📝 Open Notes Management
     </button>
-
 </div>
 
 
-<!-- 8 VALIDITY -->
-
+<!-- VALIDITY -->
 <div class="card validity">
-
     <div class="icon">⏳</div>
-
     <h3>Course Validity Management</h3>
-
-    <p>
-        Course की start date, expiry date और validity manage करें।
-    </p>
+    <p>Course की start date, expiry date और validity manage करें।</p>
 
     <button onclick="openFile('course-validity-management.html')">
         ⏳ Open Course Validity
     </button>
+</div>
 
 </div>
 
-
-</div>
-
-
-<!-- LOGOUT -->
 
 <div class="logout-box">
 
-    <button
-        class="logout"
-        onclick="logoutAdmin()">
-
+    <button class="logout" onclick="logoutAdmin()">
         🚪 Logout Admin
-
     </button>
 
 </div>
-
 
 </div>
 
 
 <script>
-
-/* OPEN MANAGEMENT FILE */
 
 function openFile(fileName){
 
@@ -373,8 +289,6 @@ function openFile(fileName){
 
 }
 
-
-/* ADMIN LOGOUT */
 
 function logoutAdmin(){
 
