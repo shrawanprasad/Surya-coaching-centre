@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Course Validity Management - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+.header{
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    color:white;
+    text-align:center;
+    padding:24px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+.container{
+    max-width:1050px;
+    margin:auto;
+    padding:15px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin-top:0;
+    color:#0d47a1;
+    font-size:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccd5e0;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:#1976d2;
+}
+
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+button{
+    border:0;
+    border-radius:9px;
+    padding:12px 18px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.save-btn{
+    background:#1976d2;
+    color:white;
+}
+
+.clear-btn{
+    background:#e8eef5;
+    color:#333;
+}
+
+.filter-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 2fr;
+    gap:10px;
+}
+
+.validity-item{
+    border:1px solid #e1e7ee;
+    border-radius:13px;
+    padding:16px;
+    margin-top:12px;
+}
+
+.top-row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.course-name{
+    font-size:18px;
+    font-weight:bold;
+    color:#0d47a1;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.active{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.expired{
+    background:#ffebee;
+    color:#c62828;
+}
+
+.info{
+    color:#555;
+    font-size:14px;
+    line-height:1.8;
+    margin-top:10px;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+.edit-btn{
+    background:#f9a825;
+    color:white;
+}
+
+.delete-btn{
+    background:#c62828;
+    color:white;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:25px;
+}
+
+.footer{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    padding:20px;
+}
+
+@media(max-width:650px){
+
+    .form-grid,
+    .filter-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🎓 Surya Coaching Centre</h1>
+    <p>Course Validity Management</p>
+</div>
+
+
+<div class="container">
+
+    <!-- ADD VALIDITY -->
+    <div class="card">
+
+        <h2>➕ Add / Update Course Validity</h2>
+
+        <form id="validityForm">
+
+            <input type="hidden" id="editId">
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Student Name</label>
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Student name"
+                        required>
+                </div>
+
+
+                <div>
+                    <label>Student ID</label>
+
+                    <input
+                        type="text"
+                        id="studentId"
+                        placeholder="Example: STU001"
+                        required>
+                </div>
+
+
+                <div>
+                    <label>Course / Class</label>
+
+                    <select id="course" required>
+
+                        <option value="">
+                            Select Course
+                        </option>
+
+                        <option value="Class 9">
+                            Class 9
+                        </option>
+
+                        <option value="Class 10">
+                            Class 10
+                        </option>
+
+                        <option value="Class 11">
+                            Class 11
+                        </option>
+
+                        <option value="Class 12">
+                            Class 12
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <div>
+                    <label>Validity</label>
+
+                    <select id="validityMonths">
+
+                        <option value="12">
+                            12 Months
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <div>
+                    <label>Purchase Date</label>
+
+                    <input
+                        type="date"
+                        id="purchaseDate"
+                        required>
+                </div>
+
+
+                <div>
+                    <label>Expiry Date</label>
+
+                    <input
+                        type="date"
+                        id="expiryDate"
+                        required>
+                </div>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    💾 Save Validity
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="clear-btn"
+                    onclick="clearForm()">
+
+                    ✖ Clear
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- FILTER -->
+    <div class="card">
+
+        <h2>🔎 Search Validity</h2>
+
+        <div class="filter-grid">
+
+            <select
+                id="filterCourse"
+                onchange="displayValidity()">
+
+                <option value="">
+                    All Courses
+                </option>
+
+                <option value="Class 9">
+                    Class 9
+                </option>
+
+                <option value="Class 10">
+                    Class 10
+                </option>
+
+                <option value="Class 11">
+                    Class 11
+                </option>
+
+                <option value="Class 12">
+                    Class 12
+                </option>
+
+            </select>
+
+
+            <select
+                id="filterStatus"
+                onchange="displayValidity()">
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="active">
+                    Active
+                </option>
+
+                <option value="expired">
+                    Expired
+                </option>
+
+            </select>
+
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search student..."
+                oninput="displayValidity()">
+
+        </div>
+
+    </div>
+
+
+    <!-- LIST -->
+    <div class="card">
+
+        <h2>📋 Course Validity List</h2>
+
+        <div id="validityList"></div>
+
+    </div>
+
+</div>
+
+
+<div class="footer">
+    © 2026 Surya Coaching Centre
+</div>
+
+
+<script>
+
+const STORAGE_KEY =
+    "surya_course_validity";
+
+let records = JSON.parse(
+    localStorage.getItem(STORAGE_KEY) || "[]"
+);
+
+
+/* AUTO EXPIRY DATE */
+
+document.getElementById("purchaseDate")
+.addEventListener("change", function(){
+
+    const date = new Date(this.value);
+
+    if(isNaN(date.getTime())) return;
+
+    date.setMonth(
+        date.getMonth() + 12
+    );
+
+    document.getElementById("expiryDate")
+    .value = formatDate(date);
+
+});
+
+
+/* SAVE */
+
+document.getElementById("validityForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const editId =
+        document.getElementById("editId").value;
+
+
+    const record = {
+
+        id:
+            editId ||
+            Date.now().toString(),
+
+        studentName:
+            document.getElementById("studentName")
+            .value.trim(),
+
+        studentId:
+            document.getElementById("studentId")
+            .value.trim(),
+
+        course:
+            document.getElementById("course")
+            .value,
+
+        validityMonths:
+            12,
+
+        purchaseDate:
+            document.getElementById("purchaseDate")
+            .value,
+
+        expiryDate:
+            document.getElementById("expiryDate")
+            .value
+
+    };
+
+
+    if(editId){
+
+        const index =
+            records.findIndex(
+                item => item.id === editId
+            );
+
+        if(index !== -1){
+            records[index] = record;
+        }
+
+        alert(
+            "✅ Course validity updated!"
+        );
+
+    }else{
+
+        records.push(record);
+
+        alert(
+            "✅ Course validity saved!"
+        );
+
+    }
+
+
+    saveData();
+
+    clearForm();
+
+    displayValidity();
+
+});
+
+
+/* SAVE DATA */
+
+function saveData(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(records)
+    );
+
+}
+
+
+/* STATUS */
+
+function getStatus(record){
+
+    const today =
+        new Date();
+
+    today.setHours(
+        0,0,0,0
+    );
+
+    const expiry =
+        new Date(
+            record.expiryDate
+        );
+
+    expiry.setHours(
+        0,0,0,0
+    );
+
+
+    if(expiry >= today){
+        return "active";
+    }
+
+    return "expired";
+
+}
+
+
+/* DISPLAY */
+
+function displayValidity(){
+
+    const list =
+        document.getElementById(
+            "validityList"
+        );
+
+    const courseFilter =
+        document.getElementById(
+            "filterCourse"
+        ).value;
+
+    const statusFilter =
+        document.getElementById(
+            "filterStatus"
+        ).value;
+
+    const search =
+        document.getElementById(
+            "search"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        records.filter(record => {
+
+            const status =
+                getStatus(record);
+
+
+            const courseMatch =
+                !courseFilter ||
+                record.course === courseFilter;
+
+
+            const statusMatch =
+                !statusFilter ||
+                status === statusFilter;
+
+
+            const searchMatch =
+                !search ||
+                record.studentName
+                    .toLowerCase()
+                    .includes(search)
+                ||
+                record.studentId
+                    .toLowerCase()
+                    .includes(search);
+
+
+            return courseMatch &&
+                   statusMatch &&
+                   searchMatch;
+
+        });
+
+
+    if(filtered.length === 0){
+
+        list.innerHTML = `
+            <div class="empty">
+                📋 अभी कोई course validity record नहीं है।
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        filtered.map(record => {
+
+            const status =
+                getStatus(record);
+
+            const statusText =
+                status === "active"
+                ? "✓ Active"
+                : "✕ Expired";
+
+
+            return `
+
+                <div class="validity-item">
+
+                    <div class="top-row">
+
+                        <div class="course-name">
+
+                            🎓
+                            ${escapeHTML(
+                                record.studentName
+                            )}
+
+                        </div>
+
+                        <span class="
+                            badge
+                            ${status}
+                        ">
+
+                            ${statusText}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        🆔 Student ID:
+                        <strong>
+                            ${escapeHTML(
+                                record.studentId
+                            )}
+                        </strong>
+
+                        <br>
+
+                        📚 Course:
+                        <strong>
+                            ${escapeHTML(
+                                record.course
+                            )}
+                        </strong>
+
+                        <br>
+
+                        📅 Purchase Date:
+                        ${formatDisplayDate(
+                            record.purchaseDate
+                        )}
+
+                        <br>
+
+                        ⏳ Expiry Date:
+                        ${formatDisplayDate(
+                            record.expiryDate
+                        )}
+
+                        <br>
+
+                        📆 Validity:
+                        ${record.validityMonths}
+                        Months
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <button
+                            class="edit-btn"
+                            onclick="
+                                editRecord(
+                                    '${record.id}'
+                                )
+                            ">
+
+                            ✏ Edit
+
+                        </button>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="
+                                deleteRecord(
+                                    '${record.id}'
+                                )
+                            ">
+
+                            🗑 Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* EDIT */
+
+function editRecord(id){
+
+    const record =
+        records.find(
+            item => item.id === id
+        );
+
+    if(!record) return;
+
+
+    document.getElementById("editId")
+        .value = record.id;
+
+    document.getElementById("studentName")
+        .value = record.studentName;
+
+    document.getElementById("studentId")
+        .value = record.studentId;
+
+    document.getElementById("course")
+        .value = record.course;
+
+    document.getElementById("purchaseDate")
+        .value = record.purchaseDate;
+
+    document.getElementById("expiryDate")
+        .value = record.expiryDate;
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* DELETE */
+
+function deleteRecord(id){
+
+    if(!confirm(
+        "क्या आप यह validity record delete करना चाहते हैं?"
+    )){
+        return;
+    }
+
+
+    records =
+        records.filter(
+            item => item.id !== id
+        );
+
+
+    saveData();
+
+    displayValidity();
+
+    alert(
+        "🗑 Record deleted successfully!"
+    );
+
+}
+
+
+/* CLEAR */
+
+function clearForm(){
+
+    document.getElementById(
+        "validityForm"
+    ).reset();
+
+    document.getElementById(
+        "editId"
+    ).value = "";
+
+}
+
+
+/* DATE FORMAT */
+
+function formatDate(date){
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+/* DISPLAY DATE */
+
+function formatDisplayDate(value){
+
+    if(!value) return "-";
+
+    const parts =
+        value.split("-");
+
+    if(parts.length !== 3){
+        return value;
+    }
+
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+}
+
+
+/* HTML SAFETY */
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* FIRST LOAD */
+
+displayValidity();
+
+</script>
+
+</body>
+</html>
