@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>New Student Registration - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    max-width:480px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    color:white;
+    margin:20px 0;
+}
+
+.header h1{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.header p{
+    font-size:14px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.20);
+}
+
+.card h2{
+    text-align:center;
+    color:#1565c0;
+    margin-bottom:22px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#333;
+}
+
+input,
+select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:#1565c0;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:70px;
+}
+
+.show-btn{
+    position:absolute;
+    right:8px;
+    top:8px;
+    border:none;
+    background:#eee;
+    padding:7px 9px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.register-btn{
+    width:100%;
+    border:none;
+    background:#1565c0;
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.register-btn:hover{
+    background:#0d47a1;
+}
+
+.login-btn{
+    width:100%;
+    border:1px solid #1565c0;
+    background:white;
+    color:#1565c0;
+    padding:12px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:12px;
+}
+
+.info{
+    background:#e3f2fd;
+    color:#0d47a1;
+    padding:12px;
+    border-radius:10px;
+    margin-top:18px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.footer{
+    text-align:center;
+    color:white;
+    font-size:12px;
+    margin-top:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>☀️ Surya Coaching Centre</h1>
+        <p>New Student Registration</p>
+    </div>
+
+    <div class="card">
+
+        <h2>Student Registration</h2>
+
+        <form onsubmit="registerStudent(event)">
+
+            <div class="form-group">
+                <label>Student Name</label>
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="अपना नाम लिखें"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input
+                    type="tel"
+                    id="mobile"
+                    placeholder="10 अंकों का मोबाइल नंबर"
+                    maxlength="10"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Select Class</label>
+                <select id="studentClass" required>
+                    <option value="">-- Class चुनें --</option>
+                    <option value="Class 9">Class 9</option>
+                    <option value="Class 10">Class 10</option>
+                    <option value="Class 11">Class 11</option>
+                    <option value="Class 12">Class 12</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+
+                <div class="password-box">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="कम से कम 6 अक्षर"
+                        minlength="6"
+                        required>
+
+                    <button
+                        type="button"
+                        class="show-btn"
+                        onclick="togglePassword('password',this)">
+                        Show
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password</label>
+
+                <div class="password-box">
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Password फिर से लिखें"
+                        minlength="6"
+                        required>
+
+                    <button
+                        type="button"
+                        class="show-btn"
+                        onclick="togglePassword('confirmPassword',this)">
+                        Show
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="register-btn">
+                Create Student Account
+            </button>
+
+            <button
+                type="button"
+                class="login-btn"
+                onclick="goLogin()">
+                Already Registered? Student Login
+            </button>
+
+        </form>
+
+        <div class="info">
+            <b>महत्वपूर्ण:</b><br>
+            यह अभी registration का front-end version है।
+            असली student account और login database/Firebase जोड़ने के बाद
+            पूरी तरह काम करेगा।
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Surya Coaching Centre
+    </div>
+
+</div>
+
+<script>
+
+function registerStudent(event){
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("studentName").value.trim();
+
+    const mobile =
+        document.getElementById("mobile").value.trim();
+
+    const studentClass =
+        document.getElementById("studentClass").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    if(!/^[0-9]{10}$/.test(mobile)){
+        alert("कृपया सही 10 अंकों का मोबाइल नंबर डालें।");
+        return;
+    }
+
+    if(password.length < 6){
+        alert("Password कम से कम 6 अक्षर का होना चाहिए।");
+        return;
+    }
+
+    if(password !== confirmPassword){
+        alert("Password और Confirm Password समान नहीं हैं।");
+        return;
+    }
+
+    alert(
+        "Registration Form सफलतापूर्वक तैयार है।\n\n" +
+        "Student: " + name +
+        "\nClass: " + studentClass +
+        "\n\nअसली account/database अगले चरण में जोड़ा जाएगा।"
+    );
+}
+
+function togglePassword(id,button){
+
+    const input = document.getElementById(id);
+
+    if(input.type === "password"){
+        input.type = "text";
+        button.innerText = "Hide";
+    }else{
+        input.type = "password";
+        button.innerText = "Show";
+    }
+}
+
+function goLogin(){
+
+    window.location.href = "student-login.html";
+
+}
+
+</script>
+
+</body>
+</html>
