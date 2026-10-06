@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Notes - Surya Coaching Centre</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+.header{
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    color:white;
+    padding:22px 15px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:15px;
+}
+
+.student-box{
+    background:white;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.student-box h2{
+    margin:0 0 8px;
+    color:#0d47a1;
+}
+
+.info{
+    color:#555;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.filter-box{
+    display:grid;
+    grid-template-columns:1fr 1fr 2fr;
+    gap:10px;
+}
+
+select,
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccd5e0;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
+}
+
+select:focus,
+input:focus{
+    border-color:#1976d2;
+}
+
+.notes-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.note-card{
+    background:white;
+    border-radius:14px;
+    padding:17px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    border:1px solid #e5eaf0;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#e3f2fd;
+    color:#0d47a1;
+    font-size:12px;
+    font-weight:bold;
+    margin-right:5px;
+}
+
+.note-card h3{
+    margin:12px 0 7px;
+    color:#222;
+    font-size:18px;
+}
+
+.note-info{
+    color:#666;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.view-btn{
+    width:100%;
+    margin-top:14px;
+    padding:12px;
+    border:0;
+    border-radius:9px;
+    background:#1976d2;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.view-btn:active{
+    transform:scale(.98);
+}
+
+.empty{
+    background:white;
+    padding:30px 15px;
+    border-radius:14px;
+    text-align:center;
+    color:#777;
+    grid-column:1/-1;
+}
+
+.locked{
+    opacity:.7;
+}
+
+.footer{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    padding:25px 10px;
+}
+
+@media(max-width:650px){
+
+    .filter-box{
+        grid-template-columns:1fr;
+    }
+
+    .notes-grid{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>📚 Surya Coaching Centre</h1>
+    <p>Student Notes Portal</p>
+</div>
+
+<div class="container">
+
+    <!-- STUDENT INFORMATION -->
+    <div class="student-box">
+
+        <h2>👨‍🎓 My Notes</h2>
+
+        <div class="info">
+            यहाँ आपके course के उपलब्ध Notes दिखाई देंगे।
+            <br>
+            📅 Course Access: <strong id="validityText">
+                12 Months
+            </strong>
+        </div>
+
+    </div>
+
+
+    <!-- FILTER -->
+    <div class="student-box">
+
+        <h2>🔎 Find Notes</h2>
+
+        <div class="filter-box">
+
+            <select id="classFilter"
+                    onchange="displayNotes()">
+
+                <option value="">
+                    All Classes
+                </option>
+
+                <option value="Class 9">
+                    Class 9
+                </option>
+
+                <option value="Class 10">
+                    Class 10
+                </option>
+
+                <option value="Class 11">
+                    Class 11
+                </option>
+
+                <option value="Class 12">
+                    Class 12
+                </option>
+
+            </select>
+
+
+            <select id="subjectFilter"
+                    onchange="displayNotes()">
+
+                <option value="">
+                    All Subjects
+                </option>
+
+                <option value="Physics">
+                    Physics
+                </option>
+
+                <option value="Chemistry">
+                    Chemistry
+                </option>
+
+                <option value="Mathematics">
+                    Mathematics
+                </option>
+
+                <option value="Biology">
+                    Biology
+                </option>
+
+            </select>
+
+
+            <input
+                type="text"
+                id="searchBox"
+                placeholder="Search chapter or notes..."
+                oninput="displayNotes()">
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTES -->
+    <div class="notes-grid"
+         id="notesContainer">
+    </div>
+
+</div>
+
+
+<div class="footer">
+    © 2026 Surya Coaching Centre
+</div>
+
+
+<script>
+
+const NOTES_KEY =
+    "surya_coaching_notes";
+
+
+// Demo student access
+// बाद में Firebase से student की खरीदी हुई class
+// automatically मिलेगी।
+
+const studentCourse =
+    localStorage.getItem("studentPurchasedClass")
+    || "Class 9";
+
+
+function getNotes(){
+
+    return JSON.parse(
+        localStorage.getItem(NOTES_KEY)
+        || "[]"
+    );
+
+}
+
+
+function displayNotes(){
+
+    const container =
+        document.getElementById("notesContainer");
+
+    const classFilter =
+        document.getElementById("classFilter").value;
+
+    const subjectFilter =
+        document.getElementById("subjectFilter").value;
+
+    const search =
+        document.getElementById("searchBox")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let notes = getNotes();
+
+
+    /*
+       केवल Active Notes student को दिखेंगे।
+    */
+
+    notes = notes.filter(note =>
+        note.visibility === "active"
+    );
+
+
+    /*
+       Demo में studentPurchasedClass सेट होने पर
+       उसी class के notes दिखाए जा सकते हैं।
+    */
+
+    if(studentCourse){
+
+        notes = notes.filter(note =>
+            note.className === studentCourse
+        );
+
+    }
+
+
+    notes = notes.filter(note => {
+
+        const classMatch =
+            !classFilter ||
+            note.className === classFilter;
+
+        const subjectMatch =
+            !subjectFilter ||
+            note.subject === subjectFilter;
+
+        const searchMatch =
+            !search ||
+            note.title
+                .toLowerCase()
+                .includes(search)
+            ||
+            note.subject
+                .toLowerCase()
+                .includes(search)
+            ||
+            note.className
+                .toLowerCase()
+                .includes(search);
+
+        return classMatch &&
+               subjectMatch &&
+               searchMatch;
+
+    });
+
+
+    if(notes.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+
+                📚 अभी आपके course के लिए
+                Notes उपलब्ध नहीं हैं।
+
+                <br><br>
+
+                Admin द्वारा Notes add होने के बाद
+                यहाँ दिखाई देंगे।
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        notes.map(note => `
+
+            <div class="note-card">
+
+                <div>
+
+                    <span class="badge">
+                        ${escapeHTML(note.className)}
+                    </span>
+
+                    <span class="badge">
+                        ${escapeHTML(note.subject)}
+                    </span>
+
+                </div>
+
+
+                <h3>
+
+                    Chapter
+                    ${escapeHTML(note.chapter)}
+
+                    —
+                    ${escapeHTML(note.title)}
+
+                </h3>
+
+
+                <div class="note-info">
+
+                    ${
+                        note.description
+                        ? escapeHTML(note.description)
+                        : "Notes available"
+                    }
+
+                    <br><br>
+
+                    👨‍🏫 Teacher:
+                    ${
+                        note.teacher
+                        ? escapeHTML(note.teacher)
+                        : "Surya Coaching Centre"
+                    }
+
+                </div>
+
+
+                <button
+                    class="view-btn"
+                    onclick="openNote('${note.id}')">
+
+                    📖 View Notes
+
+                </button>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+function openNote(id){
+
+    const notes = getNotes();
+
+    const note =
+        notes.find(item => item.id === id);
+
+
+    if(!note){
+
+        alert("Notes नहीं मिले।");
+
+        return;
+    }
+
+
+    if(note.visibility !== "active"){
+
+        alert(
+            "यह Notes अभी उपलब्ध नहीं है।"
+        );
+
+        return;
+    }
+
+
+    if(!note.notesLink){
+
+        alert(
+            "इस Notes की PDF/Link अभी उपलब्ध नहीं है।"
+        );
+
+        return;
+    }
+
+
+    window.open(
+        note.notesLink,
+        "_blank"
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+// FIRST LOAD
+displayNotes();
+
+</script>
+
+</body>
+</html>
